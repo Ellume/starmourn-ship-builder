@@ -1,7 +1,7 @@
 # Ship Purchases Reference (Superstructures, Components, Modules)
 
-Reference notes for `ship-models.json`, `class-mod-slots.json`,
-`components.json`, and `modules.json` — everything a station shipyard sells.
+Reference notes for `ship-models.json`, `components.json`, and `modules.json` —
+everything a station shipyard sells.
 Every station's shipyard carries the identical catalog, so there is no
 per-station variation to account for: an ID/item is available everywhere.
 
@@ -26,8 +26,6 @@ per-station variation to account for: an ID/item is available everywhere.
 
 ## Data files
 - **`ship-models.json`** (37 rows) — one row per superstructure.
-- **`class-mod-slots.json`** (9 rows) — small/med/large mod-slot counts per
-  hull class, independent of a specific model's total Mod Cap.
 - **`components.json`** (153 rows) — all 5 component types in one array with a
   `type` field; type-specific stat fields are `null` where they don't apply.
 - **`modules.json`** (51 rows) — weapon + non-weapon modules in one array,
@@ -61,11 +59,10 @@ per-station variation to account for: an ID/item is available everywhere.
   37 known superstructures exactly, consistent with the premium/luxury lines
   being a special tier outside normal shipyard stock rather than merely
   expensive.
-- **Carrier class has 0 hardpoints and an unusually high Mod Cap.** — it
-  doesn't appear in the `class-mod-slots.json` table at all (that table only
-  covers 7 classes). Carriers read as a mod-only/support hull, consistent with
-  0 weapon hardpoints; components exist for every component type for
-  Carriers, so they're fully fittable despite the missing slot-table row.
+- **Carrier class has 0 hardpoints and an unusually high Mod Cap.** — Carriers
+  read as a mod-only/support hull, consistent with 0 weapon hardpoints;
+  components exist for every component type for Carriers, so they're fully
+  fittable.
 
 ## Modules
 - **51 modules total, 26 weapon / 25 non-weapon** — classified purely by
@@ -99,23 +96,10 @@ per-station variation to account for: an ID/item is available everywhere.
   charger"** — the leading "+0.01%" looks like a formatting artifact rather
   than a real stat (no other non-weapon module's effect text has a stray
   leading percentage before description-style text).
-- **All modules are sized small/medium/large**, matching
-  `class-mod-slots.json`'s per-class slot counts, but there's no captured
-  per-module class restriction beyond size — whether any module is further
-  class-restricted beyond fitting an open slot of its size is unconfirmed.
-
-## Mod slot counts by class (small/med/large)
-Independent of a specific model's total Mod Cap — same table as
-`class-mod-slots.json`.
-
-| Class | Small Mods | Med Mods | Large Mods |
-|---|---|---|---|
-| Interceptor | 2 | 1-2 | 0 |
-| Corvette | 1-3 | 1-2 | 0-1 |
-| Destroyer | 2 | 1-2 | 1 |
-| Freighter | 2-3 | 2-3 | 0 |
-| Cruiser | 2-3 | 2-3 | 2 |
-| Superhauler | 4 | 3 | 0 |
-| Battleship | 4-5 | 3-4 | 2 |
-
-Carrier isn't listed — see the Superstructures section above.
+- **All modules are sized small/medium/large**, but there's no captured
+  per-module class restriction beyond size — whether/how each hull class
+  restricts which module sizes it can fit (beyond the hardpoint/mod-cap
+  points budget) is unconfirmed pending in-game verification. A prior
+  per-class small/med/large slot-count table here turned out to come from an
+  outdated in-game help doc and was removed (2026-07-12) rather than left as
+  a misleading reference.

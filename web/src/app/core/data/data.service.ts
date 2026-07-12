@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import { ClassModSlots, ClassModSlotsRow, CARRIER_MOD_SLOTS_FALLBACK, parseClassModSlots } from '../models/class-mod-slots';
 import { ComponentType, ShipComponent } from '../models/component';
 import { ShipModule } from '../models/module';
 import { ShipClass, ShipModel } from '../models/ship-model';
@@ -20,7 +19,6 @@ export class DataService {
   readonly shipModels = signal<ShipModel[]>([]);
   readonly components = signal<ShipComponent[]>([]);
   readonly modules = signal<ShipModule[]>([]);
-  readonly classModSlots = signal<ClassModSlots[]>([]);
   readonly shipMods = signal<ShipModSummary[]>([]);
   readonly shipModLevels = signal<ShipModLevel[]>([]);
 
@@ -39,11 +37,10 @@ export class DataService {
 
   private async fetchAll(): Promise<void> {
     try {
-      const [shipModels, components, modules, classModSlotsRows, shipMods, shipModLevelsRaw] = await Promise.all([
+      const [shipModels, components, modules, shipMods, shipModLevelsRaw] = await Promise.all([
         firstValueFrom(this.http.get<ShipModel[]>('data/ship-models.json')),
         firstValueFrom(this.http.get<ShipComponent[]>('data/components.json')),
         firstValueFrom(this.http.get<ShipModule[]>('data/modules.json')),
-        firstValueFrom(this.http.get<ClassModSlotsRow[]>('data/class-mod-slots.json')),
         firstValueFrom(this.http.get<ShipModSummary[]>('data/ship-mods.json')),
         firstValueFrom(this.http.get<ShipModLevelRaw[]>('data/ship-mod-levels.json')),
       ]);
@@ -51,7 +48,6 @@ export class DataService {
       this.shipModels.set(shipModels);
       this.components.set(components);
       this.modules.set(modules);
-      this.classModSlots.set([...parseClassModSlots(classModSlotsRows), CARRIER_MOD_SLOTS_FALLBACK]);
       this.shipMods.set(shipMods);
 
       const { parsed, issues } = validateParsing(shipModLevelsRaw);
@@ -75,10 +71,6 @@ export class DataService {
 
   modelsByClass(shipClass: ShipClass): ShipModel[] {
     return this.shipModels().filter((m) => m.class === shipClass);
-  }
-
-  modSlotsForClass(shipClass: ShipClass): ClassModSlots {
-    return this.classModSlots().find((c) => c.class === shipClass) ?? CARRIER_MOD_SLOTS_FALLBACK;
   }
 
   /** All 15 levels of one mod, sorted ascending. */
