@@ -1,0 +1,56 @@
+[
+  {
+    "class": "Interceptor",
+    "small_mods": "2",
+    "med_mods": "1-2",
+    "large_mods": "0"
+  },
+  {
+    "class": "Corvette",
+    "small_mods": "1-3",
+    "med_mods": "1-2",
+    "large_mods": "0-1"
+  },
+  {
+    "class": "Destroyer",
+    "small_mods": "2",
+    "med_mods": "1-2",
+    "large_mods": "1"
+  },
+  {
+    "class": "Freighter",
+    "small_mods": "2-3",
+    "med_mods": "2-3",
+    "large_mods": "0"
+  },
+  {
+    "class": "Cruiser",
+    "small_mods": "2-3",
+    "med_mods": "2-3",
+    "large_mods": "2"
+  },
+  {
+    "class": "Superhauler",
+    "small_mods": "4",
+    "med_mods": "3",
+    "large_mods": "0"
+  },
+  {
+    "class": "Battleship",
+    "small_mods": "4-5",
+    "med_mods": "3-4",
+    "large_mods": "2"
+  },
+  {
+    "class": null,
+    "small_mods": null,
+    "med_mods": null,
+    "large_mods": null
+  },
+  {
+    "class": "Note: Carrier class not in the in-game class-mod-slot table (only 7 listed classes); carriers have 0 hardpoints and unusually high Mod Cap. instead, so slot breakdown by size tier is unconfirmed.",
+    "small_mods": null,
+    "med_mods": null,
+    "large_mods": null
+  }
+]

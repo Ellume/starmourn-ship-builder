@@ -1,0 +1,5252 @@
+[
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Superalloys and 8 Nanotubes.",
+    "effect": "+5.25% capacitor hit points, +1.75% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 2,
+    "parts_interceptor_base_cost": "15 Nanotubes and 5 Superalloys.",
+    "effect": "+9.75% capacitor hit points, +3.25% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 3,
+    "parts_interceptor_base_cost": "23 Nanotubes and 7 Superalloys.",
+    "effect": "+15.00% capacitor hit points, +5.00% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 4,
+    "parts_interceptor_base_cost": "30 Nanotubes and 9 Superalloys.",
+    "effect": "+20.25% capacitor hit points, +6.75% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 5,
+    "parts_interceptor_base_cost": "11 Superalloys and 37 Nanotubes.",
+    "effect": "+24.75% capacitor hit points, +8.25% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 6,
+    "parts_interceptor_base_cost": "13 Superalloys and 43 Nanotubes.",
+    "effect": "+30.00% capacitor hit points, +10.00% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 7,
+    "parts_interceptor_base_cost": "15 Superalloys and 49 Nanotubes.",
+    "effect": "+35.25% capacitor hit points, +11.75% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 8,
+    "parts_interceptor_base_cost": "16 Superalloys and 55 Nanotubes.",
+    "effect": "+39.75% capacitor hit points, +13.25% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 9,
+    "parts_interceptor_base_cost": "18 Superalloys and 60 Nanotubes.",
+    "effect": "+45.00% capacitor hit points, +15.00% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 10,
+    "parts_interceptor_base_cost": "19 Superalloys and 65 Nanotubes.",
+    "effect": "+50.25% capacitor hit points, +16.75% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 11,
+    "parts_interceptor_base_cost": "20 Superalloys and 69 Nanotubes.",
+    "effect": "+54.75% capacitor hit points, +18.25% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 12,
+    "parts_interceptor_base_cost": "21 Superalloys and 72 Nanotubes.",
+    "effect": "+60.00% capacitor hit points, +20.00% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 13,
+    "parts_interceptor_base_cost": "22 Superalloys and 74 Nanotubes.",
+    "effect": "+65.25% capacitor hit points, +21.75% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 14,
+    "parts_interceptor_base_cost": "23 Superalloys and 76 Nanotubes.",
+    "effect": "+69.75% capacitor hit points, +23.25% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_bulwark",
+    "full_name": "Capacitor Bulwarks",
+    "level": 15,
+    "parts_interceptor_base_cost": "23 Superalloys and 77 Nanotubes.",
+    "effect": "+75.00% capacitor hit points, +25.00% capacitor mass"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "5 Metamaterials and 6 Nanotubes.",
+    "effect": "-1.40% capacitor halon cost, -2.80% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Nanotubes and 9 Metamaterials.",
+    "effect": "-2.60% capacitor halon cost, -5.20% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "14 Metamaterials and 17 Nanotubes.",
+    "effect": "-4.00% capacitor halon cost, -8.00% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "18 Metamaterials and 21 Nanotubes.",
+    "effect": "-5.40% capacitor halon cost, -10.80% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "22 Metamaterials and 26 Nanotubes.",
+    "effect": "-6.60% capacitor halon cost, -13.20% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "25 Metamaterials and 31 Nanotubes.",
+    "effect": "-8.00% capacitor halon cost, -16.00% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "29 Metamaterials and 35 Nanotubes.",
+    "effect": "-9.40% capacitor halon cost, -18.80% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "32 Metamaterials and 39 Nanotubes.",
+    "effect": "-10.60% capacitor halon cost, -21.20% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "35 Metamaterials and 43 Nanotubes.",
+    "effect": "-12.00% capacitor halon cost, -24.00% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "38 Metamaterials and 46 Nanotubes.",
+    "effect": "-13.40% capacitor halon cost, -26.80% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "40 Metamaterials and 49 Nanotubes.",
+    "effect": "-14.60% capacitor halon cost, -29.20% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "42 Metamaterials and 51 Nanotubes.",
+    "effect": "-16.00% capacitor halon cost, -32.00% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "43 Metamaterials and 53 Nanotubes.",
+    "effect": "-17.40% capacitor halon cost, -34.80% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "45 Metamaterials and 54 Nanotubes.",
+    "effect": "-18.60% capacitor halon cost, -37.20% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_optimize",
+    "full_name": "Capacitor Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "45 Metamaterials and 55 Nanotubes.",
+    "effect": "-20.00% capacitor halon cost, -40.00% capacitor hit points"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 1,
+    "parts_interceptor_base_cost": "5 Nanotubes and 5 Superalloys.",
+    "effect": "+2.10% capacitance, +0.70% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 2,
+    "parts_interceptor_base_cost": "10 Nanotubes and 10 Superalloys.",
+    "effect": "+3.90% capacitance, +1.30% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 3,
+    "parts_interceptor_base_cost": "15 Nanotubes and 15 Superalloys.",
+    "effect": "+6.00% capacitance, +2.00% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 4,
+    "parts_interceptor_base_cost": "19 Superalloys and 20 Nanotubes.",
+    "effect": "+8.10% capacitance, +2.70% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 5,
+    "parts_interceptor_base_cost": "24 Nanotubes and 24 Superalloys.",
+    "effect": "+9.90% capacitance, +3.30% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 6,
+    "parts_interceptor_base_cost": "27 Superalloys and 29 Nanotubes.",
+    "effect": "+12.00% capacitance, +4.00% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 7,
+    "parts_interceptor_base_cost": "31 Superalloys and 33 Nanotubes.",
+    "effect": "+14.10% capacitance, +4.70% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 8,
+    "parts_interceptor_base_cost": "35 Superalloys and 36 Nanotubes.",
+    "effect": "+15.90% capacitance, +5.30% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 9,
+    "parts_interceptor_base_cost": "38 Superalloys and 40 Nanotubes.",
+    "effect": "+18.00% capacitance, +6.00% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 10,
+    "parts_interceptor_base_cost": "41 Superalloys and 43 Nanotubes.",
+    "effect": "+20.10% capacitance, +6.70% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 11,
+    "parts_interceptor_base_cost": "44 Superalloys and 45 Nanotubes.",
+    "effect": "+21.90% capacitance, +7.30% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 12,
+    "parts_interceptor_base_cost": "46 Superalloys and 47 Nanotubes.",
+    "effect": "+24.00% capacitance, +8.00% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 13,
+    "parts_interceptor_base_cost": "47 Superalloys and 49 Nanotubes.",
+    "effect": "+26.10% capacitance, +8.70% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 14,
+    "parts_interceptor_base_cost": "49 Superalloys and 50 Nanotubes.",
+    "effect": "+27.90% capacitance, +9.30% capacitor halon cost"
+  },
+  {
+    "shortname": "capacitor_overclock",
+    "full_name": "Capacitor Overclock",
+    "level": 15,
+    "parts_interceptor_base_cost": "49 Superalloys and 51 Nanotubes.",
+    "effect": "+30.00% capacitance, +10.00% capacitor halon cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Nanotube and 9 Aerogels.",
+    "effect": "+3.50% ICE to all components, +0.70% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 2,
+    "parts_interceptor_base_cost": "17 Aerogels and 3 Nanotubes.",
+    "effect": "+6.50% ICE to all components, +1.30% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 3,
+    "parts_interceptor_base_cost": "26 Aerogels and 4 Nanotubes.",
+    "effect": "+10.00% ICE to all components, +2.00% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 4,
+    "parts_interceptor_base_cost": "34 Aerogels and 5 Nanotubes.",
+    "effect": "+13.50% ICE to all components, +2.70% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 5,
+    "parts_interceptor_base_cost": "42 Aerogels and 6 Nanotubes.",
+    "effect": "+16.50% ICE to all components, +3.30% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 6,
+    "parts_interceptor_base_cost": "49 Aerogels and 7 Nanotubes.",
+    "effect": "+20.00% ICE to all components, +4.00% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 7,
+    "parts_interceptor_base_cost": "56 Aerogels and 8 Nanotubes.",
+    "effect": "+23.50% ICE to all components, +4.70% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 8,
+    "parts_interceptor_base_cost": "62 Aerogels and 9 Nanotubes.",
+    "effect": "+26.50% ICE to all components, +5.30% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 9,
+    "parts_interceptor_base_cost": "10 Nanotubes and 68 Aerogels.",
+    "effect": "+30.00% ICE to all components, +6.00% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 10,
+    "parts_interceptor_base_cost": "11 Nanotubes and 73 Aerogels.",
+    "effect": "+33.50% ICE to all components, +6.70% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 11,
+    "parts_interceptor_base_cost": "12 Nanotubes and 77 Aerogels.",
+    "effect": "+36.50% ICE to all components, +7.30% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 12,
+    "parts_interceptor_base_cost": "12 Nanotubes and 81 Aerogels.",
+    "effect": "+40.00% ICE to all components, +8.00% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 13,
+    "parts_interceptor_base_cost": "12 Nanotubes and 84 Aerogels.",
+    "effect": "+43.50% ICE to all components, +8.70% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 14,
+    "parts_interceptor_base_cost": "13 Nanotubes and 86 Aerogels.",
+    "effect": "+46.50% ICE to all components, +9.30% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "ice_upgrade",
+    "full_name": "ICE Software Upgrade",
+    "level": 15,
+    "parts_interceptor_base_cost": "13 Nanotubes and 87 Aerogels.",
+    "effect": "+50.00% ICE to all components, +10.00% ICE firmware cycle cost"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 1,
+    "parts_interceptor_base_cost": "10 Aerogels.",
+    "effect": "+5.25% engine hit points, +1.75% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 2,
+    "parts_interceptor_base_cost": "20 Aerogels.",
+    "effect": "+9.75% engine hit points, +3.25% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 3,
+    "parts_interceptor_base_cost": "30 Aerogels.",
+    "effect": "+15.00% engine hit points, +5.00% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 4,
+    "parts_interceptor_base_cost": "39 Aerogels.",
+    "effect": "+20.25% engine hit points, +6.75% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 5,
+    "parts_interceptor_base_cost": "48 Aerogels.",
+    "effect": "+24.75% engine hit points, +8.25% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 6,
+    "parts_interceptor_base_cost": "56 Aerogels.",
+    "effect": "+30.00% engine hit points, +10.00% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 7,
+    "parts_interceptor_base_cost": "64 Aerogels.",
+    "effect": "+35.25% engine hit points, +11.75% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 8,
+    "parts_interceptor_base_cost": "71 Aerogels.",
+    "effect": "+39.75% engine hit points, +13.25% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 9,
+    "parts_interceptor_base_cost": "78 Aerogels.",
+    "effect": "+45.00% engine hit points, +15.00% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 10,
+    "parts_interceptor_base_cost": "84 Aerogels.",
+    "effect": "+50.25% engine hit points, +16.75% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 11,
+    "parts_interceptor_base_cost": "89 Aerogels.",
+    "effect": "+54.75% engine hit points, +18.25% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 12,
+    "parts_interceptor_base_cost": "93 Aerogels.",
+    "effect": "+60.00% engine hit points, +20.00% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 13,
+    "parts_interceptor_base_cost": "96 Aerogels.",
+    "effect": "+65.25% engine hit points, +21.75% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 14,
+    "parts_interceptor_base_cost": "99 Aerogels.",
+    "effect": "+69.75% engine hit points, +23.25% engine mass"
+  },
+  {
+    "shortname": "engine_bulwark",
+    "full_name": "Engine Bulwarks",
+    "level": 15,
+    "parts_interceptor_base_cost": "100 Aerogels.",
+    "effect": "+75.00% engine hit points, +25.00% engine mass"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Nanotubes and 6 Aerogels.",
+    "effect": "-1.40% engine halon cost, -2.80% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Aerogels and 9 Nanotubes.",
+    "effect": "-2.60% engine halon cost, -5.20% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "13 Nanotubes and 17 Aerogels.",
+    "effect": "-4.00% engine halon cost, -8.00% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "17 Nanotubes and 22 Aerogels.",
+    "effect": "-5.40% engine halon cost, -10.80% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "21 Nanotubes and 27 Aerogels.",
+    "effect": "-6.60% engine halon cost, -13.20% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "24 Nanotubes and 32 Aerogels.",
+    "effect": "-8.00% engine halon cost, -16.00% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "28 Nanotubes and 36 Aerogels.",
+    "effect": "-9.40% engine halon cost, -18.80% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "31 Nanotubes and 40 Aerogels.",
+    "effect": "-10.60% engine halon cost, -21.20% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "34 Nanotubes and 44 Aerogels.",
+    "effect": "-12.00% engine halon cost, -24.00% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "36 Nanotubes and 48 Aerogels.",
+    "effect": "-13.40% engine halon cost, -26.80% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "38 Nanotubes and 51 Aerogels.",
+    "effect": "-14.60% engine halon cost, -29.20% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "40 Nanotubes and 53 Aerogels.",
+    "effect": "-16.00% engine halon cost, -32.00% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "41 Nanotubes and 55 Aerogels.",
+    "effect": "-17.40% engine halon cost, -34.80% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "43 Nanotubes and 56 Aerogels.",
+    "effect": "-18.60% engine halon cost, -37.20% engine hit points"
+  },
+  {
+    "shortname": "engine_optimize",
+    "full_name": "Engine Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "43 Nanotubes and 57 Aerogels.",
+    "effect": "-20.00% engine halon cost, -40.00% engine hit points"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Superalloys and 8 Aerogels.",
+    "effect": "+2.10% engine thrust output, +0.70% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Aerogels and 4 Superalloys.",
+    "effect": "+3.90% engine thrust output, +1.30% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 3,
+    "parts_interceptor_base_cost": "24 Aerogels and 6 Superalloys.",
+    "effect": "+6.00% engine thrust output, +2.00% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 4,
+    "parts_interceptor_base_cost": "32 Aerogels and 7 Superalloys.",
+    "effect": "+8.10% engine thrust output, +2.70% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 5,
+    "parts_interceptor_base_cost": "39 Aerogels and 9 Superalloys.",
+    "effect": "+9.90% engine thrust output, +3.30% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 6,
+    "parts_interceptor_base_cost": "11 Superalloys and 45 Aerogels.",
+    "effect": "+12.00% engine thrust output, +4.00% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 7,
+    "parts_interceptor_base_cost": "12 Superalloys and 52 Aerogels.",
+    "effect": "+14.10% engine thrust output, +4.70% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 8,
+    "parts_interceptor_base_cost": "13 Superalloys and 58 Aerogels.",
+    "effect": "+15.90% engine thrust output, +5.30% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 9,
+    "parts_interceptor_base_cost": "15 Superalloys and 63 Aerogels.",
+    "effect": "+18.00% engine thrust output, +6.00% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 10,
+    "parts_interceptor_base_cost": "16 Superalloys and 68 Aerogels.",
+    "effect": "+20.10% engine thrust output, +6.70% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 11,
+    "parts_interceptor_base_cost": "17 Superalloys and 72 Aerogels.",
+    "effect": "+21.90% engine thrust output, +7.30% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 12,
+    "parts_interceptor_base_cost": "18 Superalloys and 75 Aerogels.",
+    "effect": "+24.00% engine thrust output, +8.00% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 13,
+    "parts_interceptor_base_cost": "18 Superalloys and 78 Aerogels.",
+    "effect": "+26.10% engine thrust output, +8.70% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 14,
+    "parts_interceptor_base_cost": "19 Superalloys and 80 Aerogels.",
+    "effect": "+27.90% engine thrust output, +9.30% engine halon cost"
+  },
+  {
+    "shortname": "engine_overclock",
+    "full_name": "Engine Overclock",
+    "level": 15,
+    "parts_interceptor_base_cost": "19 Superalloys and 81 Aerogels.",
+    "effect": "+30.00% engine thrust output, +10.00% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Nanotube and 9 Aerogels.",
+    "effect": "+2.10% maximum speed, +0.70% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 2,
+    "parts_interceptor_base_cost": "1 Nanotube and 19 Aerogels.",
+    "effect": "+3.90% maximum speed, +1.30% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Nanotubes and 28 Aerogels.",
+    "effect": "+6.00% maximum speed, +2.00% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Nanotubes and 36 Aerogels.",
+    "effect": "+8.10% maximum speed, +2.70% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 5,
+    "parts_interceptor_base_cost": "3 Nanotubes and 45 Aerogels.",
+    "effect": "+9.90% maximum speed, +3.30% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Nanotubes and 52 Aerogels.",
+    "effect": "+12.00% maximum speed, +4.00% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 7,
+    "parts_interceptor_base_cost": "4 Nanotubes and 60 Aerogels.",
+    "effect": "+14.10% maximum speed, +4.70% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 8,
+    "parts_interceptor_base_cost": "5 Nanotubes and 66 Aerogels.",
+    "effect": "+15.90% maximum speed, +5.30% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 9,
+    "parts_interceptor_base_cost": "5 Nanotubes and 73 Aerogels.",
+    "effect": "+18.00% maximum speed, +6.00% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 10,
+    "parts_interceptor_base_cost": "6 Nanotubes and 78 Aerogels.",
+    "effect": "+20.10% maximum speed, +6.70% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 11,
+    "parts_interceptor_base_cost": "6 Nanotubes and 83 Aerogels.",
+    "effect": "+21.90% maximum speed, +7.30% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Nanotubes and 86 Aerogels.",
+    "effect": "+24.00% maximum speed, +8.00% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 13,
+    "parts_interceptor_base_cost": "7 Nanotubes and 89 Aerogels.",
+    "effect": "+26.10% maximum speed, +8.70% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 14,
+    "parts_interceptor_base_cost": "7 Nanotubes and 92 Aerogels.",
+    "effect": "+27.90% maximum speed, +9.30% engine halon cost"
+  },
+  {
+    "shortname": "max_speed",
+    "full_name": "Skipdrive Overclock",
+    "level": 15,
+    "parts_interceptor_base_cost": "7 Nanotubes and 93 Aerogels.",
+    "effect": "+30.00% maximum speed, +10.00% engine halon cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Aerogels, 3 Amorphites, and 5 Metamaterials.",
+    "effect": "+2.80% interdiction beam power, +0.70% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 2,
+    "parts_interceptor_base_cost": "10 Metamaterials, 5 Aerogels, and 5 Amorphites.",
+    "effect": "+5.20% interdiction beam power, +1.30% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 3,
+    "parts_interceptor_base_cost": "15 Metamaterials, 8 Aerogels, and 8 Amorphites.",
+    "effect": "+8.00% interdiction beam power, +2.00% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 4,
+    "parts_interceptor_base_cost": "10 Aerogels, 10 Amorphites, and 20 Metamaterials.",
+    "effect": "+10.80% interdiction beam power, +2.70% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 5,
+    "parts_interceptor_base_cost": "12 Aerogels, 12 Amorphites, and 24 Metamaterials.",
+    "effect": "+13.20% interdiction beam power, +3.30% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 6,
+    "parts_interceptor_base_cost": "14 Aerogels, 14 Amorphites, and 28 Metamaterials.",
+    "effect": "+16.00% interdiction beam power, +4.00% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 7,
+    "parts_interceptor_base_cost": "16 Aerogels, 16 Amorphites, and 32 Metamaterials.",
+    "effect": "+18.80% interdiction beam power, +4.70% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 8,
+    "parts_interceptor_base_cost": "18 Aerogels, 18 Amorphites, and 36 Metamaterials.",
+    "effect": "+21.20% interdiction beam power, +5.30% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 9,
+    "parts_interceptor_base_cost": "20 Aerogels, 20 Amorphites, and 39 Metamaterials.",
+    "effect": "+24.00% interdiction beam power, +6.00% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 10,
+    "parts_interceptor_base_cost": "21 Aerogels, 21 Amorphites, and 42 Metamaterials.",
+    "effect": "+26.80% interdiction beam power, +6.70% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 11,
+    "parts_interceptor_base_cost": "22 Aerogels, 22 Amorphites, and 45 Metamaterials.",
+    "effect": "+29.20% interdiction beam power, +7.30% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 12,
+    "parts_interceptor_base_cost": "23 Aerogels, 23 Amorphites, and 47 Metamaterials.",
+    "effect": "+32.00% interdiction beam power, +8.00% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 13,
+    "parts_interceptor_base_cost": "24 Aerogels, 24 Amorphites, and 48 Metamaterials.",
+    "effect": "+34.80% interdiction beam power, +8.70% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 14,
+    "parts_interceptor_base_cost": "25 Aerogels, 25 Amorphites, and 50 Metamaterials.",
+    "effect": "+37.20% interdiction beam power, +9.30% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "interdiction_power",
+    "full_name": "Interdiction Power",
+    "level": 15,
+    "parts_interceptor_base_cost": "25 Aerogels, 25 Amorphites, and 50 Metamaterials.",
+    "effect": "+40.00% interdiction beam power, +10.00% interdiction beam cycle cost"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Amorphites, 3 Metamaterials, and 5 Aerogels.",
+    "effect": "+5.25% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 2,
+    "parts_interceptor_base_cost": "10 Aerogels, 5 Amorphites, and 5 Metamaterials.",
+    "effect": "+9.75% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 3,
+    "parts_interceptor_base_cost": "15 Aerogels, 8 Amorphites, and 8 Metamaterials.",
+    "effect": "+15.00% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 4,
+    "parts_interceptor_base_cost": "10 Amorphites, 10 Metamaterials, and 20 Aerogels.",
+    "effect": "+20.25% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 5,
+    "parts_interceptor_base_cost": "12 Amorphites, 12 Metamaterials, and 24 Aerogels.",
+    "effect": "+24.75% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 6,
+    "parts_interceptor_base_cost": "14 Amorphites, 14 Metamaterials, and 28 Aerogels.",
+    "effect": "+30.00% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 7,
+    "parts_interceptor_base_cost": "16 Amorphites, 16 Metamaterials, and 32 Aerogels.",
+    "effect": "+35.25% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 8,
+    "parts_interceptor_base_cost": "18 Amorphites, 18 Metamaterials, and 36 Aerogels.",
+    "effect": "+39.75% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 9,
+    "parts_interceptor_base_cost": "20 Amorphites, 20 Metamaterials, and 39 Aerogels.",
+    "effect": "+45.00% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 10,
+    "parts_interceptor_base_cost": "21 Amorphites, 21 Metamaterials, and 42 Aerogels.",
+    "effect": "+50.25% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 11,
+    "parts_interceptor_base_cost": "22 Amorphites, 22 Metamaterials, and 45 Aerogels.",
+    "effect": "+54.75% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 12,
+    "parts_interceptor_base_cost": "23 Amorphites, 23 Metamaterials, and 47 Aerogels.",
+    "effect": "+60.00% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 13,
+    "parts_interceptor_base_cost": "24 Amorphites, 24 Metamaterials, and 48 Aerogels.",
+    "effect": "+65.25% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 14,
+    "parts_interceptor_base_cost": "25 Amorphites, 25 Metamaterials, and 50 Aerogels.",
+    "effect": "+69.75% Skipfield Integrity"
+  },
+  {
+    "shortname": "skipfield_integrity",
+    "full_name": "Skipfield Integrity Augment",
+    "level": 15,
+    "parts_interceptor_base_cost": "25 Amorphites, 25 Metamaterials, and 50 Aerogels.",
+    "effect": "+75.00% Skipfield Integrity"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 1,
+    "parts_interceptor_base_cost": "5 Aerogels and 5 Nanotubes.",
+    "effect": "-5.60% to scoop drag penalty, +1.75% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 2,
+    "parts_interceptor_base_cost": "10 Aerogels and 10 Nanotubes.",
+    "effect": "-10.40% to scoop drag penalty, +3.25% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 3,
+    "parts_interceptor_base_cost": "14 Nanotubes and 16 Aerogels.",
+    "effect": "-16.00% to scoop drag penalty, +5.00% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 4,
+    "parts_interceptor_base_cost": "19 Nanotubes and 20 Aerogels.",
+    "effect": "-21.60% to scoop drag penalty, +6.75% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 5,
+    "parts_interceptor_base_cost": "23 Nanotubes and 25 Aerogels.",
+    "effect": "-26.40% to scoop drag penalty, +8.25% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 6,
+    "parts_interceptor_base_cost": "27 Nanotubes and 29 Aerogels.",
+    "effect": "-32.00% to scoop drag penalty, +10.00% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 7,
+    "parts_interceptor_base_cost": "31 Nanotubes and 33 Aerogels.",
+    "effect": "-37.60% to scoop drag penalty, +11.75% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 8,
+    "parts_interceptor_base_cost": "34 Nanotubes and 37 Aerogels.",
+    "effect": "-42.40% to scoop drag penalty, +13.25% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 9,
+    "parts_interceptor_base_cost": "37 Nanotubes and 41 Aerogels.",
+    "effect": "-48.00% to scoop drag penalty, +15.00% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 10,
+    "parts_interceptor_base_cost": "40 Nanotubes and 44 Aerogels.",
+    "effect": "-53.60% to scoop drag penalty, +16.75% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 11,
+    "parts_interceptor_base_cost": "43 Nanotubes and 46 Aerogels.",
+    "effect": "-58.40% to scoop drag penalty, +18.25% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 12,
+    "parts_interceptor_base_cost": "45 Nanotubes and 48 Aerogels.",
+    "effect": "-64.00% to scoop drag penalty, +20.00% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 13,
+    "parts_interceptor_base_cost": "46 Nanotubes and 50 Aerogels.",
+    "effect": "-69.60% to scoop drag penalty, +21.75% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 14,
+    "parts_interceptor_base_cost": "48 Nanotubes and 51 Aerogels.",
+    "effect": "-74.40% to scoop drag penalty, +23.25% engine mass"
+  },
+  {
+    "shortname": "drag_reducer",
+    "full_name": "Drag Compensators",
+    "level": 15,
+    "parts_interceptor_base_cost": "48 Nanotubes and 52 Aerogels.",
+    "effect": "-80.00% to scoop drag penalty, +25.00% engine mass"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Nanotubes and 7 Metamaterials.",
+    "effect": "-5.25% harvestdrone tick time, -0.70% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 2,
+    "parts_interceptor_base_cost": "14 Metamaterials and 6 Nanotubes.",
+    "effect": "-9.75% harvestdrone tick time, -1.30% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 3,
+    "parts_interceptor_base_cost": "10 Nanotubes and 20 Metamaterials.",
+    "effect": "-15.00% harvestdrone tick time, -2.00% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 4,
+    "parts_interceptor_base_cost": "12 Nanotubes and 27 Metamaterials.",
+    "effect": "-20.25% harvestdrone tick time, -2.70% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 5,
+    "parts_interceptor_base_cost": "15 Nanotubes and 33 Metamaterials.",
+    "effect": "-24.75% harvestdrone tick time, -3.30% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 6,
+    "parts_interceptor_base_cost": "18 Nanotubes and 38 Metamaterials.",
+    "effect": "-30.00% harvestdrone tick time, -4.00% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 7,
+    "parts_interceptor_base_cost": "20 Nanotubes and 44 Metamaterials.",
+    "effect": "-35.25% harvestdrone tick time, -4.70% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 8,
+    "parts_interceptor_base_cost": "23 Nanotubes and 48 Metamaterials.",
+    "effect": "-39.75% harvestdrone tick time, -5.30% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 9,
+    "parts_interceptor_base_cost": "25 Nanotubes and 53 Metamaterials.",
+    "effect": "-45.00% harvestdrone tick time, -6.00% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 10,
+    "parts_interceptor_base_cost": "27 Nanotubes and 57 Metamaterials.",
+    "effect": "-50.25% harvestdrone tick time, -6.70% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 11,
+    "parts_interceptor_base_cost": "28 Nanotubes and 61 Metamaterials.",
+    "effect": "-54.75% harvestdrone tick time, -7.30% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 12,
+    "parts_interceptor_base_cost": "30 Nanotubes and 63 Metamaterials.",
+    "effect": "-60.00% harvestdrone tick time, -8.00% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 13,
+    "parts_interceptor_base_cost": "31 Nanotubes and 65 Metamaterials.",
+    "effect": "-65.25% harvestdrone tick time, -8.70% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 14,
+    "parts_interceptor_base_cost": "32 Nanotubes and 67 Metamaterials.",
+    "effect": "-69.75% harvestdrone tick time, -9.30% shipsim cycle output"
+  },
+  {
+    "shortname": "drone_speed",
+    "full_name": "Improved Harvest Drone Routines",
+    "level": 15,
+    "parts_interceptor_base_cost": "32 Nanotubes and 68 Metamaterials.",
+    "effect": "-75.00% harvestdrone tick time, -10.00% shipsim cycle output"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Metamaterials and 6 Amorphites.",
+    "effect": "+1.40% compressor additional yield chance, +0.70% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 2,
+    "parts_interceptor_base_cost": "12 Amorphites and 8 Metamaterials.",
+    "effect": "+2.60% compressor additional yield chance, +1.30% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 3,
+    "parts_interceptor_base_cost": "13 Metamaterials and 17 Amorphites.",
+    "effect": "+4.00% compressor additional yield chance, +2.00% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 4,
+    "parts_interceptor_base_cost": "16 Metamaterials and 23 Amorphites.",
+    "effect": "+5.40% compressor additional yield chance, +2.70% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 5,
+    "parts_interceptor_base_cost": "20 Metamaterials and 28 Amorphites.",
+    "effect": "+6.60% compressor additional yield chance, +3.30% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 6,
+    "parts_interceptor_base_cost": "24 Metamaterials and 32 Amorphites.",
+    "effect": "+8.00% compressor additional yield chance, +4.00% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 7,
+    "parts_interceptor_base_cost": "27 Metamaterials and 37 Amorphites.",
+    "effect": "+9.40% compressor additional yield chance, +4.70% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 8,
+    "parts_interceptor_base_cost": "30 Metamaterials and 41 Amorphites.",
+    "effect": "+10.60% compressor additional yield chance, +5.30% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 9,
+    "parts_interceptor_base_cost": "33 Metamaterials and 45 Amorphites.",
+    "effect": "+12.00% compressor additional yield chance, +6.00% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 10,
+    "parts_interceptor_base_cost": "35 Metamaterials and 49 Amorphites.",
+    "effect": "+13.40% compressor additional yield chance, +6.70% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 11,
+    "parts_interceptor_base_cost": "37 Metamaterials and 52 Amorphites.",
+    "effect": "+14.60% compressor additional yield chance, +7.30% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 12,
+    "parts_interceptor_base_cost": "39 Metamaterials and 54 Amorphites.",
+    "effect": "+16.00% compressor additional yield chance, +8.00% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 13,
+    "parts_interceptor_base_cost": "40 Metamaterials and 56 Amorphites.",
+    "effect": "+17.40% compressor additional yield chance, +8.70% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 14,
+    "parts_interceptor_base_cost": "42 Metamaterials and 57 Amorphites.",
+    "effect": "+18.60% compressor additional yield chance, +9.30% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_compressors",
+    "full_name": "Improved Compressors",
+    "level": 15,
+    "parts_interceptor_base_cost": "42 Metamaterials and 58 Amorphites.",
+    "effect": "+20.00% compressor additional yield chance, +10.00% compressor cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 1,
+    "parts_interceptor_base_cost": "10 Nanotubes.",
+    "effect": "+1.40% crusher additional yield chance, +0.70% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 2,
+    "parts_interceptor_base_cost": "20 Nanotubes.",
+    "effect": "+2.60% crusher additional yield chance, +1.30% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 3,
+    "parts_interceptor_base_cost": "30 Nanotubes.",
+    "effect": "+4.00% crusher additional yield chance, +2.00% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 4,
+    "parts_interceptor_base_cost": "39 Nanotubes.",
+    "effect": "+5.40% crusher additional yield chance, +2.70% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 5,
+    "parts_interceptor_base_cost": "48 Nanotubes.",
+    "effect": "+6.60% crusher additional yield chance, +3.30% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 6,
+    "parts_interceptor_base_cost": "56 Nanotubes.",
+    "effect": "+8.00% crusher additional yield chance, +4.00% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 7,
+    "parts_interceptor_base_cost": "64 Nanotubes.",
+    "effect": "+9.40% crusher additional yield chance, +4.70% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 8,
+    "parts_interceptor_base_cost": "71 Nanotubes.",
+    "effect": "+10.60% crusher additional yield chance, +5.30% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 9,
+    "parts_interceptor_base_cost": "78 Nanotubes.",
+    "effect": "+12.00% crusher additional yield chance, +6.00% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 10,
+    "parts_interceptor_base_cost": "84 Nanotubes.",
+    "effect": "+13.40% crusher additional yield chance, +6.70% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 11,
+    "parts_interceptor_base_cost": "89 Nanotubes.",
+    "effect": "+14.60% crusher additional yield chance, +7.30% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 12,
+    "parts_interceptor_base_cost": "93 Nanotubes.",
+    "effect": "+16.00% crusher additional yield chance, +8.00% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 13,
+    "parts_interceptor_base_cost": "96 Nanotubes.",
+    "effect": "+17.40% crusher additional yield chance, +8.70% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 14,
+    "parts_interceptor_base_cost": "99 Nanotubes.",
+    "effect": "+18.60% crusher additional yield chance, +9.30% crusher cycle cost"
+  },
+  {
+    "shortname": "improved_crushers",
+    "full_name": "Improved Crushers",
+    "level": 15,
+    "parts_interceptor_base_cost": "100 Nanotubes.",
+    "effect": "+20.00% crusher additional yield chance, +10.00% crusher cycle cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 1,
+    "parts_interceptor_base_cost": "10 Superalloys.",
+    "effect": "+3.50% scoop capacity, +0.70% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 2,
+    "parts_interceptor_base_cost": "20 Superalloys.",
+    "effect": "+6.50% scoop capacity, +1.30% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 3,
+    "parts_interceptor_base_cost": "30 Superalloys.",
+    "effect": "+10.00% scoop capacity, +2.00% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 4,
+    "parts_interceptor_base_cost": "39 Superalloys.",
+    "effect": "+13.50% scoop capacity, +2.70% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 5,
+    "parts_interceptor_base_cost": "48 Superalloys.",
+    "effect": "+16.50% scoop capacity, +3.30% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 6,
+    "parts_interceptor_base_cost": "56 Superalloys.",
+    "effect": "+20.00% scoop capacity, +4.00% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 7,
+    "parts_interceptor_base_cost": "64 Superalloys.",
+    "effect": "+23.50% scoop capacity, +4.70% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 8,
+    "parts_interceptor_base_cost": "71 Superalloys.",
+    "effect": "+26.50% scoop capacity, +5.30% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 9,
+    "parts_interceptor_base_cost": "78 Superalloys.",
+    "effect": "+30.00% scoop capacity, +6.00% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 10,
+    "parts_interceptor_base_cost": "84 Superalloys.",
+    "effect": "+33.50% scoop capacity, +6.70% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 11,
+    "parts_interceptor_base_cost": "89 Superalloys.",
+    "effect": "+36.50% scoop capacity, +7.30% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 12,
+    "parts_interceptor_base_cost": "93 Superalloys.",
+    "effect": "+40.00% scoop capacity, +8.00% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 13,
+    "parts_interceptor_base_cost": "96 Superalloys.",
+    "effect": "+43.50% scoop capacity, +8.70% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 14,
+    "parts_interceptor_base_cost": "99 Superalloys.",
+    "effect": "+46.50% scoop capacity, +9.30% engine halon cost"
+  },
+  {
+    "shortname": "scoop_capacity",
+    "full_name": "Improved Scoop Capacity",
+    "level": 15,
+    "parts_interceptor_base_cost": "100 Superalloys.",
+    "effect": "+50.00% scoop capacity, +10.00% engine halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Aerogels and 9 Metamaterials.",
+    "effect": "+1.75% ship beacon range, +0.70% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 2,
+    "parts_interceptor_base_cost": "17 Metamaterials and 3 Aerogels.",
+    "effect": "+3.25% ship beacon range, +1.30% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 3,
+    "parts_interceptor_base_cost": "26 Metamaterials and 5 Aerogels.",
+    "effect": "+5.00% ship beacon range, +2.00% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 4,
+    "parts_interceptor_base_cost": "33 Metamaterials and 6 Aerogels.",
+    "effect": "+6.75% ship beacon range, +2.70% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 5,
+    "parts_interceptor_base_cost": "41 Metamaterials and 7 Aerogels.",
+    "effect": "+8.25% ship beacon range, +3.30% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 6,
+    "parts_interceptor_base_cost": "48 Metamaterials and 8 Aerogels.",
+    "effect": "+10.00% ship beacon range, +4.00% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 7,
+    "parts_interceptor_base_cost": "10 Aerogels and 54 Metamaterials.",
+    "effect": "+11.75% ship beacon range, +4.70% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 8,
+    "parts_interceptor_base_cost": "11 Aerogels and 60 Metamaterials.",
+    "effect": "+13.25% ship beacon range, +5.30% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 9,
+    "parts_interceptor_base_cost": "12 Aerogels and 66 Metamaterials.",
+    "effect": "+15.00% ship beacon range, +6.00% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 10,
+    "parts_interceptor_base_cost": "13 Aerogels and 71 Metamaterials.",
+    "effect": "+16.75% ship beacon range, +6.70% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 11,
+    "parts_interceptor_base_cost": "13 Aerogels and 76 Metamaterials.",
+    "effect": "+18.25% ship beacon range, +7.30% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 12,
+    "parts_interceptor_base_cost": "14 Aerogels and 79 Metamaterials.",
+    "effect": "+20.00% ship beacon range, +8.00% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 13,
+    "parts_interceptor_base_cost": "14 Aerogels and 82 Metamaterials.",
+    "effect": "+21.75% ship beacon range, +8.70% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 14,
+    "parts_interceptor_base_cost": "15 Aerogels and 84 Metamaterials.",
+    "effect": "+23.25% ship beacon range, +9.30% sensor halon cost"
+  },
+  {
+    "shortname": "beacon_range",
+    "full_name": "Subspace Attenuators",
+    "level": 15,
+    "parts_interceptor_base_cost": "15 Aerogels and 85 Metamaterials.",
+    "effect": "+25.00% ship beacon range, +10.00% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Superalloys and 6 Metamaterials.",
+    "effect": "+5.25% sensor hit points, +1.75% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Metamaterials and 9 Superalloys.",
+    "effect": "+9.75% sensor hit points, +3.25% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 3,
+    "parts_interceptor_base_cost": "13 Superalloys and 17 Metamaterials.",
+    "effect": "+15.00% sensor hit points, +5.00% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 4,
+    "parts_interceptor_base_cost": "17 Superalloys and 22 Metamaterials.",
+    "effect": "+20.25% sensor hit points, +6.75% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 5,
+    "parts_interceptor_base_cost": "21 Superalloys and 27 Metamaterials.",
+    "effect": "+24.75% sensor hit points, +8.25% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 6,
+    "parts_interceptor_base_cost": "25 Superalloys and 31 Metamaterials.",
+    "effect": "+30.00% sensor hit points, +10.00% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 7,
+    "parts_interceptor_base_cost": "28 Superalloys and 36 Metamaterials.",
+    "effect": "+35.25% sensor hit points, +11.75% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 8,
+    "parts_interceptor_base_cost": "31 Superalloys and 40 Metamaterials.",
+    "effect": "+39.75% sensor hit points, +13.25% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 9,
+    "parts_interceptor_base_cost": "34 Superalloys and 44 Metamaterials.",
+    "effect": "+45.00% sensor hit points, +15.00% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 10,
+    "parts_interceptor_base_cost": "37 Superalloys and 47 Metamaterials.",
+    "effect": "+50.25% sensor hit points, +16.75% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 11,
+    "parts_interceptor_base_cost": "39 Superalloys and 50 Metamaterials.",
+    "effect": "+54.75% sensor hit points, +18.25% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 12,
+    "parts_interceptor_base_cost": "41 Superalloys and 52 Metamaterials.",
+    "effect": "+60.00% sensor hit points, +20.00% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 13,
+    "parts_interceptor_base_cost": "42 Superalloys and 54 Metamaterials.",
+    "effect": "+65.25% sensor hit points, +21.75% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 14,
+    "parts_interceptor_base_cost": "44 Superalloys and 55 Metamaterials.",
+    "effect": "+69.75% sensor hit points, +23.25% sensor mass"
+  },
+  {
+    "shortname": "sensor_bulwark",
+    "full_name": "Sensor Bulwarks",
+    "level": 15,
+    "parts_interceptor_base_cost": "44 Superalloys and 56 Metamaterials.",
+    "effect": "+75.00% sensor hit points, +25.00% sensor mass"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Aerogels and 7 Metamaterials.",
+    "effect": "-1.40% sensor halon cost, -2.80% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "15 Metamaterials and 5 Aerogels.",
+    "effect": "-2.60% sensor halon cost, -5.20% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "22 Metamaterials and 8 Aerogels.",
+    "effect": "-4.00% sensor halon cost, -8.00% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "10 Aerogels and 29 Metamaterials.",
+    "effect": "-5.40% sensor halon cost, -10.80% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "12 Aerogels and 36 Metamaterials.",
+    "effect": "-6.60% sensor halon cost, -13.20% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "15 Aerogels and 41 Metamaterials.",
+    "effect": "-8.00% sensor halon cost, -16.00% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "17 Aerogels and 47 Metamaterials.",
+    "effect": "-9.40% sensor halon cost, -18.80% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "18 Aerogels and 53 Metamaterials.",
+    "effect": "-10.60% sensor halon cost, -21.20% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "20 Aerogels and 58 Metamaterials.",
+    "effect": "-12.00% sensor halon cost, -24.00% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "22 Aerogels and 62 Metamaterials.",
+    "effect": "-13.40% sensor halon cost, -26.80% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "23 Aerogels and 66 Metamaterials.",
+    "effect": "-14.60% sensor halon cost, -29.20% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "24 Aerogels and 69 Metamaterials.",
+    "effect": "-16.00% sensor halon cost, -32.00% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "25 Aerogels and 71 Metamaterials.",
+    "effect": "-17.40% sensor halon cost, -34.80% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "26 Aerogels and 73 Metamaterials.",
+    "effect": "-18.60% sensor halon cost, -37.20% sensor hit points"
+  },
+  {
+    "shortname": "sensor_optimize",
+    "full_name": "Sensor Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "26 Aerogels and 74 Metamaterials.",
+    "effect": "-20.00% sensor halon cost, -40.00% sensor hit points"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Superalloy and 9 Metamaterials.",
+    "effect": "+2.10% sensor, jam strength, +0.70% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Metamaterials and 2 Superalloys.",
+    "effect": "+3.90% sensor, jam strength, +1.30% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 3,
+    "parts_interceptor_base_cost": "26 Metamaterials and 4 Superalloys.",
+    "effect": "+6.00% sensor, jam strength, +2.00% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 4,
+    "parts_interceptor_base_cost": "34 Metamaterials and 5 Superalloys.",
+    "effect": "+8.10% sensor, jam strength, +2.70% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 5,
+    "parts_interceptor_base_cost": "42 Metamaterials and 6 Superalloys.",
+    "effect": "+9.90% sensor, jam strength, +3.30% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 6,
+    "parts_interceptor_base_cost": "49 Metamaterials and 7 Superalloys.",
+    "effect": "+12.00% sensor, jam strength, +4.00% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 7,
+    "parts_interceptor_base_cost": "56 Metamaterials and 8 Superalloys.",
+    "effect": "+14.10% sensor, jam strength, +4.70% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 8,
+    "parts_interceptor_base_cost": "62 Metamaterials and 9 Superalloys.",
+    "effect": "+15.90% sensor, jam strength, +5.30% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 9,
+    "parts_interceptor_base_cost": "69 Metamaterials and 9 Superalloys.",
+    "effect": "+18.00% sensor, jam strength, +6.00% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 10,
+    "parts_interceptor_base_cost": "10 Superalloys and 74 Metamaterials.",
+    "effect": "+20.10% sensor, jam strength, +6.70% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 11,
+    "parts_interceptor_base_cost": "11 Superalloys and 78 Metamaterials.",
+    "effect": "+21.90% sensor, jam strength, +7.30% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 12,
+    "parts_interceptor_base_cost": "11 Superalloys and 82 Metamaterials.",
+    "effect": "+24.00% sensor, jam strength, +8.00% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 13,
+    "parts_interceptor_base_cost": "12 Superalloys and 84 Metamaterials.",
+    "effect": "+26.10% sensor, jam strength, +8.70% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 14,
+    "parts_interceptor_base_cost": "12 Superalloys and 87 Metamaterials.",
+    "effect": "+27.90% sensor, jam strength, +9.30% sensor halon cost"
+  },
+  {
+    "shortname": "sensor_overclock",
+    "full_name": "Sensor Overclock",
+    "level": 15,
+    "parts_interceptor_base_cost": "12 Superalloys and 88 Metamaterials.",
+    "effect": "+30.00% sensor, jam strength, +10.00% sensor halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Metamaterials and 8 Amorphites.",
+    "effect": "+1.40% shield strength, +0.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Amorphites and 4 Metamaterials.",
+    "effect": "+2.60% shield strength, +1.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 3,
+    "parts_interceptor_base_cost": "24 Amorphites and 6 Metamaterials.",
+    "effect": "+4.00% shield strength, +2.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 4,
+    "parts_interceptor_base_cost": "32 Amorphites and 7 Metamaterials.",
+    "effect": "+5.40% shield strength, +2.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 5,
+    "parts_interceptor_base_cost": "39 Amorphites and 9 Metamaterials.",
+    "effect": "+6.60% shield strength, +3.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 6,
+    "parts_interceptor_base_cost": "11 Metamaterials and 45 Amorphites.",
+    "effect": "+8.00% shield strength, +4.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 7,
+    "parts_interceptor_base_cost": "12 Metamaterials and 52 Amorphites.",
+    "effect": "+9.40% shield strength, +4.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 8,
+    "parts_interceptor_base_cost": "13 Metamaterials and 58 Amorphites.",
+    "effect": "+10.60% shield strength, +5.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 9,
+    "parts_interceptor_base_cost": "15 Metamaterials and 63 Amorphites.",
+    "effect": "+12.00% shield strength, +6.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 10,
+    "parts_interceptor_base_cost": "16 Metamaterials and 68 Amorphites.",
+    "effect": "+13.40% shield strength, +6.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 11,
+    "parts_interceptor_base_cost": "17 Metamaterials and 72 Amorphites.",
+    "effect": "+14.60% shield strength, +7.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 12,
+    "parts_interceptor_base_cost": "18 Metamaterials and 75 Amorphites.",
+    "effect": "+16.00% shield strength, +8.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 13,
+    "parts_interceptor_base_cost": "18 Metamaterials and 78 Amorphites.",
+    "effect": "+17.40% shield strength, +8.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 14,
+    "parts_interceptor_base_cost": "19 Metamaterials and 80 Amorphites.",
+    "effect": "+18.60% shield strength, +9.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_augment",
+    "full_name": "Shield Strength Augment",
+    "level": 15,
+    "parts_interceptor_base_cost": "19 Metamaterials and 81 Amorphites.",
+    "effect": "+20.00% shield strength, +10.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Nanotube and 9 Amorphites.",
+    "effect": "-1.40% shield halon cost, -2.80% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Amorphites and 2 Nanotubes.",
+    "effect": "-2.60% shield halon cost, -5.20% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Nanotubes and 28 Amorphites.",
+    "effect": "-4.00% shield halon cost, -8.00% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Nanotubes and 36 Amorphites.",
+    "effect": "-5.40% shield halon cost, -10.80% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "4 Nanotubes and 44 Amorphites.",
+    "effect": "-6.60% shield halon cost, -13.20% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Nanotubes and 52 Amorphites.",
+    "effect": "-8.00% shield halon cost, -16.00% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "5 Nanotubes and 59 Amorphites.",
+    "effect": "-9.40% shield halon cost, -18.80% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "6 Nanotubes and 65 Amorphites.",
+    "effect": "-10.60% shield halon cost, -21.20% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "6 Nanotubes and 72 Amorphites.",
+    "effect": "-12.00% shield halon cost, -24.00% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "7 Nanotubes and 77 Amorphites.",
+    "effect": "-13.40% shield halon cost, -26.80% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "7 Nanotubes and 82 Amorphites.",
+    "effect": "-14.60% shield halon cost, -29.20% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Nanotubes and 86 Amorphites.",
+    "effect": "-16.00% shield halon cost, -32.00% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "8 Nanotubes and 88 Amorphites.",
+    "effect": "-17.40% shield halon cost, -34.80% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "8 Nanotubes and 91 Amorphites.",
+    "effect": "-18.60% shield halon cost, -37.20% shield hit points"
+  },
+  {
+    "shortname": "shield_optimize",
+    "full_name": "Shield Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "8 Nanotubes and 92 Amorphites.",
+    "effect": "-20.00% shield halon cost, -40.00% shield hit points"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Nanotubes and 7 Amorphites.",
+    "effect": "-3.50% shield recharge time, +0.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 2,
+    "parts_interceptor_base_cost": "15 Amorphites and 5 Nanotubes.",
+    "effect": "-6.50% shield recharge time, +1.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 3,
+    "parts_interceptor_base_cost": "22 Amorphites and 8 Nanotubes.",
+    "effect": "-10.00% shield recharge time, +2.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 4,
+    "parts_interceptor_base_cost": "11 Nanotubes and 28 Amorphites.",
+    "effect": "-13.50% shield recharge time, +2.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 5,
+    "parts_interceptor_base_cost": "13 Nanotubes and 35 Amorphites.",
+    "effect": "-16.50% shield recharge time, +3.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 6,
+    "parts_interceptor_base_cost": "15 Nanotubes and 41 Amorphites.",
+    "effect": "-20.00% shield recharge time, +4.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 7,
+    "parts_interceptor_base_cost": "17 Nanotubes and 47 Amorphites.",
+    "effect": "-23.50% shield recharge time, +4.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 8,
+    "parts_interceptor_base_cost": "19 Nanotubes and 52 Amorphites.",
+    "effect": "-26.50% shield recharge time, +5.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 9,
+    "parts_interceptor_base_cost": "21 Nanotubes and 57 Amorphites.",
+    "effect": "-30.00% shield recharge time, +6.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 10,
+    "parts_interceptor_base_cost": "23 Nanotubes and 61 Amorphites.",
+    "effect": "-33.50% shield recharge time, +6.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 11,
+    "parts_interceptor_base_cost": "24 Nanotubes and 65 Amorphites.",
+    "effect": "-36.50% shield recharge time, +7.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 12,
+    "parts_interceptor_base_cost": "25 Nanotubes and 68 Amorphites.",
+    "effect": "-40.00% shield recharge time, +8.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 13,
+    "parts_interceptor_base_cost": "26 Nanotubes and 70 Amorphites.",
+    "effect": "-43.50% shield recharge time, +8.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 14,
+    "parts_interceptor_base_cost": "27 Nanotubes and 72 Amorphites.",
+    "effect": "-46.50% shield recharge time, +9.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_recharge",
+    "full_name": "Shield Recharge Overclocking",
+    "level": 15,
+    "parts_interceptor_base_cost": "27 Nanotubes and 73 Amorphites.",
+    "effect": "-50.00% shield recharge time, +10.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Metamaterial and 9 Amorphites.",
+    "effect": "-5.25% to chance that attack bypasses shields, +0.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 2,
+    "parts_interceptor_base_cost": "1 Metamaterial and 19 Amorphites.",
+    "effect": "-9.75% to chance that attack bypasses shields, +1.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Metamaterials and 28 Amorphites.",
+    "effect": "-15.00% to chance that attack bypasses shields, +2.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Metamaterials and 36 Amorphites.",
+    "effect": "-20.25% to chance that attack bypasses shields, +2.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 5,
+    "parts_interceptor_base_cost": "3 Metamaterials and 45 Amorphites.",
+    "effect": "-24.75% to chance that attack bypasses shields, +3.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Metamaterials and 52 Amorphites.",
+    "effect": "-30.00% to chance that attack bypasses shields, +4.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 7,
+    "parts_interceptor_base_cost": "4 Metamaterials and 60 Amorphites.",
+    "effect": "-35.25% to chance that attack bypasses shields, +4.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 8,
+    "parts_interceptor_base_cost": "5 Metamaterials and 66 Amorphites.",
+    "effect": "-39.75% to chance that attack bypasses shields, +5.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 9,
+    "parts_interceptor_base_cost": "5 Metamaterials and 73 Amorphites.",
+    "effect": "-45.00% to chance that attack bypasses shields, +6.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 10,
+    "parts_interceptor_base_cost": "6 Metamaterials and 78 Amorphites.",
+    "effect": "-50.25% to chance that attack bypasses shields, +6.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 11,
+    "parts_interceptor_base_cost": "6 Metamaterials and 83 Amorphites.",
+    "effect": "-54.75% to chance that attack bypasses shields, +7.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Metamaterials and 86 Amorphites.",
+    "effect": "-60.00% to chance that attack bypasses shields, +8.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 13,
+    "parts_interceptor_base_cost": "7 Metamaterials and 89 Amorphites.",
+    "effect": "-65.25% to chance that attack bypasses shields, +8.70% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 14,
+    "parts_interceptor_base_cost": "7 Metamaterials and 92 Amorphites.",
+    "effect": "-69.75% to chance that attack bypasses shields, +9.30% shield halon cost"
+  },
+  {
+    "shortname": "shield_redundancy",
+    "full_name": "Shield Redundancy Protocols",
+    "level": 15,
+    "parts_interceptor_base_cost": "7 Metamaterials and 93 Amorphites.",
+    "effect": "-75.00% to chance that attack bypasses shields, +10.00% shield halon cost"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Aerogel and 9 Amorphites.",
+    "effect": "+2.10% shield EM resistance, -0.70% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 2,
+    "parts_interceptor_base_cost": "1 Aerogel and 19 Amorphites.",
+    "effect": "+3.90% shield EM resistance, -1.30% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Aerogels and 28 Amorphites.",
+    "effect": "+6.00% shield EM resistance, -2.00% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Aerogels and 36 Amorphites.",
+    "effect": "+8.10% shield EM resistance, -2.70% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 5,
+    "parts_interceptor_base_cost": "3 Aerogels and 45 Amorphites.",
+    "effect": "+9.90% shield EM resistance, -3.30% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Aerogels and 52 Amorphites.",
+    "effect": "+12.00% shield EM resistance, -4.00% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 7,
+    "parts_interceptor_base_cost": "4 Aerogels and 60 Amorphites.",
+    "effect": "+14.10% shield EM resistance, -4.70% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 8,
+    "parts_interceptor_base_cost": "5 Aerogels and 66 Amorphites.",
+    "effect": "+15.90% shield EM resistance, -5.30% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 9,
+    "parts_interceptor_base_cost": "5 Aerogels and 73 Amorphites.",
+    "effect": "+18.00% shield EM resistance, -6.00% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 10,
+    "parts_interceptor_base_cost": "6 Aerogels and 78 Amorphites.",
+    "effect": "+20.10% shield EM resistance, -6.70% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 11,
+    "parts_interceptor_base_cost": "6 Aerogels and 83 Amorphites.",
+    "effect": "+21.90% shield EM resistance, -7.30% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Aerogels and 86 Amorphites.",
+    "effect": "+24.00% shield EM resistance, -8.00% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 13,
+    "parts_interceptor_base_cost": "7 Aerogels and 89 Amorphites.",
+    "effect": "+26.10% shield EM resistance, -8.70% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 14,
+    "parts_interceptor_base_cost": "7 Aerogels and 92 Amorphites.",
+    "effect": "+27.90% shield EM resistance, -9.30% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_em",
+    "full_name": "EM Shield Amplifier",
+    "level": 15,
+    "parts_interceptor_base_cost": "7 Aerogels and 93 Amorphites.",
+    "effect": "+30.00% shield EM resistance, -10.00% shield gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Nanotubes and 8 Amorphites.",
+    "effect": "+2.10% shield gravitic resistance, -0.70% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Amorphites and 4 Nanotubes.",
+    "effect": "+3.90% shield gravitic resistance, -1.30% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 3,
+    "parts_interceptor_base_cost": "24 Amorphites and 6 Nanotubes.",
+    "effect": "+6.00% shield gravitic resistance, -2.00% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 4,
+    "parts_interceptor_base_cost": "31 Amorphites and 8 Nanotubes.",
+    "effect": "+8.10% shield gravitic resistance, -2.70% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 5,
+    "parts_interceptor_base_cost": "10 Nanotubes and 38 Amorphites.",
+    "effect": "+9.90% shield gravitic resistance, -3.30% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 6,
+    "parts_interceptor_base_cost": "12 Nanotubes and 44 Amorphites.",
+    "effect": "+12.00% shield gravitic resistance, -4.00% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 7,
+    "parts_interceptor_base_cost": "13 Nanotubes and 51 Amorphites.",
+    "effect": "+14.10% shield gravitic resistance, -4.70% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 8,
+    "parts_interceptor_base_cost": "15 Nanotubes and 56 Amorphites.",
+    "effect": "+15.90% shield gravitic resistance, -5.30% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 9,
+    "parts_interceptor_base_cost": "16 Nanotubes and 62 Amorphites.",
+    "effect": "+18.00% shield gravitic resistance, -6.00% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 10,
+    "parts_interceptor_base_cost": "18 Nanotubes and 66 Amorphites.",
+    "effect": "+20.10% shield gravitic resistance, -6.70% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 11,
+    "parts_interceptor_base_cost": "19 Nanotubes and 70 Amorphites.",
+    "effect": "+21.90% shield gravitic resistance, -7.30% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 12,
+    "parts_interceptor_base_cost": "20 Nanotubes and 73 Amorphites.",
+    "effect": "+24.00% shield gravitic resistance, -8.00% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 13,
+    "parts_interceptor_base_cost": "20 Nanotubes and 76 Amorphites.",
+    "effect": "+26.10% shield gravitic resistance, -8.70% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 14,
+    "parts_interceptor_base_cost": "21 Nanotubes and 78 Amorphites.",
+    "effect": "+27.90% shield gravitic resistance, -9.30% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_gravitic",
+    "full_name": "Gravitic Shield Amplifier",
+    "level": 15,
+    "parts_interceptor_base_cost": "21 Nanotubes and 79 Amorphites.",
+    "effect": "+30.00% shield gravitic resistance, -10.00% shield kinetic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Superalloys and 8 Amorphites.",
+    "effect": "+2.10% shield kinetic resistance, -0.70% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 2,
+    "parts_interceptor_base_cost": "15 Amorphites and 5 Superalloys.",
+    "effect": "+3.90% shield kinetic resistance, -1.30% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 3,
+    "parts_interceptor_base_cost": "23 Amorphites and 7 Superalloys.",
+    "effect": "+6.00% shield kinetic resistance, -2.00% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 4,
+    "parts_interceptor_base_cost": "30 Amorphites and 9 Superalloys.",
+    "effect": "+8.10% shield kinetic resistance, -2.70% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 5,
+    "parts_interceptor_base_cost": "11 Superalloys and 37 Amorphites.",
+    "effect": "+9.90% shield kinetic resistance, -3.30% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 6,
+    "parts_interceptor_base_cost": "13 Superalloys and 43 Amorphites.",
+    "effect": "+12.00% shield kinetic resistance, -4.00% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 7,
+    "parts_interceptor_base_cost": "15 Superalloys and 49 Amorphites.",
+    "effect": "+14.10% shield kinetic resistance, -4.70% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 8,
+    "parts_interceptor_base_cost": "16 Superalloys and 55 Amorphites.",
+    "effect": "+15.90% shield kinetic resistance, -5.30% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 9,
+    "parts_interceptor_base_cost": "18 Superalloys and 60 Amorphites.",
+    "effect": "+18.00% shield kinetic resistance, -6.00% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 10,
+    "parts_interceptor_base_cost": "19 Superalloys and 65 Amorphites.",
+    "effect": "+20.10% shield kinetic resistance, -6.70% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 11,
+    "parts_interceptor_base_cost": "20 Superalloys and 69 Amorphites.",
+    "effect": "+21.90% shield kinetic resistance, -7.30% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 12,
+    "parts_interceptor_base_cost": "21 Superalloys and 72 Amorphites.",
+    "effect": "+24.00% shield kinetic resistance, -8.00% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 13,
+    "parts_interceptor_base_cost": "22 Superalloys and 74 Amorphites.",
+    "effect": "+26.10% shield kinetic resistance, -8.70% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 14,
+    "parts_interceptor_base_cost": "23 Superalloys and 76 Amorphites.",
+    "effect": "+27.90% shield kinetic resistance, -9.30% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shield_res_kinetic",
+    "full_name": "Kinetic Shield Amplifier",
+    "level": 15,
+    "parts_interceptor_base_cost": "23 Superalloys and 77 Amorphites.",
+    "effect": "+30.00% shield kinetic resistance, -10.00% shield gravitic and EM resistance"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Superalloy and 9 Amorphites.",
+    "effect": "+5.25% shipsim hit points, +1.75% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Amorphites and 2 Superalloys.",
+    "effect": "+9.75% shipsim hit points, +3.25% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 3,
+    "parts_interceptor_base_cost": "27 Amorphites and 3 Superalloys.",
+    "effect": "+15.00% shipsim hit points, +5.00% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 4,
+    "parts_interceptor_base_cost": "35 Amorphites and 4 Superalloys.",
+    "effect": "+20.25% shipsim hit points, +6.75% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 5,
+    "parts_interceptor_base_cost": "43 Amorphites and 5 Superalloys.",
+    "effect": "+24.75% shipsim hit points, +8.25% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 6,
+    "parts_interceptor_base_cost": "50 Amorphites and 6 Superalloys.",
+    "effect": "+30.00% shipsim hit points, +10.00% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 7,
+    "parts_interceptor_base_cost": "57 Amorphites and 7 Superalloys.",
+    "effect": "+35.25% shipsim hit points, +11.75% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 8,
+    "parts_interceptor_base_cost": "63 Amorphites and 8 Superalloys.",
+    "effect": "+39.75% shipsim hit points, +13.25% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 9,
+    "parts_interceptor_base_cost": "69 Amorphites and 9 Superalloys.",
+    "effect": "+45.00% shipsim hit points, +15.00% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 10,
+    "parts_interceptor_base_cost": "75 Amorphites and 9 Superalloys.",
+    "effect": "+50.25% shipsim hit points, +16.75% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 11,
+    "parts_interceptor_base_cost": "10 Superalloys and 79 Amorphites.",
+    "effect": "+54.75% shipsim hit points, +18.25% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 12,
+    "parts_interceptor_base_cost": "10 Superalloys and 83 Amorphites.",
+    "effect": "+60.00% shipsim hit points, +20.00% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 13,
+    "parts_interceptor_base_cost": "11 Superalloys and 85 Amorphites.",
+    "effect": "+65.25% shipsim hit points, +21.75% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 14,
+    "parts_interceptor_base_cost": "11 Superalloys and 88 Amorphites.",
+    "effect": "+69.75% shipsim hit points, +23.25% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_bulwark",
+    "full_name": "Shipsim Bulkwarks",
+    "level": 15,
+    "parts_interceptor_base_cost": "11 Superalloys and 89 Amorphites.",
+    "effect": "+75.00% shipsim hit points, +25.00% shipsim mass"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Superalloys and 6 Amorphites.",
+    "effect": "-1.40% shipsim halon cost, -2.80% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "12 Amorphites and 8 Superalloys.",
+    "effect": "-2.60% shipsim halon cost, -5.20% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Superalloys and 19 Amorphites.",
+    "effect": "-4.00% shipsim halon cost, -8.00% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "15 Superalloys and 24 Amorphites.",
+    "effect": "-5.40% shipsim halon cost, -10.80% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "18 Superalloys and 30 Amorphites.",
+    "effect": "-6.60% shipsim halon cost, -13.20% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "21 Superalloys and 35 Amorphites.",
+    "effect": "-8.00% shipsim halon cost, -16.00% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "24 Superalloys and 40 Amorphites.",
+    "effect": "-9.40% shipsim halon cost, -18.80% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "27 Superalloys and 44 Amorphites.",
+    "effect": "-10.60% shipsim halon cost, -21.20% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "30 Superalloys and 48 Amorphites.",
+    "effect": "-12.00% shipsim halon cost, -24.00% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "32 Superalloys and 52 Amorphites.",
+    "effect": "-13.40% shipsim halon cost, -26.80% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "34 Superalloys and 55 Amorphites.",
+    "effect": "-14.60% shipsim halon cost, -29.20% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "35 Superalloys and 58 Amorphites.",
+    "effect": "-16.00% shipsim halon cost, -32.00% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "36 Superalloys and 60 Amorphites.",
+    "effect": "-17.40% shipsim halon cost, -34.80% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "38 Superalloys and 61 Amorphites.",
+    "effect": "-18.60% shipsim halon cost, -37.20% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_optimize",
+    "full_name": "Shipsim Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "38 Superalloys and 62 Amorphites.",
+    "effect": "-20.00% shipsim halon cost, -40.00% shipsim hit points"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Superalloys and 8 Amorphites.",
+    "effect": "+2.10% cycles generated, +0.70% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 2,
+    "parts_interceptor_base_cost": "17 Amorphites and 3 Superalloys.",
+    "effect": "+3.90% cycles generated, +1.30% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 3,
+    "parts_interceptor_base_cost": "25 Amorphites and 5 Superalloys.",
+    "effect": "+6.00% cycles generated, +2.00% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 4,
+    "parts_interceptor_base_cost": "32 Amorphites and 7 Superalloys.",
+    "effect": "+8.10% cycles generated, +2.70% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 5,
+    "parts_interceptor_base_cost": "40 Amorphites and 8 Superalloys.",
+    "effect": "+9.90% cycles generated, +3.30% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 6,
+    "parts_interceptor_base_cost": "10 Superalloys and 46 Amorphites.",
+    "effect": "+12.00% cycles generated, +4.00% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 7,
+    "parts_interceptor_base_cost": "11 Superalloys and 53 Amorphites.",
+    "effect": "+14.10% cycles generated, +4.70% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 8,
+    "parts_interceptor_base_cost": "12 Superalloys and 59 Amorphites.",
+    "effect": "+15.90% cycles generated, +5.30% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 9,
+    "parts_interceptor_base_cost": "13 Superalloys and 65 Amorphites.",
+    "effect": "+18.00% cycles generated, +6.00% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 10,
+    "parts_interceptor_base_cost": "14 Superalloys and 70 Amorphites.",
+    "effect": "+20.10% cycles generated, +6.70% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 11,
+    "parts_interceptor_base_cost": "15 Superalloys and 74 Amorphites.",
+    "effect": "+21.90% cycles generated, +7.30% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 12,
+    "parts_interceptor_base_cost": "16 Superalloys and 77 Amorphites.",
+    "effect": "+24.00% cycles generated, +8.00% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 13,
+    "parts_interceptor_base_cost": "16 Superalloys and 80 Amorphites.",
+    "effect": "+26.10% cycles generated, +8.70% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 14,
+    "parts_interceptor_base_cost": "17 Superalloys and 82 Amorphites.",
+    "effect": "+27.90% cycles generated, +9.30% shipsim halon cost"
+  },
+  {
+    "shortname": "shipsim_overclock",
+    "full_name": "Shipsim Overclock",
+    "level": 15,
+    "parts_interceptor_base_cost": "17 Superalloys and 83 Amorphites.",
+    "effect": "+30.00% cycles generated, +10.00% shipsim halon cost"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 1,
+    "parts_interceptor_base_cost": "10 Superalloys.",
+    "effect": "+2.10% cargohold capacity, -1.40% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 2,
+    "parts_interceptor_base_cost": "20 Superalloys.",
+    "effect": "+3.90% cargohold capacity, -2.60% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 3,
+    "parts_interceptor_base_cost": "30 Superalloys.",
+    "effect": "+6.00% cargohold capacity, -4.00% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 4,
+    "parts_interceptor_base_cost": "39 Superalloys.",
+    "effect": "+8.10% cargohold capacity, -5.40% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 5,
+    "parts_interceptor_base_cost": "48 Superalloys.",
+    "effect": "+9.90% cargohold capacity, -6.60% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 6,
+    "parts_interceptor_base_cost": "1 Metamaterial and 55 Superalloys.",
+    "effect": "+12.00% cargohold capacity, -8.00% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 7,
+    "parts_interceptor_base_cost": "1 Metamaterial and 63 Superalloys.",
+    "effect": "+14.10% cargohold capacity, -9.40% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 8,
+    "parts_interceptor_base_cost": "1 Metamaterial and 70 Superalloys.",
+    "effect": "+15.90% cargohold capacity, -10.60% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 9,
+    "parts_interceptor_base_cost": "1 Metamaterial and 77 Superalloys.",
+    "effect": "+18.00% cargohold capacity, -12.00% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 10,
+    "parts_interceptor_base_cost": "1 Metamaterial and 83 Superalloys.",
+    "effect": "+20.10% cargohold capacity, -13.40% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 11,
+    "parts_interceptor_base_cost": "1 Metamaterial and 88 Superalloys.",
+    "effect": "+21.90% cargohold capacity, -14.60% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 12,
+    "parts_interceptor_base_cost": "1 Metamaterial and 92 Superalloys.",
+    "effect": "+24.00% cargohold capacity, -16.00% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 13,
+    "parts_interceptor_base_cost": "1 Metamaterial and 95 Superalloys.",
+    "effect": "+26.10% cargohold capacity, -17.40% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 14,
+    "parts_interceptor_base_cost": "1 Metamaterial and 98 Superalloys.",
+    "effect": "+27.90% cargohold capacity, -18.60% hardpoint and module capacity"
+  },
+  {
+    "shortname": "cargohold_optimizer",
+    "full_name": "Expanded Cargoholds",
+    "level": 15,
+    "parts_interceptor_base_cost": "1 Metamaterial and 99 Superalloys.",
+    "effect": "+30.00% cargohold capacity, -20.00% hardpoint and module capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Nanotubes and 6 Superalloys.",
+    "effect": "1.75% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 2,
+    "parts_interceptor_base_cost": "12 Superalloys and 8 Nanotubes.",
+    "effect": "3.25% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 3,
+    "parts_interceptor_base_cost": "12 Nanotubes and 18 Superalloys.",
+    "effect": "5.00% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 4,
+    "parts_interceptor_base_cost": "15 Nanotubes and 24 Superalloys.",
+    "effect": "6.75% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 5,
+    "parts_interceptor_base_cost": "19 Nanotubes and 29 Superalloys.",
+    "effect": "8.25% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 6,
+    "parts_interceptor_base_cost": "22 Nanotubes and 34 Superalloys.",
+    "effect": "10.00% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 7,
+    "parts_interceptor_base_cost": "25 Nanotubes and 39 Superalloys.",
+    "effect": "11.75% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 8,
+    "parts_interceptor_base_cost": "28 Nanotubes and 43 Superalloys.",
+    "effect": "13.25% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 9,
+    "parts_interceptor_base_cost": "30 Nanotubes and 48 Superalloys.",
+    "effect": "15.00% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 10,
+    "parts_interceptor_base_cost": "33 Nanotubes and 51 Superalloys.",
+    "effect": "16.75% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 11,
+    "parts_interceptor_base_cost": "35 Nanotubes and 54 Superalloys.",
+    "effect": "18.25% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 12,
+    "parts_interceptor_base_cost": "36 Nanotubes and 57 Superalloys.",
+    "effect": "20.00% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 13,
+    "parts_interceptor_base_cost": "37 Nanotubes and 59 Superalloys.",
+    "effect": "21.75% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 14,
+    "parts_interceptor_base_cost": "39 Nanotubes and 60 Superalloys.",
+    "effect": "23.25% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_hardpoints",
+    "full_name": "Expanded Hardpoints",
+    "level": 15,
+    "parts_interceptor_base_cost": "39 Nanotubes and 61 Superalloys.",
+    "effect": "25.00% module capacity replaced as hardpoint capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Metamaterials and 6 Superalloys.",
+    "effect": "+1.75% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Superalloys and 9 Metamaterials.",
+    "effect": "+3.25% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 3,
+    "parts_interceptor_base_cost": "13 Metamaterials and 17 Superalloys.",
+    "effect": "+5.00% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 4,
+    "parts_interceptor_base_cost": "17 Metamaterials and 22 Superalloys.",
+    "effect": "+6.75% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 5,
+    "parts_interceptor_base_cost": "21 Metamaterials and 27 Superalloys.",
+    "effect": "+8.25% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 6,
+    "parts_interceptor_base_cost": "25 Metamaterials and 31 Superalloys.",
+    "effect": "+10.00% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 7,
+    "parts_interceptor_base_cost": "28 Metamaterials and 36 Superalloys.",
+    "effect": "+11.75% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 8,
+    "parts_interceptor_base_cost": "31 Metamaterials and 40 Superalloys.",
+    "effect": "+13.25% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 9,
+    "parts_interceptor_base_cost": "34 Metamaterials and 44 Superalloys.",
+    "effect": "+15.00% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 10,
+    "parts_interceptor_base_cost": "37 Metamaterials and 47 Superalloys.",
+    "effect": "+16.75% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 11,
+    "parts_interceptor_base_cost": "39 Metamaterials and 50 Superalloys.",
+    "effect": "+18.25% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 12,
+    "parts_interceptor_base_cost": "41 Metamaterials and 52 Superalloys.",
+    "effect": "+20.00% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 13,
+    "parts_interceptor_base_cost": "42 Metamaterials and 54 Superalloys.",
+    "effect": "+21.75% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 14,
+    "parts_interceptor_base_cost": "44 Metamaterials and 55 Superalloys.",
+    "effect": "+23.25% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "expanded_modulebay",
+    "full_name": "Expanded Module Bay",
+    "level": 15,
+    "parts_interceptor_base_cost": "44 Metamaterials and 56 Superalloys.",
+    "effect": "+25.00% hardpoint capacity replaced as module capacity"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Aerogels and 7 Superalloys.",
+    "effect": "+1.40% to hull hit points, +1.75% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 2,
+    "parts_interceptor_base_cost": "13 Superalloys and 7 Aerogels.",
+    "effect": "+2.60% to hull hit points, +3.25% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Aerogels and 20 Superalloys.",
+    "effect": "+4.00% to hull hit points, +5.00% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 4,
+    "parts_interceptor_base_cost": "14 Aerogels and 25 Superalloys.",
+    "effect": "+5.40% to hull hit points, +6.75% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 5,
+    "parts_interceptor_base_cost": "17 Aerogels and 31 Superalloys.",
+    "effect": "+6.60% to hull hit points, +8.25% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 6,
+    "parts_interceptor_base_cost": "20 Aerogels and 36 Superalloys.",
+    "effect": "+8.00% to hull hit points, +10.00% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 7,
+    "parts_interceptor_base_cost": "22 Aerogels and 42 Superalloys.",
+    "effect": "+9.40% to hull hit points, +11.75% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 8,
+    "parts_interceptor_base_cost": "25 Aerogels and 46 Superalloys.",
+    "effect": "+10.60% to hull hit points, +13.25% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 9,
+    "parts_interceptor_base_cost": "27 Aerogels and 51 Superalloys.",
+    "effect": "+12.00% to hull hit points, +15.00% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 10,
+    "parts_interceptor_base_cost": "29 Aerogels and 55 Superalloys.",
+    "effect": "+13.40% to hull hit points, +16.75% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 11,
+    "parts_interceptor_base_cost": "31 Aerogels and 58 Superalloys.",
+    "effect": "+14.60% to hull hit points, +18.25% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 12,
+    "parts_interceptor_base_cost": "33 Aerogels and 60 Superalloys.",
+    "effect": "+16.00% to hull hit points, +20.00% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 13,
+    "parts_interceptor_base_cost": "34 Aerogels and 62 Superalloys.",
+    "effect": "+17.40% to hull hit points, +21.75% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 14,
+    "parts_interceptor_base_cost": "35 Aerogels and 64 Superalloys.",
+    "effect": "+18.60% to hull hit points, +23.25% to superstructure mass"
+  },
+  {
+    "shortname": "hull_augment",
+    "full_name": "Hull Augment",
+    "level": 15,
+    "parts_interceptor_base_cost": "35 Aerogels and 65 Superalloys.",
+    "effect": "+20.00% to hull hit points, +25.00% to superstructure mass"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Nanotubes and 6 Superalloys.",
+    "effect": "+2.10% hull gravitic resistance, -0.70% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Superalloys and 9 Nanotubes.",
+    "effect": "+3.90% hull gravitic resistance, -1.30% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 3,
+    "parts_interceptor_base_cost": "13 Nanotubes and 17 Superalloys.",
+    "effect": "+6.00% hull gravitic resistance, -2.00% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 4,
+    "parts_interceptor_base_cost": "17 Nanotubes and 22 Superalloys.",
+    "effect": "+8.10% hull gravitic resistance, -2.70% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 5,
+    "parts_interceptor_base_cost": "21 Nanotubes and 27 Superalloys.",
+    "effect": "+9.90% hull gravitic resistance, -3.30% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 6,
+    "parts_interceptor_base_cost": "24 Nanotubes and 32 Superalloys.",
+    "effect": "+12.00% hull gravitic resistance, -4.00% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 7,
+    "parts_interceptor_base_cost": "28 Nanotubes and 36 Superalloys.",
+    "effect": "+14.10% hull gravitic resistance, -4.70% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 8,
+    "parts_interceptor_base_cost": "31 Nanotubes and 40 Superalloys.",
+    "effect": "+15.90% hull gravitic resistance, -5.30% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 9,
+    "parts_interceptor_base_cost": "34 Nanotubes and 44 Superalloys.",
+    "effect": "+18.00% hull gravitic resistance, -6.00% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 10,
+    "parts_interceptor_base_cost": "36 Nanotubes and 48 Superalloys.",
+    "effect": "+20.10% hull gravitic resistance, -6.70% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 11,
+    "parts_interceptor_base_cost": "38 Nanotubes and 51 Superalloys.",
+    "effect": "+21.90% hull gravitic resistance, -7.30% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 12,
+    "parts_interceptor_base_cost": "40 Nanotubes and 53 Superalloys.",
+    "effect": "+24.00% hull gravitic resistance, -8.00% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 13,
+    "parts_interceptor_base_cost": "41 Nanotubes and 55 Superalloys.",
+    "effect": "+26.10% hull gravitic resistance, -8.70% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 14,
+    "parts_interceptor_base_cost": "43 Nanotubes and 56 Superalloys.",
+    "effect": "+27.90% hull gravitic resistance, -9.30% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_gravitic",
+    "full_name": "Gravitic Hull Plating",
+    "level": 15,
+    "parts_interceptor_base_cost": "43 Nanotubes and 57 Superalloys.",
+    "effect": "+30.00% hull gravitic resistance, -10.00% hull thermal and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Metamaterials and 8 Superalloys.",
+    "effect": "+2.10% hull kinetic resistance, -0.70% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Superalloys and 4 Metamaterials.",
+    "effect": "+3.90% hull kinetic resistance, -1.30% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 3,
+    "parts_interceptor_base_cost": "24 Superalloys and 6 Metamaterials.",
+    "effect": "+6.00% hull kinetic resistance, -2.00% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 4,
+    "parts_interceptor_base_cost": "31 Superalloys and 8 Metamaterials.",
+    "effect": "+8.10% hull kinetic resistance, -2.70% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 5,
+    "parts_interceptor_base_cost": "10 Metamaterials and 38 Superalloys.",
+    "effect": "+9.90% hull kinetic resistance, -3.30% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 6,
+    "parts_interceptor_base_cost": "12 Metamaterials and 44 Superalloys.",
+    "effect": "+12.00% hull kinetic resistance, -4.00% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 7,
+    "parts_interceptor_base_cost": "13 Metamaterials and 51 Superalloys.",
+    "effect": "+14.10% hull kinetic resistance, -4.70% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 8,
+    "parts_interceptor_base_cost": "15 Metamaterials and 56 Superalloys.",
+    "effect": "+15.90% hull kinetic resistance, -5.30% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 9,
+    "parts_interceptor_base_cost": "16 Metamaterials and 62 Superalloys.",
+    "effect": "+18.00% hull kinetic resistance, -6.00% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 10,
+    "parts_interceptor_base_cost": "18 Metamaterials and 66 Superalloys.",
+    "effect": "+20.10% hull kinetic resistance, -6.70% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 11,
+    "parts_interceptor_base_cost": "19 Metamaterials and 70 Superalloys.",
+    "effect": "+21.90% hull kinetic resistance, -7.30% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 12,
+    "parts_interceptor_base_cost": "20 Metamaterials and 73 Superalloys.",
+    "effect": "+24.00% hull kinetic resistance, -8.00% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 13,
+    "parts_interceptor_base_cost": "20 Metamaterials and 76 Superalloys.",
+    "effect": "+26.10% hull kinetic resistance, -8.70% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 14,
+    "parts_interceptor_base_cost": "21 Metamaterials and 78 Superalloys.",
+    "effect": "+27.90% hull kinetic resistance, -9.30% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_kinetic",
+    "full_name": "Kinetic Hull Plating",
+    "level": 15,
+    "parts_interceptor_base_cost": "21 Metamaterials and 79 Superalloys.",
+    "effect": "+30.00% hull kinetic resistance, -10.00% hull thermal and gravitic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Amorphites and 8 Superalloys.",
+    "effect": "+2.10% hull thermal resistance, -0.70% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Superalloys and 4 Amorphites.",
+    "effect": "+3.90% hull thermal resistance, -1.30% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 3,
+    "parts_interceptor_base_cost": "25 Superalloys and 5 Amorphites.",
+    "effect": "+6.00% hull thermal resistance, -2.00% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 4,
+    "parts_interceptor_base_cost": "32 Superalloys and 7 Amorphites.",
+    "effect": "+8.10% hull thermal resistance, -2.70% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 5,
+    "parts_interceptor_base_cost": "39 Superalloys and 9 Amorphites.",
+    "effect": "+9.90% hull thermal resistance, -3.30% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 6,
+    "parts_interceptor_base_cost": "10 Amorphites and 46 Superalloys.",
+    "effect": "+12.00% hull thermal resistance, -4.00% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 7,
+    "parts_interceptor_base_cost": "12 Amorphites and 52 Superalloys.",
+    "effect": "+14.10% hull thermal resistance, -4.70% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 8,
+    "parts_interceptor_base_cost": "13 Amorphites and 58 Superalloys.",
+    "effect": "+15.90% hull thermal resistance, -5.30% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 9,
+    "parts_interceptor_base_cost": "14 Amorphites and 64 Superalloys.",
+    "effect": "+18.00% hull thermal resistance, -6.00% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 10,
+    "parts_interceptor_base_cost": "15 Amorphites and 69 Superalloys.",
+    "effect": "+20.10% hull thermal resistance, -6.70% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 11,
+    "parts_interceptor_base_cost": "16 Amorphites and 73 Superalloys.",
+    "effect": "+21.90% hull thermal resistance, -7.30% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 12,
+    "parts_interceptor_base_cost": "17 Amorphites and 76 Superalloys.",
+    "effect": "+24.00% hull thermal resistance, -8.00% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 13,
+    "parts_interceptor_base_cost": "17 Amorphites and 79 Superalloys.",
+    "effect": "+26.10% hull thermal resistance, -8.70% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 14,
+    "parts_interceptor_base_cost": "18 Amorphites and 81 Superalloys.",
+    "effect": "+27.90% hull thermal resistance, -9.30% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "hull_res_thermal",
+    "full_name": "Thermal Hull Plating",
+    "level": 15,
+    "parts_interceptor_base_cost": "18 Amorphites and 82 Superalloys.",
+    "effect": "+30.00% hull thermal resistance, -10.00% hull gravitic and kinetic resistance"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Nanotubes and 6 Metamaterials.",
+    "effect": "-2.80% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 2,
+    "parts_interceptor_base_cost": "12 Metamaterials and 8 Nanotubes.",
+    "effect": "-5.20% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Nanotubes and 19 Metamaterials.",
+    "effect": "-8.00% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 4,
+    "parts_interceptor_base_cost": "15 Nanotubes and 24 Metamaterials.",
+    "effect": "-10.80% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 5,
+    "parts_interceptor_base_cost": "18 Nanotubes and 30 Metamaterials.",
+    "effect": "-13.20% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 6,
+    "parts_interceptor_base_cost": "21 Nanotubes and 35 Metamaterials.",
+    "effect": "-16.00% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 7,
+    "parts_interceptor_base_cost": "24 Nanotubes and 40 Metamaterials.",
+    "effect": "-18.80% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 8,
+    "parts_interceptor_base_cost": "27 Nanotubes and 44 Metamaterials.",
+    "effect": "-21.20% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 9,
+    "parts_interceptor_base_cost": "30 Nanotubes and 48 Metamaterials.",
+    "effect": "-24.00% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 10,
+    "parts_interceptor_base_cost": "32 Nanotubes and 52 Metamaterials.",
+    "effect": "-26.80% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 11,
+    "parts_interceptor_base_cost": "34 Nanotubes and 55 Metamaterials.",
+    "effect": "-29.20% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 12,
+    "parts_interceptor_base_cost": "35 Nanotubes and 58 Metamaterials.",
+    "effect": "-32.00% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 13,
+    "parts_interceptor_base_cost": "36 Nanotubes and 60 Metamaterials.",
+    "effect": "-34.80% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 14,
+    "parts_interceptor_base_cost": "38 Nanotubes and 61 Metamaterials.",
+    "effect": "-37.20% superstructure mass"
+  },
+  {
+    "shortname": "mass_reducer",
+    "full_name": "Mass Reduction",
+    "level": 15,
+    "parts_interceptor_base_cost": "38 Nanotubes and 62 Metamaterials.",
+    "effect": "-40.00% superstructure mass"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Nanotubes and 8 Superalloys.",
+    "effect": "-2.80% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Superalloys and 4 Nanotubes.",
+    "effect": "-5.20% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 3,
+    "parts_interceptor_base_cost": "23 Superalloys and 7 Nanotubes.",
+    "effect": "-8.00% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 4,
+    "parts_interceptor_base_cost": "30 Superalloys and 9 Nanotubes.",
+    "effect": "-10.80% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 5,
+    "parts_interceptor_base_cost": "11 Nanotubes and 37 Superalloys.",
+    "effect": "-13.20% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 6,
+    "parts_interceptor_base_cost": "12 Nanotubes and 44 Superalloys.",
+    "effect": "-16.00% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 7,
+    "parts_interceptor_base_cost": "14 Nanotubes and 50 Superalloys.",
+    "effect": "-18.80% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 8,
+    "parts_interceptor_base_cost": "16 Nanotubes and 55 Superalloys.",
+    "effect": "-21.20% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 9,
+    "parts_interceptor_base_cost": "17 Nanotubes and 61 Superalloys.",
+    "effect": "-24.00% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 10,
+    "parts_interceptor_base_cost": "18 Nanotubes and 66 Superalloys.",
+    "effect": "-26.80% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 11,
+    "parts_interceptor_base_cost": "20 Nanotubes and 69 Superalloys.",
+    "effect": "-29.20% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 12,
+    "parts_interceptor_base_cost": "20 Nanotubes and 73 Superalloys.",
+    "effect": "-32.00% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 13,
+    "parts_interceptor_base_cost": "21 Nanotubes and 75 Superalloys.",
+    "effect": "-34.80% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 14,
+    "parts_interceptor_base_cost": "22 Nanotubes and 77 Superalloys.",
+    "effect": "-37.20% turn time"
+  },
+  {
+    "shortname": "turn_time",
+    "full_name": "Reduces turn time",
+    "level": 15,
+    "parts_interceptor_base_cost": "22 Nanotubes and 78 Superalloys.",
+    "effect": "-40.00% turn time"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Metamaterials and 7 Superalloys.",
+    "effect": "-2.10% cannon kear cost, -0.70% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 2,
+    "parts_interceptor_base_cost": "15 Superalloys and 5 Metamaterials.",
+    "effect": "-3.90% cannon kear cost, -1.30% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 3,
+    "parts_interceptor_base_cost": "22 Superalloys and 8 Metamaterials.",
+    "effect": "-6.00% cannon kear cost, -2.00% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 4,
+    "parts_interceptor_base_cost": "11 Metamaterials and 28 Superalloys.",
+    "effect": "-8.10% cannon kear cost, -2.70% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 5,
+    "parts_interceptor_base_cost": "13 Metamaterials and 35 Superalloys.",
+    "effect": "-9.90% cannon kear cost, -3.30% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 6,
+    "parts_interceptor_base_cost": "15 Metamaterials and 41 Superalloys.",
+    "effect": "-12.00% cannon kear cost, -4.00% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 7,
+    "parts_interceptor_base_cost": "17 Metamaterials and 47 Superalloys.",
+    "effect": "-14.10% cannon kear cost, -4.70% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 8,
+    "parts_interceptor_base_cost": "19 Metamaterials and 52 Superalloys.",
+    "effect": "-15.90% cannon kear cost, -5.30% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 9,
+    "parts_interceptor_base_cost": "21 Metamaterials and 57 Superalloys.",
+    "effect": "-18.00% cannon kear cost, -6.00% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 10,
+    "parts_interceptor_base_cost": "23 Metamaterials and 61 Superalloys.",
+    "effect": "-20.10% cannon kear cost, -6.70% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 11,
+    "parts_interceptor_base_cost": "24 Metamaterials and 65 Superalloys.",
+    "effect": "-21.90% cannon kear cost, -7.30% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 12,
+    "parts_interceptor_base_cost": "25 Metamaterials and 68 Superalloys.",
+    "effect": "-24.00% cannon kear cost, -8.00% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 13,
+    "parts_interceptor_base_cost": "26 Metamaterials and 70 Superalloys.",
+    "effect": "-26.10% cannon kear cost, -8.70% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 14,
+    "parts_interceptor_base_cost": "27 Metamaterials and 72 Superalloys.",
+    "effect": "-27.90% cannon kear cost, -9.30% cannon damage"
+  },
+  {
+    "shortname": "cannon_attenuate",
+    "full_name": "Cannon Attenuators",
+    "level": 15,
+    "parts_interceptor_base_cost": "27 Metamaterials and 73 Superalloys.",
+    "effect": "-30.00% cannon kear cost, -10.00% cannon damage"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Aerogels and 7 Superalloys.",
+    "effect": "-1.40% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "14 Superalloys and 6 Aerogels.",
+    "effect": "-2.60% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "21 Superalloys and 9 Aerogels.",
+    "effect": "-4.00% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "12 Aerogels and 27 Superalloys.",
+    "effect": "-5.40% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "15 Aerogels and 33 Superalloys.",
+    "effect": "-6.60% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "17 Aerogels and 39 Superalloys.",
+    "effect": "-8.00% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "20 Aerogels and 44 Superalloys.",
+    "effect": "-9.40% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "22 Aerogels and 49 Superalloys.",
+    "effect": "-10.60% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "24 Aerogels and 54 Superalloys.",
+    "effect": "-12.00% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "26 Aerogels and 58 Superalloys.",
+    "effect": "-13.40% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "28 Aerogels and 61 Superalloys.",
+    "effect": "-14.60% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "29 Aerogels and 64 Superalloys.",
+    "effect": "-16.00% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "30 Aerogels and 66 Superalloys.",
+    "effect": "-17.40% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "31 Aerogels and 68 Superalloys.",
+    "effect": "-18.60% cannon halon cost"
+  },
+  {
+    "shortname": "cannon_optimize",
+    "full_name": "Cannon Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "31 Aerogels and 69 Superalloys.",
+    "effect": "-20.00% cannon halon cost"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Nanotube and 9 Aerogels.",
+    "effect": "+2.10% EM damage, -0.70% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 2,
+    "parts_interceptor_base_cost": "17 Aerogels and 3 Nanotubes.",
+    "effect": "+3.90% EM damage, -1.30% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 3,
+    "parts_interceptor_base_cost": "26 Aerogels and 4 Nanotubes.",
+    "effect": "+6.00% EM damage, -2.00% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 4,
+    "parts_interceptor_base_cost": "34 Aerogels and 5 Nanotubes.",
+    "effect": "+8.10% EM damage, -2.70% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 5,
+    "parts_interceptor_base_cost": "42 Aerogels and 6 Nanotubes.",
+    "effect": "+9.90% EM damage, -3.30% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 6,
+    "parts_interceptor_base_cost": "49 Aerogels and 7 Nanotubes.",
+    "effect": "+12.00% EM damage, -4.00% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 7,
+    "parts_interceptor_base_cost": "56 Aerogels and 8 Nanotubes.",
+    "effect": "+14.10% EM damage, -4.70% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 8,
+    "parts_interceptor_base_cost": "62 Aerogels and 9 Nanotubes.",
+    "effect": "+15.90% EM damage, -5.30% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 9,
+    "parts_interceptor_base_cost": "10 Nanotubes and 68 Aerogels.",
+    "effect": "+18.00% EM damage, -6.00% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 10,
+    "parts_interceptor_base_cost": "11 Nanotubes and 73 Aerogels.",
+    "effect": "+20.10% EM damage, -6.70% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 11,
+    "parts_interceptor_base_cost": "12 Nanotubes and 77 Aerogels.",
+    "effect": "+21.90% EM damage, -7.30% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 12,
+    "parts_interceptor_base_cost": "12 Nanotubes and 81 Aerogels.",
+    "effect": "+24.00% EM damage, -8.00% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 13,
+    "parts_interceptor_base_cost": "12 Nanotubes and 84 Aerogels.",
+    "effect": "+26.10% EM damage, -8.70% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 14,
+    "parts_interceptor_base_cost": "13 Nanotubes and 86 Aerogels.",
+    "effect": "+27.90% EM damage, -9.30% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "em_dmg",
+    "full_name": "EM Damage Amplifiers",
+    "level": 15,
+    "parts_interceptor_base_cost": "13 Nanotubes and 87 Aerogels.",
+    "effect": "+30.00% EM damage, -10.00% thermal, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Superalloy and 9 Nanotubes.",
+    "effect": "+2.10% gravitic damage, -0.70% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Nanotubes and 2 Superalloys.",
+    "effect": "+3.90% gravitic damage, -1.30% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Superalloys and 28 Nanotubes.",
+    "effect": "+6.00% gravitic damage, -2.00% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Superalloys and 36 Nanotubes.",
+    "effect": "+8.10% gravitic damage, -2.70% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 5,
+    "parts_interceptor_base_cost": "4 Superalloys and 44 Nanotubes.",
+    "effect": "+9.90% gravitic damage, -3.30% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Superalloys and 52 Nanotubes.",
+    "effect": "+12.00% gravitic damage, -4.00% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 7,
+    "parts_interceptor_base_cost": "5 Superalloys and 59 Nanotubes.",
+    "effect": "+14.10% gravitic damage, -4.70% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 8,
+    "parts_interceptor_base_cost": "6 Superalloys and 65 Nanotubes.",
+    "effect": "+15.90% gravitic damage, -5.30% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 9,
+    "parts_interceptor_base_cost": "6 Superalloys and 72 Nanotubes.",
+    "effect": "+18.00% gravitic damage, -6.00% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 10,
+    "parts_interceptor_base_cost": "7 Superalloys and 77 Nanotubes.",
+    "effect": "+20.10% gravitic damage, -6.70% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 11,
+    "parts_interceptor_base_cost": "7 Superalloys and 82 Nanotubes.",
+    "effect": "+21.90% gravitic damage, -7.30% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Superalloys and 86 Nanotubes.",
+    "effect": "+24.00% gravitic damage, -8.00% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 13,
+    "parts_interceptor_base_cost": "8 Superalloys and 88 Nanotubes.",
+    "effect": "+26.10% gravitic damage, -8.70% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 14,
+    "parts_interceptor_base_cost": "8 Superalloys and 91 Nanotubes.",
+    "effect": "+27.90% gravitic damage, -9.30% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "gravitic_dmg",
+    "full_name": "Gravitic Damage Amplifiers",
+    "level": 15,
+    "parts_interceptor_base_cost": "8 Superalloys and 92 Nanotubes.",
+    "effect": "+30.00% gravitic damage, -10.00% EM, thermal, and kinetic damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Amorphites and 6 Superalloys.",
+    "effect": "+2.10% kinetic damage, -0.70% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 2,
+    "parts_interceptor_base_cost": "13 Superalloys and 7 Amorphites.",
+    "effect": "+3.90% kinetic damage, -1.30% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Amorphites and 19 Superalloys.",
+    "effect": "+6.00% kinetic damage, -2.00% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 4,
+    "parts_interceptor_base_cost": "14 Amorphites and 25 Superalloys.",
+    "effect": "+8.10% kinetic damage, -2.70% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 5,
+    "parts_interceptor_base_cost": "17 Amorphites and 31 Superalloys.",
+    "effect": "+9.90% kinetic damage, -3.30% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 6,
+    "parts_interceptor_base_cost": "20 Amorphites and 36 Superalloys.",
+    "effect": "+12.00% kinetic damage, -4.00% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 7,
+    "parts_interceptor_base_cost": "23 Amorphites and 41 Superalloys.",
+    "effect": "+14.10% kinetic damage, -4.70% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 8,
+    "parts_interceptor_base_cost": "26 Amorphites and 45 Superalloys.",
+    "effect": "+15.90% kinetic damage, -5.30% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 9,
+    "parts_interceptor_base_cost": "28 Amorphites and 50 Superalloys.",
+    "effect": "+18.00% kinetic damage, -6.00% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 10,
+    "parts_interceptor_base_cost": "30 Amorphites and 54 Superalloys.",
+    "effect": "+20.10% kinetic damage, -6.70% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 11,
+    "parts_interceptor_base_cost": "32 Amorphites and 57 Superalloys.",
+    "effect": "+21.90% kinetic damage, -7.30% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 12,
+    "parts_interceptor_base_cost": "33 Amorphites and 60 Superalloys.",
+    "effect": "+24.00% kinetic damage, -8.00% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 13,
+    "parts_interceptor_base_cost": "35 Amorphites and 61 Superalloys.",
+    "effect": "+26.10% kinetic damage, -8.70% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 14,
+    "parts_interceptor_base_cost": "36 Amorphites and 63 Superalloys.",
+    "effect": "+27.90% kinetic damage, -9.30% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "kinetic_dmg",
+    "full_name": "Kinetic Damage Amplifiers",
+    "level": 15,
+    "parts_interceptor_base_cost": "36 Amorphites and 64 Superalloys.",
+    "effect": "+30.00% kinetic damage, -10.00% thermal, gravitic, and EM damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 1,
+    "parts_interceptor_base_cost": "5 Metamaterials and 5 Nanotubes.",
+    "effect": "-2.10% laser kear cost, -0.70% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 2,
+    "parts_interceptor_base_cost": "11 Metamaterials and 9 Nanotubes.",
+    "effect": "-3.90% laser kear cost, -1.30% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 3,
+    "parts_interceptor_base_cost": "14 Nanotubes and 16 Metamaterials.",
+    "effect": "-6.00% laser kear cost, -2.00% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 4,
+    "parts_interceptor_base_cost": "18 Nanotubes and 21 Metamaterials.",
+    "effect": "-8.10% laser kear cost, -2.70% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 5,
+    "parts_interceptor_base_cost": "23 Nanotubes and 25 Metamaterials.",
+    "effect": "-9.90% laser kear cost, -3.30% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 6,
+    "parts_interceptor_base_cost": "26 Nanotubes and 30 Metamaterials.",
+    "effect": "-12.00% laser kear cost, -4.00% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 7,
+    "parts_interceptor_base_cost": "30 Nanotubes and 34 Metamaterials.",
+    "effect": "-14.10% laser kear cost, -4.70% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 8,
+    "parts_interceptor_base_cost": "33 Nanotubes and 38 Metamaterials.",
+    "effect": "-15.90% laser kear cost, -5.30% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 9,
+    "parts_interceptor_base_cost": "37 Nanotubes and 41 Metamaterials.",
+    "effect": "-18.00% laser kear cost, -6.00% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 10,
+    "parts_interceptor_base_cost": "39 Nanotubes and 45 Metamaterials.",
+    "effect": "-20.10% laser kear cost, -6.70% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 11,
+    "parts_interceptor_base_cost": "42 Nanotubes and 47 Metamaterials.",
+    "effect": "-21.90% laser kear cost, -7.30% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 12,
+    "parts_interceptor_base_cost": "44 Nanotubes and 49 Metamaterials.",
+    "effect": "-24.00% laser kear cost, -8.00% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 13,
+    "parts_interceptor_base_cost": "45 Nanotubes and 51 Metamaterials.",
+    "effect": "-26.10% laser kear cost, -8.70% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 14,
+    "parts_interceptor_base_cost": "47 Nanotubes and 52 Metamaterials.",
+    "effect": "-27.90% laser kear cost, -9.30% laser damage"
+  },
+  {
+    "shortname": "laser_attenuate",
+    "full_name": "Laser Attenuators",
+    "level": 15,
+    "parts_interceptor_base_cost": "47 Nanotubes and 53 Metamaterials.",
+    "effect": "-30.00% laser kear cost, -10.00% laser damage"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Amorphites and 7 Metamaterials.",
+    "effect": "-1.40% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "13 Metamaterials and 7 Amorphites.",
+    "effect": "-2.60% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Amorphites and 20 Metamaterials.",
+    "effect": "-4.00% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "14 Amorphites and 25 Metamaterials.",
+    "effect": "-5.40% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "17 Amorphites and 31 Metamaterials.",
+    "effect": "-6.60% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "20 Amorphites and 36 Metamaterials.",
+    "effect": "-8.00% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "22 Amorphites and 42 Metamaterials.",
+    "effect": "-9.40% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "25 Amorphites and 46 Metamaterials.",
+    "effect": "-10.60% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "27 Amorphites and 51 Metamaterials.",
+    "effect": "-12.00% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "29 Amorphites and 55 Metamaterials.",
+    "effect": "-13.40% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "31 Amorphites and 58 Metamaterials.",
+    "effect": "-14.60% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "33 Amorphites and 60 Metamaterials.",
+    "effect": "-16.00% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "34 Amorphites and 62 Metamaterials.",
+    "effect": "-17.40% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "35 Amorphites and 64 Metamaterials.",
+    "effect": "-18.60% laser halon cost"
+  },
+  {
+    "shortname": "laser_optimize",
+    "full_name": "Laser Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "35 Amorphites and 65 Metamaterials.",
+    "effect": "-20.00% laser halon cost"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 1,
+    "parts_interceptor_base_cost": "3 Superalloys and 7 Aerogels.",
+    "effect": "-2.10% missile kear cost, -0.70% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 2,
+    "parts_interceptor_base_cost": "13 Aerogels and 7 Superalloys.",
+    "effect": "-3.90% missile kear cost, -1.30% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 3,
+    "parts_interceptor_base_cost": "10 Superalloys and 20 Aerogels.",
+    "effect": "-6.00% missile kear cost, -2.00% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 4,
+    "parts_interceptor_base_cost": "13 Superalloys and 26 Aerogels.",
+    "effect": "-8.10% missile kear cost, -2.70% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 5,
+    "parts_interceptor_base_cost": "16 Superalloys and 32 Aerogels.",
+    "effect": "-9.90% missile kear cost, -3.30% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 6,
+    "parts_interceptor_base_cost": "18 Superalloys and 38 Aerogels.",
+    "effect": "-12.00% missile kear cost, -4.00% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 7,
+    "parts_interceptor_base_cost": "21 Superalloys and 43 Aerogels.",
+    "effect": "-14.10% missile kear cost, -4.70% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 8,
+    "parts_interceptor_base_cost": "23 Superalloys and 48 Aerogels.",
+    "effect": "-15.90% missile kear cost, -5.30% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 9,
+    "parts_interceptor_base_cost": "26 Superalloys and 52 Aerogels.",
+    "effect": "-18.00% missile kear cost, -6.00% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 10,
+    "parts_interceptor_base_cost": "28 Superalloys and 56 Aerogels.",
+    "effect": "-20.10% missile kear cost, -6.70% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 11,
+    "parts_interceptor_base_cost": "29 Superalloys and 60 Aerogels.",
+    "effect": "-21.90% missile kear cost, -7.30% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 12,
+    "parts_interceptor_base_cost": "31 Superalloys and 62 Aerogels.",
+    "effect": "-24.00% missile kear cost, -8.00% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 13,
+    "parts_interceptor_base_cost": "32 Superalloys and 64 Aerogels.",
+    "effect": "-26.10% missile kear cost, -8.70% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 14,
+    "parts_interceptor_base_cost": "33 Superalloys and 66 Aerogels.",
+    "effect": "-27.90% missile kear cost, -9.30% missile damage"
+  },
+  {
+    "shortname": "missile_attenuate",
+    "full_name": "Missile Attenuators",
+    "level": 15,
+    "parts_interceptor_base_cost": "33 Superalloys and 67 Aerogels.",
+    "effect": "-30.00% missile kear cost, -10.00% missile damage"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Nanotube and 9 Aerogels.",
+    "effect": "-1.40% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Aerogels and 2 Nanotubes.",
+    "effect": "-2.60% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "27 Aerogels and 3 Nanotubes.",
+    "effect": "-4.00% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "35 Aerogels and 4 Nanotubes.",
+    "effect": "-5.40% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "43 Aerogels and 5 Nanotubes.",
+    "effect": "-6.60% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "50 Aerogels and 6 Nanotubes.",
+    "effect": "-8.00% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "57 Aerogels and 7 Nanotubes.",
+    "effect": "-9.40% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "63 Aerogels and 8 Nanotubes.",
+    "effect": "-10.60% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "69 Aerogels and 9 Nanotubes.",
+    "effect": "-12.00% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "75 Aerogels and 9 Nanotubes.",
+    "effect": "-13.40% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "10 Nanotubes and 79 Aerogels.",
+    "effect": "-14.60% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "10 Nanotubes and 83 Aerogels.",
+    "effect": "-16.00% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "11 Nanotubes and 85 Aerogels.",
+    "effect": "-17.40% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "11 Nanotubes and 88 Aerogels.",
+    "effect": "-18.60% missile halon cost"
+  },
+  {
+    "shortname": "missile_optimize",
+    "full_name": "Missile Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "11 Nanotubes and 89 Aerogels.",
+    "effect": "-20.00% missile halon cost"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 1,
+    "parts_interceptor_base_cost": "1 Aerogel and 9 Metamaterials.",
+    "effect": "+2.10% thermal damage, -0.70% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 2,
+    "parts_interceptor_base_cost": "18 Metamaterials and 2 Aerogels.",
+    "effect": "+3.90% thermal damage, -1.30% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 3,
+    "parts_interceptor_base_cost": "2 Aerogels and 28 Metamaterials.",
+    "effect": "+6.00% thermal damage, -2.00% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 4,
+    "parts_interceptor_base_cost": "3 Aerogels and 36 Metamaterials.",
+    "effect": "+8.10% thermal damage, -2.70% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 5,
+    "parts_interceptor_base_cost": "4 Aerogels and 44 Metamaterials.",
+    "effect": "+9.90% thermal damage, -3.30% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 6,
+    "parts_interceptor_base_cost": "4 Aerogels and 52 Metamaterials.",
+    "effect": "+12.00% thermal damage, -4.00% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 7,
+    "parts_interceptor_base_cost": "5 Aerogels and 59 Metamaterials.",
+    "effect": "+14.10% thermal damage, -4.70% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 8,
+    "parts_interceptor_base_cost": "6 Aerogels and 65 Metamaterials.",
+    "effect": "+15.90% thermal damage, -5.30% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 9,
+    "parts_interceptor_base_cost": "6 Aerogels and 72 Metamaterials.",
+    "effect": "+18.00% thermal damage, -6.00% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 10,
+    "parts_interceptor_base_cost": "7 Aerogels and 77 Metamaterials.",
+    "effect": "+20.10% thermal damage, -6.70% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 11,
+    "parts_interceptor_base_cost": "7 Aerogels and 82 Metamaterials.",
+    "effect": "+21.90% thermal damage, -7.30% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 12,
+    "parts_interceptor_base_cost": "7 Aerogels and 86 Metamaterials.",
+    "effect": "+24.00% thermal damage, -8.00% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 13,
+    "parts_interceptor_base_cost": "8 Aerogels and 88 Metamaterials.",
+    "effect": "+26.10% thermal damage, -8.70% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 14,
+    "parts_interceptor_base_cost": "8 Aerogels and 91 Metamaterials.",
+    "effect": "+27.90% thermal damage, -9.30% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "thermal_dmg",
+    "full_name": "Thermal Damage Amplifiers",
+    "level": 15,
+    "parts_interceptor_base_cost": "8 Aerogels and 92 Metamaterials.",
+    "effect": "+30.00% thermal damage, -10.00% EM, gravitic, and kinetic damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 1,
+    "parts_interceptor_base_cost": "2 Amorphites and 8 Nanotubes.",
+    "effect": "-2.10% turret kear cost, -0.70% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 2,
+    "parts_interceptor_base_cost": "16 Nanotubes and 4 Amorphites.",
+    "effect": "-3.90% turret kear cost, -1.30% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 3,
+    "parts_interceptor_base_cost": "24 Nanotubes and 6 Amorphites.",
+    "effect": "-6.00% turret kear cost, -2.00% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 4,
+    "parts_interceptor_base_cost": "31 Nanotubes and 8 Amorphites.",
+    "effect": "-8.10% turret kear cost, -2.70% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 5,
+    "parts_interceptor_base_cost": "10 Amorphites and 38 Nanotubes.",
+    "effect": "-9.90% turret kear cost, -3.30% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 6,
+    "parts_interceptor_base_cost": "12 Amorphites and 44 Nanotubes.",
+    "effect": "-12.00% turret kear cost, -4.00% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 7,
+    "parts_interceptor_base_cost": "13 Amorphites and 51 Nanotubes.",
+    "effect": "-14.10% turret kear cost, -4.70% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 8,
+    "parts_interceptor_base_cost": "15 Amorphites and 56 Nanotubes.",
+    "effect": "-15.90% turret kear cost, -5.30% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 9,
+    "parts_interceptor_base_cost": "16 Amorphites and 62 Nanotubes.",
+    "effect": "-18.00% turret kear cost, -6.00% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 10,
+    "parts_interceptor_base_cost": "18 Amorphites and 66 Nanotubes.",
+    "effect": "-20.10% turret kear cost, -6.70% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 11,
+    "parts_interceptor_base_cost": "19 Amorphites and 70 Nanotubes.",
+    "effect": "-21.90% turret kear cost, -7.30% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 12,
+    "parts_interceptor_base_cost": "20 Amorphites and 73 Nanotubes.",
+    "effect": "-24.00% turret kear cost, -8.00% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 13,
+    "parts_interceptor_base_cost": "20 Amorphites and 76 Nanotubes.",
+    "effect": "-26.10% turret kear cost, -8.70% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 14,
+    "parts_interceptor_base_cost": "21 Amorphites and 78 Nanotubes.",
+    "effect": "-27.90% turret kear cost, -9.30% turret damage"
+  },
+  {
+    "shortname": "turret_attenuate",
+    "full_name": "Turret Attenuators",
+    "level": 15,
+    "parts_interceptor_base_cost": "21 Amorphites and 79 Nanotubes.",
+    "effect": "-30.00% turret kear cost, -10.00% turret damage"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 1,
+    "parts_interceptor_base_cost": "4 Metamaterials and 6 Nanotubes.",
+    "effect": "-1.40% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 2,
+    "parts_interceptor_base_cost": "13 Nanotubes and 7 Metamaterials.",
+    "effect": "-2.60% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 3,
+    "parts_interceptor_base_cost": "11 Metamaterials and 19 Nanotubes.",
+    "effect": "-4.00% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 4,
+    "parts_interceptor_base_cost": "14 Metamaterials and 25 Nanotubes.",
+    "effect": "-5.40% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 5,
+    "parts_interceptor_base_cost": "17 Metamaterials and 31 Nanotubes.",
+    "effect": "-6.60% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 6,
+    "parts_interceptor_base_cost": "20 Metamaterials and 36 Nanotubes.",
+    "effect": "-8.00% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 7,
+    "parts_interceptor_base_cost": "23 Metamaterials and 41 Nanotubes.",
+    "effect": "-9.40% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 8,
+    "parts_interceptor_base_cost": "26 Metamaterials and 45 Nanotubes.",
+    "effect": "-10.60% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 9,
+    "parts_interceptor_base_cost": "28 Metamaterials and 50 Nanotubes.",
+    "effect": "-12.00% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 10,
+    "parts_interceptor_base_cost": "30 Metamaterials and 54 Nanotubes.",
+    "effect": "-13.40% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 11,
+    "parts_interceptor_base_cost": "32 Metamaterials and 57 Nanotubes.",
+    "effect": "-14.60% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 12,
+    "parts_interceptor_base_cost": "33 Metamaterials and 60 Nanotubes.",
+    "effect": "-16.00% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 13,
+    "parts_interceptor_base_cost": "35 Metamaterials and 61 Nanotubes.",
+    "effect": "-17.40% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 14,
+    "parts_interceptor_base_cost": "36 Metamaterials and 63 Nanotubes.",
+    "effect": "-18.60% turret halon cost"
+  },
+  {
+    "shortname": "turret_optimize",
+    "full_name": "Turret Optimization",
+    "level": 15,
+    "parts_interceptor_base_cost": "36 Metamaterials and 64 Nanotubes.",
+    "effect": "-20.00% turret halon cost"
+  }
+]
