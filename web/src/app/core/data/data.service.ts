@@ -73,6 +73,10 @@ export class DataService {
     return this.shipModels().filter((m) => m.class === shipClass);
   }
 
+  modulesByClass(shipClass: ShipClass): ShipModule[] {
+    return this.modules().filter((m) => m.classes.includes(shipClass));
+  }
+
   /** All 15 levels of one mod, sorted ascending. */
   modLevelsFor(shortname: string): ShipModLevel[] {
     return this.shipModLevels()

@@ -28,8 +28,13 @@ export class LoadoutEditor {
   protected readonly shipsims = computed<ShipComponent[]>(() => this.componentsFor('Shipsim'));
   protected readonly sensors = computed<ShipComponent[]>(() => this.componentsFor('Sensor'));
 
-  protected readonly weaponOptions = computed<ShipModule[]>(() => this.data.modules().filter((m) => m.weapon_module === 'Yes'));
-  protected readonly nonWeaponOptions = computed<ShipModule[]>(() => this.data.modules().filter((m) => m.weapon_module === 'No'));
+  private readonly modulesForHull = computed<ShipModule[]>(() => {
+    const shipClass = this.hullClass();
+    return shipClass ? this.data.modulesByClass(shipClass) : [];
+  });
+
+  protected readonly weaponOptions = computed<ShipModule[]>(() => this.modulesForHull().filter((m) => m.weapon_module === 'Yes'));
+  protected readonly nonWeaponOptions = computed<ShipModule[]>(() => this.modulesForHull().filter((m) => m.weapon_module === 'No'));
 
   protected readonly pendingWeapon = signal<ShipModule | null>(null);
   protected readonly pendingModule = signal<ShipModule | null>(null);

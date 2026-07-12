@@ -96,10 +96,14 @@ per-station variation to account for: an ID/item is available everywhere.
   charger"** — the leading "+0.01%" looks like a formatting artifact rather
   than a real stat (no other non-weapon module's effect text has a stray
   leading percentage before description-style text).
-- **All modules are sized small/medium/large**, but there's no captured
-  per-module class restriction beyond size — whether/how each hull class
-  restricts which module sizes it can fit (beyond the hardpoint/mod-cap
-  points budget) is unconfirmed pending in-game verification. A prior
-  per-class small/med/large slot-count table here turned out to come from an
-  outdated in-game help doc and was removed (2026-07-12) rather than left as
-  a misleading reference.
+- **Per-class module availability is now confirmed** (2026-07-12, via each
+  class's live `sf modules` catalog in-game) and captured in each module's
+  `classes` field: **Interceptor** can only fit small-size modules (its
+  catalog is exactly the all-small subset); **Carrier** can only fit
+  non-weapon modules (exactly the all-non-weapon subset, consistent with its
+  0 hardpoints); **Freighter** can fit everything except large-size weapon
+  modules (it keeps large non-weapon utility items like Augmented Engine III
+  and Cargo Hold III); **Battleship, Corvette, Cruiser, Destroyer, and
+  Superhauler** can all fit the entire 51-module catalog. This supersedes an
+  earlier note here (removed 2026-07-12) that called per-class restriction
+  unconfirmed — that in-game recheck is what settled it.

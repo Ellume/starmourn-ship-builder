@@ -115,6 +115,7 @@ describe('calculateBuildStats — edge cases', () => {
       name: 'Power Hog',
       weapon_module: 'No',
       weapon_type: null,
+      classes: ['Battleship', 'Corvette', 'Cruiser', 'Destroyer', 'Freighter', 'Interceptor', 'Superhauler', 'Carrier'],
       description: '',
       mass_tons: 0,
       power_use_halons: 5000,

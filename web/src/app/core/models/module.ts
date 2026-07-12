@@ -1,3 +1,5 @@
+import { ShipClass } from './ship-model';
+
 export type ModuleSize = 'small' | 'medium' | 'large';
 
 export type WeaponType =
@@ -26,6 +28,8 @@ export interface ShipModule {
   name: string;
   weapon_module: 'Yes' | 'No';
   weapon_type: WeaponType | null;
+  /** Ship classes that can fit this module — confirmed in-game per class's `sf modules` catalog. */
+  classes: ShipClass[];
   description: string;
   /** Always 0 for every module in the source data */
   mass_tons: number;

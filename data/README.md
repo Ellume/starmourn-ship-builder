@@ -16,7 +16,7 @@ in a file has the same key set.
 |---|---|---|
 | `ship-models.json` | 37 | Superstructures (hulls) buyable at any station shipyard. |
 | `components.json` | 153 | Fitted components — all 5 types (Capacitor/Engine/Sensor/Shield/Shipsim) in one file, filter on `type`. |
-| `modules.json` | 51 | Hardpoint/mod-cap modules bought at a shipyard — weapon + non-weapon in one file, filter on `weapon_module`. |
+| `modules.json` | 51 | Hardpoint/mod-cap modules bought at a shipyard — weapon + non-weapon in one file, filter on `weapon_module`. Each row's `classes` field lists which hull classes can fit it (confirmed per-class in-game). |
 | `ship-mods.json` | 50 | Crafted hull/component mods (the "Mods" system, distinct from the above) — level-1/level-15 endpoints only. |
 | `ship-mod-levels.json` | 750 | Same 50 mods, full 15-level detail (non-linear scaling — don't interpolate the endpoints in `ship-mods.json`). |
 
