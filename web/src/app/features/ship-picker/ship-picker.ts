@@ -21,6 +21,7 @@ const SHIP_CLASSES: ShipClass[] = [
   selector: 'app-ship-picker',
   imports: [SelectModule, FormsModule],
   templateUrl: './ship-picker.html',
+  styleUrl: './ship-picker.scss',
 })
 export class ShipPicker implements OnInit {
   private readonly data = inject(DataService);
@@ -31,12 +32,16 @@ export class ShipPicker implements OnInit {
   protected readonly modelsForClass = computed<ShipModel[]>(() => this.data.modelsByClass(this.selectedClass()));
 
   ngOnInit(): void {
-    this.data.load();
+    this.data.load().then(() => {
+      const models = this.modelsForClass();
+      if (models.length) this.build.setHull(models[0]);
+    });
   }
 
   onClassChange(shipClass: ShipClass): void {
     this.selectedClass.set(shipClass);
-    this.build.setHull(null);
+    const models = this.data.modelsByClass(shipClass);
+    this.build.setHull(models[0] ?? null);
   }
 
   onModelChange(model: ShipModel | null): void {

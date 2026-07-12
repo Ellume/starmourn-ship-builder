@@ -1,0 +1,17 @@
+.ship-picker {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 220px;
+
+  p-select {
+    width: 100%;
+  }
+}

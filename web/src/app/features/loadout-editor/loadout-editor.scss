@@ -19,6 +19,16 @@
   }
 }
 
+.cycles-note {
+  font-size: 0.85rem;
+  color: var(--p-text-muted-color);
+  margin: 0 0 1rem;
+
+  &.warn {
+    color: var(--p-red-400, #f87171);
+  }
+}
+
 .slots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

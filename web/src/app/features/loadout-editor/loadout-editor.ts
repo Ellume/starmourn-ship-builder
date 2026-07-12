@@ -38,6 +38,10 @@ export class LoadoutEditor {
   protected readonly hardpointsUsed = computed(() => hardpointPointsUsed(this.build.modules()));
   protected readonly modCapMax = computed(() => this.build.hull()?.mod_cap ?? 0);
   protected readonly modCapUsed = computed(() => modCapPointsUsed(this.build.modules()));
+  protected readonly cyclesMax = computed(() => this.build.shipsim()?.max_cycles ?? 0);
+  protected readonly cyclesUsed = computed(() =>
+    this.build.modules().reduce((sum, m) => sum + m.shipsim_cycles, 0),
+  );
 
   private componentsFor(type: ShipComponent['type']): ShipComponent[] {
     const shipClass = this.hullClass();
@@ -47,6 +51,7 @@ export class LoadoutEditor {
   addWeapon(module: ShipModule | null): void {
     if (!module) return;
     if (this.hardpointsUsed() + MODULE_SIZE_POINTS[module.size] > this.hardpointsMax()) return;
+    if (this.cyclesUsed() + module.shipsim_cycles > this.cyclesMax()) return;
     this.build.addModule(module);
     this.pendingWeapon.set(null);
   }
@@ -54,6 +59,7 @@ export class LoadoutEditor {
   addModule(module: ShipModule | null): void {
     if (!module) return;
     if (this.modCapUsed() + MODULE_SIZE_POINTS[module.size] > this.modCapMax()) return;
+    if (this.cyclesUsed() + module.shipsim_cycles > this.cyclesMax()) return;
     this.build.addModule(module);
     this.pendingModule.set(null);
   }

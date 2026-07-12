@@ -83,6 +83,10 @@
     </div>
   </div>
 
+  <p class="cycles-note" [class.warn]="cyclesUsed() > cyclesMax()">
+    Shipsim cycles: {{ cyclesUsed() }}/{{ cyclesMax() }} (shared budget across weapons and modules)
+  </p>
+
   <div class="slots">
     <div class="slot-group">
       <h3>Weapons <span class="capacity">{{ hardpointsUsed() }}/{{ hardpointsMax() }}</span></h3>
