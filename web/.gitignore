@@ -6,6 +6,9 @@
 /out-tsc
 /bazel-out
 
+# Generated copy of ../data/*.json — data/ is the source of truth
+/public/data
+
 # Node
 /node_modules
 npm-debug.log

@@ -1,0 +1,54 @@
+export type ModuleSize = 'small' | 'medium' | 'large';
+
+export type WeaponType =
+  | 'cannon'
+  | 'turret'
+  | 'missile'
+  | 'laserbeam'
+  | 'mine'
+  | 'web'
+  | 'interdictor'
+  | 'signaljammer'
+  | 'antimine'
+  | 'tractor'
+  | 'capdrainer'
+  | 'cargoscanner'
+  | 'slicekit';
+
+/**
+ * A hardpoint (weapon) or mod-cap (non-weapon) module bought at a shipyard.
+ * Classified by `weapon_module`/`weapon_type`, not by name — e.g. Cargo Scanner
+ * is a weapon module, Material Scanner is not. Source: data/modules.json
+ */
+export interface ShipModule {
+  id: number;
+  size: ModuleSize;
+  name: string;
+  weapon_module: 'Yes' | 'No';
+  weapon_type: WeaponType | null;
+  description: string;
+  /** Always 0 for every module in the source data */
+  mass_tons: number;
+  power_use_halons: number;
+  shipsim_cycles: number;
+  /** Weapon only */
+  firing_speed_s: number | null;
+  /** Weapon only — some weapon modules deal 0 damage (utility effect instead) */
+  weapon_damage: number | null;
+  /** Weapon only */
+  cap_drain_kear: number | null;
+  /** Weapon only */
+  reload_speed_s: number | null;
+  /** Weapon only */
+  optimal_range: number | null;
+  /** Weapon only */
+  fall_off: number | null;
+  /** cargoscanner/capdrainer/slicekit only — per-activation chance to not consume ammo/charge */
+  use_no_ammo: number | null;
+  /** Only set for the few triggered/on-cooldown non-weapon modules */
+  cooldown_s: number | null;
+  /** Non-weapon only — free-text effect description, e.g. "+10.00% capacitor hit points" */
+  effect_bonus: string | null;
+  price_marks: number;
+  notes: string | null;
+}
