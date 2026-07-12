@@ -1,0 +1,131 @@
+@if (!build.hull()) {
+  <p class="hint">Select a hull to begin fitting components.</p>
+} @else {
+  <div class="component-grid">
+    <div class="field">
+      <label for="capacitor-select">Capacitor</label>
+      <p-select
+        inputId="capacitor-select"
+        [options]="capacitors()"
+        optionLabel="model"
+        [ngModel]="build.capacitor()"
+        (ngModelChange)="build.capacitor.set($event)"
+        placeholder="None"
+        [showClear]="true"
+      >
+        <ng-template #selectedItem let-c>{{ componentLabel(c) }}</ng-template>
+        <ng-template #item let-c>{{ componentLabel(c) }}</ng-template>
+      </p-select>
+    </div>
+
+    <div class="field">
+      <label for="engine-select">Engine</label>
+      <p-select
+        inputId="engine-select"
+        [options]="engines()"
+        optionLabel="model"
+        [ngModel]="build.engine()"
+        (ngModelChange)="build.engine.set($event)"
+        placeholder="None"
+        [showClear]="true"
+      >
+        <ng-template #selectedItem let-c>{{ componentLabel(c) }}</ng-template>
+        <ng-template #item let-c>{{ componentLabel(c) }}</ng-template>
+      </p-select>
+    </div>
+
+    <div class="field">
+      <label for="shield-select">Shield</label>
+      <p-select
+        inputId="shield-select"
+        [options]="shields()"
+        optionLabel="model"
+        [ngModel]="build.shield()"
+        (ngModelChange)="build.shield.set($event)"
+        placeholder="None"
+        [showClear]="true"
+      >
+        <ng-template #selectedItem let-c>{{ componentLabel(c) }}</ng-template>
+        <ng-template #item let-c>{{ componentLabel(c) }}</ng-template>
+      </p-select>
+    </div>
+
+    <div class="field">
+      <label for="shipsim-select">Shipsim</label>
+      <p-select
+        inputId="shipsim-select"
+        [options]="shipsims()"
+        optionLabel="model"
+        [ngModel]="build.shipsim()"
+        (ngModelChange)="build.shipsim.set($event)"
+        placeholder="None"
+        [showClear]="true"
+      >
+        <ng-template #selectedItem let-c>{{ componentLabel(c) }}</ng-template>
+        <ng-template #item let-c>{{ componentLabel(c) }}</ng-template>
+      </p-select>
+    </div>
+
+    <div class="field">
+      <label for="sensor-select">Sensor</label>
+      <p-select
+        inputId="sensor-select"
+        [options]="sensors()"
+        optionLabel="model"
+        [ngModel]="build.sensor()"
+        (ngModelChange)="build.sensor.set($event)"
+        placeholder="None"
+        [showClear]="true"
+      >
+        <ng-template #selectedItem let-c>{{ componentLabel(c) }}</ng-template>
+        <ng-template #item let-c>{{ componentLabel(c) }}</ng-template>
+      </p-select>
+    </div>
+  </div>
+
+  <div class="slots">
+    <div class="slot-group">
+      <h3>Weapons <span class="capacity">{{ hardpointsUsed() }}/{{ hardpointsMax() }}</span></h3>
+      <p-select
+        [options]="weaponOptions()"
+        optionLabel="name"
+        [ngModel]="pendingWeapon()"
+        (ngModelChange)="addWeapon($event)"
+        placeholder="Add a weapon…"
+      >
+        <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
+      </p-select>
+      <ul class="fitted-list">
+        @for (m of build.weaponModules(); track $index) {
+          <li>
+            <span>{{ m.name }}</span>
+            <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
+            <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="slot-group">
+      <h3>Modules <span class="capacity">{{ modCapUsed() }}/{{ modCapMax() }}</span></h3>
+      <p-select
+        [options]="nonWeaponOptions()"
+        optionLabel="name"
+        [ngModel]="pendingModule()"
+        (ngModelChange)="addModule($event)"
+        placeholder="Add a module…"
+      >
+        <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
+      </p-select>
+      <ul class="fitted-list">
+        @for (m of build.nonWeaponModules(); track $index) {
+          <li>
+            <span>{{ m.name }}</span>
+            <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
+            <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+}

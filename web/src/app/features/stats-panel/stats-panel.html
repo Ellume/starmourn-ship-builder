@@ -1,0 +1,57 @@
+@if (stats(); as s) {
+  <p-card header="Stats">
+    <dl class="stat-grid">
+      <div class="stat" [class.warn]="s.power.remaining < 0">
+        <dt>Power</dt>
+        <dd>{{ s.power.remaining }} / {{ s.power.max }}</dd>
+      </div>
+      <div class="stat" [class.warn]="s.cycles.remaining < 0">
+        <dt>Cycles</dt>
+        <dd>{{ s.cycles.remaining }} / {{ s.cycles.max }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Health</dt>
+        <dd>{{ s.health.total }} ({{ s.health.hull }}+{{ s.health.shield }})</dd>
+      </div>
+      <div class="stat">
+        <dt>Alpha Strike</dt>
+        <dd>{{ s.alphaStrike }}</dd>
+      </div>
+      <div class="stat">
+        <dt>DPS</dt>
+        <dd>{{ s.dps | number: '1.2-2' }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Mass</dt>
+        <dd>{{ s.mass }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Thrust / Mass</dt>
+        <dd>{{ s.thrustOverMass != null ? (s.thrustOverMass | number: '1.3-3') : '—' }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Turn Speed</dt>
+        <dd>{{ s.turnSpeedSeconds }}s</dd>
+      </div>
+      <div class="stat">
+        <dt>Price</dt>
+        <dd>{{ s.price | number }}</dd>
+      </div>
+    </dl>
+
+    @if (overBudget()) {
+      <p class="over-budget-warning">Over budget — reduce fitted power/cycles draw.</p>
+    }
+
+    @if (s.weaponBreakdown.length) {
+      <h4>Weapons</h4>
+      <ul class="weapon-breakdown">
+        @for (w of s.weaponBreakdown; track $index) {
+          <li>{{ w.module.name }} — {{ w.alphaStrike }} alpha, {{ w.dps | number: '1.2-2' }} DPS</li>
+        }
+      </ul>
+    }
+  </p-card>
+} @else {
+  <p class="hint">Select a hull to see build stats.</p>
+}

@@ -1,0 +1,33 @@
+<div class="ship-picker">
+  <div class="field">
+    <label for="class-select">Class</label>
+    <p-select
+      inputId="class-select"
+      [options]="classes"
+      [ngModel]="selectedClass()"
+      (ngModelChange)="onClassChange($event)"
+      placeholder="Select a class"
+    />
+  </div>
+
+  <div class="field">
+    <label for="model-select">Model</label>
+    <p-select
+      inputId="model-select"
+      [options]="modelsForClass()"
+      optionLabel="model"
+      [ngModel]="build.hull()"
+      (ngModelChange)="onModelChange($event)"
+      placeholder="Select a hull"
+      [filter]="true"
+      filterBy="make,model"
+    >
+      <ng-template #selectedItem let-model>
+        @if (model) {
+          {{ model.make }} {{ model.model }}
+        }
+      </ng-template>
+      <ng-template #item let-model>{{ model.make }} {{ model.model }}</ng-template>
+    </p-select>
+  </div>
+</div>

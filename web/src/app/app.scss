@@ -3,19 +3,29 @@
   font-size: 1.1rem;
 }
 
-.placeholder {
-  max-width: 640px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.data-summary {
-  list-style: none;
-  padding: 0;
+.builder {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--p-card-background, var(--p-surface-card));
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.side-by-side {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+
+  .panel {
+    padding: 0;
+  }
 }
 
 .error {

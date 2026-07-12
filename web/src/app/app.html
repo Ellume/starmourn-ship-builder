@@ -7,28 +7,34 @@
       [icon]="theme.mode() === 'dark' ? 'pi pi-sun' : 'pi pi-moon'"
       [text]="true"
       (onClick)="theme.toggle()"
-      [attr.aria-label]="'Switch to ' + (theme.mode() === 'dark' ? 'light' : 'dark') + ' mode'"
+      [ariaLabel]="'Switch to ' + (theme.mode() === 'dark' ? 'light' : 'dark') + ' mode'"
     />
   </ng-template>
 </p-toolbar>
 
-<main class="placeholder">
-  <h1>Ship Builder — coming soon</h1>
-  <p>The workspace is scaffolded. Builder UI is next.</p>
-
+<main class="builder">
   @if (data.loadError()) {
     <p class="error">Failed to load data: {{ data.loadError() }}</p>
   } @else if (!data.loaded()) {
     <p>Loading game data…</p>
   } @else {
-    <ul class="data-summary">
-      <li>{{ data.shipModels().length }} ship models</li>
-      <li>{{ data.components().length }} components</li>
-      <li>{{ data.modules().length }} modules</li>
-      <li>{{ data.classModSlots().length }} classes with mod slot data</li>
-      <li>{{ data.shipMods().length }} ship mods</li>
-      <li>{{ data.shipModLevels().length }} parsed ship mod levels</li>
-    </ul>
+    <section class="panel">
+      <app-ship-picker />
+    </section>
+
+    <section class="panel">
+      <app-loadout-editor />
+    </section>
+
+    <div class="side-by-side">
+      <section class="panel">
+        <app-stats-panel />
+      </section>
+
+      <section class="panel">
+        <app-command-output />
+      </section>
+    </div>
   }
 
   <router-outlet />

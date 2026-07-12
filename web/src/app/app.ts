@@ -5,10 +5,14 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 import { DataService } from './core/data/data.service';
 import { ThemeService } from './core/theme/theme.service';
+import { CommandOutput } from './features/command-output/command-output';
+import { LoadoutEditor } from './features/loadout-editor/loadout-editor';
+import { ShipPicker } from './features/ship-picker/ship-picker';
+import { StatsPanel } from './features/stats-panel/stats-panel';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarModule, ButtonModule],
+  imports: [RouterOutlet, ToolbarModule, ButtonModule, ShipPicker, LoadoutEditor, StatsPanel, CommandOutput],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

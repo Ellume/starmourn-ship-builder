@@ -17,10 +17,17 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the placeholder heading', async () => {
+  it('should render the toolbar title', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Ship Builder');
+    expect(compiled.querySelector('.app-title')?.textContent).toContain('Starmourn Ship Builder');
+  });
+
+  it('should show a loading state before data resolves', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Loading game data');
   });
 });
