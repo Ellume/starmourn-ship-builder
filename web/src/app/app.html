@@ -1,0 +1,19 @@
+<p-toolbar>
+  <ng-template #start>
+    <span class="app-title">Starmourn Ship Builder</span>
+  </ng-template>
+  <ng-template #end>
+    <p-button
+      [icon]="theme.mode() === 'dark' ? 'pi pi-sun' : 'pi pi-moon'"
+      [text]="true"
+      (onClick)="theme.toggle()"
+      [attr.aria-label]="'Switch to ' + (theme.mode() === 'dark' ? 'light' : 'dark') + ' mode'"
+    />
+  </ng-template>
+</p-toolbar>
+
+<main class="placeholder">
+  <h1>Ship Builder — coming soon</h1>
+  <p>The workspace is scaffolded. Data layer and builder UI are next.</p>
+  <router-outlet />
+</main>
