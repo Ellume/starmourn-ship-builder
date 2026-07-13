@@ -1,0 +1,174 @@
+@if (build.hull(); as hull) {
+  <app-stats-panel />
+
+  <section>
+    <h3>{{ hull.make }} {{ hull.model }}</h3>
+    <dl class="header-grid">
+      <div><dt>Class</dt><dd>{{ hull.class }}</dd></div>
+      <div><dt>Size</dt><dd>{{ hull.size }}</dd></div>
+      <div><dt>Cargo Capacity</dt><dd>{{ hull.capacity_tons | number }} tons</dd></div>
+      <div><dt>Components Mass</dt><dd>{{ componentsMassTons() | number }} tons</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h3>Components</h3>
+
+    <div class="component-block">
+      <strong>Capacitor</strong>
+      @if (build.capacitor(); as c) {
+        <dl class="stat-block">
+          <div><dt>Make</dt><dd>{{ c.make }}</dd></div>
+          <div><dt>Model</dt><dd>{{ c.model }}</dd></div>
+          <div><dt>Capacity</dt><dd>{{ c.capacity_kear | number }} kear</dd></div>
+          <div><dt>Power Need</dt><dd>{{ c.power_need_halons | number }} halons</dd></div>
+          <div><dt>Mass</dt><dd>{{ c.mass_tons | number }} tons</dd></div>
+          <div><dt>HP</dt><dd>{{ c.hp | number }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">None fitted</p>
+      }
+    </div>
+
+    <div class="component-block">
+      <strong>Engine</strong>
+      @if (build.engine(); as c) {
+        <dl class="stat-block">
+          <div><dt>Make</dt><dd>{{ c.make }}</dd></div>
+          <div><dt>Model</dt><dd>{{ c.model }}</dd></div>
+          <div><dt>Thrust</dt><dd>{{ c.thrust_halons | number }} halons</dd></div>
+          <div><dt>Power Need</dt><dd>{{ c.power_need_halons | number }} halons</dd></div>
+          <div><dt>Mass</dt><dd>{{ c.mass_tons | number }} tons</dd></div>
+          <div><dt>HP</dt><dd>{{ c.hp | number }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">None fitted</p>
+      }
+    </div>
+
+    <div class="component-block">
+      <strong>Shield</strong>
+      @if (build.shield(); as c) {
+        <dl class="stat-block">
+          <div><dt>Make</dt><dd>{{ c.make }}</dd></div>
+          <div><dt>Model</dt><dd>{{ c.model }}</dd></div>
+          <div><dt>Strength</dt><dd>{{ c.shield_strength_dam | number }} dam.</dd></div>
+          <div><dt>Recharge</dt><dd>{{ c.recharge_s }}s</dd></div>
+          <div><dt>Grav Res.</dt><dd>{{ c.grav_res }}%</dd></div>
+          <div><dt>Kin Res.</dt><dd>{{ c.kin_res }}%</dd></div>
+          <div><dt>EM Res.</dt><dd>{{ c.em_res }}%</dd></div>
+          <div><dt>Antipierce</dt><dd>{{ c.antipierce }}%</dd></div>
+          <div><dt>Power Need</dt><dd>{{ c.power_need_halons | number }} halons</dd></div>
+          <div><dt>Mass</dt><dd>{{ c.mass_tons | number }} tons</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">None fitted</p>
+      }
+    </div>
+
+    <div class="component-block">
+      <strong>Shipsim</strong>
+      @if (build.shipsim(); as c) {
+        <dl class="stat-block">
+          <div><dt>Make</dt><dd>{{ c.make }}</dd></div>
+          <div><dt>Model</dt><dd>{{ c.model }}</dd></div>
+          <div><dt>Max Cycles</dt><dd>{{ c.max_cycles | number }}</dd></div>
+          <div><dt>Power Need</dt><dd>{{ c.power_need_halons | number }} halons</dd></div>
+          <div><dt>Mass</dt><dd>{{ c.mass_tons | number }} tons</dd></div>
+          <div><dt>HP</dt><dd>{{ c.hp | number }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">None fitted</p>
+      }
+    </div>
+
+    <div class="component-block">
+      <strong>Sensor</strong>
+      @if (build.sensor(); as c) {
+        <dl class="stat-block">
+          <div><dt>Make</dt><dd>{{ c.make }}</dd></div>
+          <div><dt>Model</dt><dd>{{ c.model }}</dd></div>
+          <div><dt>Strength</dt><dd>{{ c.sensor_strength | number }}</dd></div>
+          <div><dt>Jam Str</dt><dd>{{ c.jam_str | number }}</dd></div>
+          <div><dt>Power Need</dt><dd>{{ c.power_need_halons | number }} halons</dd></div>
+          <div><dt>Mass</dt><dd>{{ c.mass_tons | number }} tons</dd></div>
+          <div><dt>HP</dt><dd>{{ c.hp | number }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">None fitted</p>
+      }
+    </div>
+  </section>
+
+  <section>
+    <h3>Hardpoints <span class="hint">— {{ hardpointsUsed() }} / {{ hardpointsMax() }}</span></h3>
+    <div class="size-breakdown">
+      <span>Small: {{ weaponSizeBreakdown().small }}</span>
+      <span>Medium: {{ weaponSizeBreakdown().medium }}</span>
+      <span>Large: {{ weaponSizeBreakdown().large }}</span>
+    </div>
+    @if (build.weaponModules().length) {
+      <ul class="item-list">
+        @for (m of build.weaponModules(); track $index) {
+          <li><span>{{ moduleName(m) }}</span><span>{{ pointsFor(m) }}pt</span></li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section>
+    <h3>Modules <span class="hint">— {{ modCapUsed() }} / {{ modCapMax() }}</span></h3>
+    <div class="size-breakdown">
+      <span>Small: {{ moduleSizeBreakdown().small }}</span>
+      <span>Medium: {{ moduleSizeBreakdown().medium }}</span>
+      <span>Large: {{ moduleSizeBreakdown().large }}</span>
+    </div>
+    @if (build.nonWeaponModules().length) {
+      <ul class="item-list">
+        @for (m of build.nonWeaponModules(); track $index) {
+          <li><span>{{ moduleName(m) }}</span><span>{{ pointsFor(m) }}pt</span></li>
+        }
+      </ul>
+    }
+  </section>
+
+  @if (stats(); as s) {
+    <section>
+      <h3>Power</h3>
+      <p>Structure: {{ s.power.max | number }} halons (100%)</p>
+      <h4>Consumed</h4>
+      <ul class="item-list">
+        @for (line of powerBreakdown(); track line.label) {
+          <li><span>{{ line.label }}</span><span>{{ line.halons | number }} ({{ line.pctOfMax | number: '1.0-0' }}%)</span></li>
+        }
+      </ul>
+      @if (build.modules().length) {
+        <h4>Modules</h4>
+        <ul class="item-list">
+          @for (m of build.modules(); track $index) {
+            <li><span>{{ moduleName(m) }}</span><span>{{ m.power_use_halons | number }}</span></li>
+          }
+        </ul>
+      }
+      <p class="total-line">Consumed (Total): {{ s.power.used | number }} halons</p>
+      <p class="remaining-line" [class.warn]="s.power.remaining < 0">Remaining: {{ s.power.remaining | number }} halons</p>
+    </section>
+
+    <section>
+      <h3>Cycles</h3>
+      <p>Shipsim: {{ s.cycles.max | number }}</p>
+      @if (build.modules().length) {
+        <h4>Modules</h4>
+        <ul class="item-list">
+          @for (m of build.modules(); track $index) {
+            <li><span>{{ moduleName(m) }}</span><span>{{ m.shipsim_cycles | number }}</span></li>
+          }
+        </ul>
+      }
+      <p class="total-line">Consumed (Total): {{ s.cycles.used | number }} cycles</p>
+      <p class="remaining-line" [class.warn]="s.cycles.remaining < 0">Remaining: {{ s.cycles.remaining | number }} cycles</p>
+    </section>
+  }
+} @else {
+  <p class="hint">Select a hull to see the ship summary.</p>
+}

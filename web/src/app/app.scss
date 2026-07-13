@@ -18,16 +18,6 @@
   padding: 1.25rem;
 }
 
-.side-by-side {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-
-  .panel {
-    padding: 0;
-  }
-}
-
 .error {
   color: var(--p-red-400, #f87171);
 }

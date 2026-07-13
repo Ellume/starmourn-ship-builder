@@ -1,27 +1,63 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
 import { ToolbarModule } from 'primeng/toolbar';
 
 import { DataService } from './core/data/data.service';
+import { buildShareUrl } from './core/state/build-link';
+import { BuildStore } from './core/state/build.store';
 import { ThemeService } from './core/theme/theme.service';
-import { CommandOutput } from './features/command-output/command-output';
 import { LoadoutEditor } from './features/loadout-editor/loadout-editor';
 import { ModsPanel } from './features/mods-panel/mods-panel';
 import { ShipPicker } from './features/ship-picker/ship-picker';
-import { StatsPanel } from './features/stats-panel/stats-panel';
+import { ShipSummary } from './features/ship-summary/ship-summary';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarModule, ButtonModule, ShipPicker, LoadoutEditor, ModsPanel, StatsPanel, CommandOutput],
+  imports: [RouterOutlet, ToolbarModule, ButtonModule, DrawerModule, ShipPicker, LoadoutEditor, ModsPanel, ShipSummary],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
   protected readonly theme = inject(ThemeService);
   protected readonly data = inject(DataService);
+  private readonly build = inject(BuildStore);
+
+  protected readonly summaryOpen = signal(false);
+
+  /**
+   * In-game command sequence to reproduce the current build. Confirmed live
+   * against the old site: "SF MODEL <id>", "SF INSTALL <TYPE> <id>" for the 5
+   * fitted components, and — resolving a gap noted in data/ship-purchases-notes.md
+   * ("module install command wasn't captured") — "SF INSTALL MODULE <id>" for
+   * both weapon and non-weapon modules alike.
+   */
+  protected readonly commands = computed<string[]>(() => {
+    const hull = this.build.hull();
+    if (!hull) return [];
+
+    const lines = [`SF MODEL ${hull.id}`];
+    if (this.build.capacitor()) lines.push(`SF INSTALL CAPACITOR ${this.build.capacitor()!.id}`);
+    if (this.build.engine()) lines.push(`SF INSTALL ENGINE ${this.build.engine()!.id}`);
+    if (this.build.shield()) lines.push(`SF INSTALL SHIELD ${this.build.shield()!.id}`);
+    if (this.build.shipsim()) lines.push(`SF INSTALL SHIPSIM ${this.build.shipsim()!.id}`);
+    if (this.build.sensor()) lines.push(`SF INSTALL SENSOR ${this.build.sensor()!.id}`);
+    for (const module of this.build.modules()) {
+      lines.push(`SF INSTALL MODULE ${module.id}`);
+    }
+    return lines;
+  });
 
   ngOnInit(): void {
     this.data.load();
+  }
+
+  copyCommands(): void {
+    navigator.clipboard.writeText(this.commands().join('\n'));
+  }
+
+  copyShareLink(): void {
+    navigator.clipboard.writeText(buildShareUrl(this.build));
   }
 }

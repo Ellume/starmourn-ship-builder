@@ -2,11 +2,23 @@
   color: var(--p-text-muted-color);
 }
 
+h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+
 .component-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.basics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0 0 1.5rem;
 }
 
 .field {
@@ -19,10 +31,9 @@
   }
 }
 
-.cycles-note {
+.basics span {
   font-size: 0.85rem;
   color: var(--p-text-muted-color);
-  margin: 0 0 1rem;
 
   &.warn {
     color: var(--p-red-400, #f87171);
@@ -66,18 +77,28 @@
   margin: 0.5rem 0 0;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 
   li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     padding: 0.35rem 0.5rem;
     border-radius: 6px;
     background: var(--p-content-background);
-
-    span {
-      flex: 1;
-    }
   }
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .name {
+    flex: 1;
+    font-weight: 500;
+  }
+}
+
+.details {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--p-text-muted-color);
 }

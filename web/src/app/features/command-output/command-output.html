@@ -1,9 +1,0 @@
-@if (commands().length) {
-  <div class="command-output">
-    <div class="header">
-      <h3>In-game commands</h3>
-      <p-button icon="pi pi-copy" label="Copy" size="small" [text]="true" (onClick)="copyToClipboard()" />
-    </div>
-    <pre>{{ commands().join('\n') }}</pre>
-  </div>
-}

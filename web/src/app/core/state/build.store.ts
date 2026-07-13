@@ -16,8 +16,16 @@ export class BuildStore {
   /** Crafted ship mods (data/ship-mods.json) — a separate 6-slot/60-level-budget system from `modules`. Not hull-specific, so not cleared on hull change. */
   readonly mods = signal<FittedMod[]>([]);
 
-  readonly weaponModules = computed(() => this.modules().filter((m) => m.weapon_module === 'Yes'));
-  readonly nonWeaponModules = computed(() => this.modules().filter((m) => m.weapon_module === 'No'));
+  readonly weaponModules = computed(() =>
+    this.modules()
+      .filter((m) => m.weapon_module === 'Yes')
+      .sort((a, b) => a.name.localeCompare(b.name)),
+  );
+  readonly nonWeaponModules = computed(() =>
+    this.modules()
+      .filter((m) => m.weapon_module === 'No')
+      .sort((a, b) => a.name.localeCompare(b.name)),
+  );
   readonly hullClass = computed(() => this.hull()?.class ?? null);
 
   /** Hull selection clears the fitted components/modules — the old catalog is class-restricted, a stale fit could be invalid on the new hull. */

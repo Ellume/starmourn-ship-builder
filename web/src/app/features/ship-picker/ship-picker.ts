@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 
 import { DataService } from '../../core/data/data.service';
+import { applySharedBuildFromUrl, hasSharedBuildInUrl } from '../../core/state/build-link';
 import { BuildStore } from '../../core/state/build.store';
 import { ShipClass, ShipModel } from '../../core/models/ship-model';
 
@@ -33,6 +34,11 @@ export class ShipPicker implements OnInit {
 
   ngOnInit(): void {
     this.data.load().then(() => {
+      if (hasSharedBuildInUrl() && applySharedBuildFromUrl(this.build, this.data)) {
+        const hull = this.build.hull();
+        if (hull) this.selectedClass.set(hull.class);
+        return;
+      }
       const models = this.modelsForClass();
       if (models.length) this.build.setHull(models[0]);
     });

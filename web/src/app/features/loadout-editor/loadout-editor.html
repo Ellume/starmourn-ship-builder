@@ -1,6 +1,7 @@
 @if (!build.hull()) {
   <p class="hint">Select a hull to begin fitting components.</p>
 } @else {
+  <h3>Components</h3>
   <div class="component-grid">
     <div class="field">
       <label for="capacitor-select">Capacitor</label>
@@ -83,14 +84,18 @@
     </div>
   </div>
 
-  <p class="cycles-note" [class.warn]="cyclesUsed() > cyclesMax()">
-    Shipsim cycles: {{ cyclesUsed() }}/{{ cyclesMax() }} (shared budget across weapons and modules)
-  </p>
+  <div class="basics">
+    <span [class.warn]="powerUsed() > powerMax()">Power: {{ powerUsed() }}/{{ powerMax() }} halons</span>
+    <span [class.warn]="cyclesUsed() > cyclesMax()">
+      Shipsim cycles: {{ cyclesUsed() }}/{{ cyclesMax() }} (shared budget across weapons and modules)
+    </span>
+  </div>
 
   <div class="slots">
     <div class="slot-group">
       <h3>Weapons <span class="capacity">{{ hardpointsUsed() }}/{{ hardpointsMax() }}</span></h3>
       <p-select
+        #weaponSelect
         [options]="weaponOptions()"
         optionLabel="name"
         [ngModel]="pendingWeapon()"
@@ -105,9 +110,13 @@
       <ul class="fitted-list">
         @for (m of build.weaponModules(); track $index) {
           <li>
-            <span>{{ m.name }}</span>
-            <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
-            <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+            <div class="item-header">
+              <span class="name">{{ m.name }}</span>
+              <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
+              <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+            </div>
+            <p class="details">{{ weaponDetails(m) }}</p>
+            <p class="details">{{ resourceLine(m) }}</p>
           </li>
         }
       </ul>
@@ -116,6 +125,7 @@
     <div class="slot-group">
       <h3>Modules <span class="capacity">{{ modCapUsed() }}/{{ modCapMax() }}</span></h3>
       <p-select
+        #moduleSelect
         [options]="nonWeaponOptions()"
         optionLabel="name"
         [ngModel]="pendingModule()"
@@ -130,9 +140,15 @@
       <ul class="fitted-list">
         @for (m of build.nonWeaponModules(); track $index) {
           <li>
-            <span>{{ m.name }}</span>
-            <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
-            <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+            <div class="item-header">
+              <span class="name">{{ m.name }}</span>
+              <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
+              <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+            </div>
+            @if (moduleDetails(m)) {
+              <p class="details">{{ moduleDetails(m) }}</p>
+            }
+            <p class="details">{{ resourceLine(m) }}</p>
           </li>
         }
       </ul>

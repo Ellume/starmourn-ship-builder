@@ -49,18 +49,24 @@ export class ModsPanel {
 
   protected readonly availableMods = computed<ShipModSummary[]>(() => {
     const installed = new Set(this.build.mods().map((m) => m.shortname));
-    return this.data.shipMods().filter((m) => !installed.has(m.shortname));
+    return this.data
+      .shipMods()
+      .filter((m) => !installed.has(m.shortname))
+      .sort((a, b) => a.full_name.localeCompare(b.full_name));
   });
 
   protected readonly fittedRows = computed<FittedModRow[]>(() =>
-    this.build.mods().map((mod) => {
-      const summary = this.data.shipMods().find((s) => s.shortname === mod.shortname)!;
-      const levels = this.data.modLevelsFor(mod.shortname);
-      const atLevel = levels[mod.level - 1];
-      const multiplier = this.costMultiplier();
-      const parts = (atLevel?.parts ?? []).map((p) => ({ ...p, qty: Math.round(p.qty * multiplier) }));
-      return { mod, summary, parts, effects: atLevel?.effects ?? [] };
-    }),
+    this.build
+      .mods()
+      .map((mod) => {
+        const summary = this.data.shipMods().find((s) => s.shortname === mod.shortname)!;
+        const levels = this.data.modLevelsFor(mod.shortname);
+        const atLevel = levels[mod.level - 1];
+        const multiplier = this.costMultiplier();
+        const parts = (atLevel?.parts ?? []).map((p) => ({ ...p, qty: Math.round(p.qty * multiplier) }));
+        return { mod, summary, parts, effects: atLevel?.effects ?? [] };
+      })
+      .sort((a, b) => a.summary.full_name.localeCompare(b.summary.full_name)),
   );
 
   protected readonly pendingMod = signal<ShipModSummary | null>(null);
