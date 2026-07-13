@@ -136,15 +136,22 @@ describe('build-link', () => {
   it('skips unknown mod shortnames and out-of-range levels rather than throwing', () => {
     const build = new BuildStore();
     build.setHull(hull);
-    const token = btoa(JSON.stringify({ h: 20, mo: [{ s: 'not_a_real_mod', l: 5 }, { s: 'hull_augment', l: 99 }] }))
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/, '');
-    history.pushState('', '', `?b=${token}`);
+    history.pushState('', '', '?h=20&mo=not_a_real_mod:5,hull_augment:99');
 
     const ok = applySharedBuildFromUrl(build, fakeData());
 
     expect(ok).toBe(true);
     expect(build.mods()).toEqual([]);
+  });
+
+  it('encodes as plain, human-readable query params rather than a JSON blob', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.capacitor.set(capacitor);
+    build.addModule(cannon);
+    build.addModule(cannon);
+    build.addMod('hull_augment');
+
+    expect(encodeBuild(build)).toBe('h=20&c=1&m=4,4&mo=hull_augment:1');
   });
 });

@@ -3,7 +3,9 @@
 } @else {
   <h2>
     Ship Mods
-    <span class="capacity">{{ slotsUsed() }}/{{ slotMax }} slots — {{ levelsUsed() }}/{{ levelBudget }} levels</span>
+    <span class="capacity" [class.warn]="levelsUsed() > levelBudget">
+      {{ slotsUsed() }}/{{ slotMax }} slots — {{ levelsUsed() }}/{{ levelBudget }} levels
+    </span>
   </h2>
 
   <p-select
@@ -31,8 +33,8 @@
         <p-slider
           [ngModel]="row.mod.level"
           (ngModelChange)="setLevel(row.mod.shortname, $event)"
-          [min]="1"
-          [max]="maxLevel(row.mod.shortname)"
+          [min]="levelMin"
+          [max]="levelMax"
         />
         <p class="effects">{{ row.effects.map(effectText).join(', ') }}</p>
         <p class="parts">Parts: {{ partsText(row.parts) }}</p>

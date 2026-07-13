@@ -1,13 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  CAPACITY_TRADE_MODS,
-  FittedMod,
-  canAddMod,
-  canRemoveMod,
-  conflictsFor,
-  maxLevelFor,
-  modLevelSum,
-} from './mod-capacity';
+import { CAPACITY_TRADE_MODS, FittedMod, canAddMod, canRemoveMod, conflictsFor, modLevelSum } from './mod-capacity';
 
 describe('modLevelSum', () => {
   it('sums installed mod levels', () => {
@@ -42,7 +34,7 @@ describe('conflictsFor', () => {
 });
 
 describe('canAddMod', () => {
-  it('allows adding within slot and level budget', () => {
+  it('allows adding within the slot limit', () => {
     expect(canAddMod('hull_augment', [], false)).toEqual({ ok: true });
   });
 
@@ -58,11 +50,9 @@ describe('canAddMod', () => {
     expect(result.reason).toMatch(/slots/);
   });
 
-  it('rejects once the 60-level budget would be exceeded', () => {
+  it('allows adding even when it would push the level sum over the 60 budget (soft budget, not a hard block)', () => {
     const installed: FittedMod[] = [{ shortname: 'hull_augment', level: 60 }];
-    const result = canAddMod('mass_reducer', installed, false);
-    expect(result.ok).toBe(false);
-    expect(result.reason).toMatch(/budget/);
+    expect(canAddMod('mass_reducer', installed, false)).toEqual({ ok: true });
   });
 
   it('rejects a capacity-trade mod while modules are fitted', () => {
@@ -95,22 +85,6 @@ describe('canRemoveMod', () => {
 
   it('allows removing a non-capacity-trade mod regardless of fitted modules', () => {
     expect(canRemoveMod('hull_augment', true)).toEqual({ ok: true });
-  });
-});
-
-describe('maxLevelFor', () => {
-  it('caps at 15 when there is plenty of headroom', () => {
-    expect(maxLevelFor('hull_augment', [])).toBe(15);
-  });
-
-  it('caps at the remaining budget when other mods are installed', () => {
-    const installed: FittedMod[] = [{ shortname: 'hull_augment', level: 50 }];
-    expect(maxLevelFor('mass_reducer', installed)).toBe(10);
-  });
-
-  it('excludes the mod itself from the "other mods" sum', () => {
-    const installed: FittedMod[] = [{ shortname: 'hull_augment', level: 12 }];
-    expect(maxLevelFor('hull_augment', installed)).toBe(15);
   });
 });
 

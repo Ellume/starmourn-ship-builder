@@ -12,7 +12,10 @@ export interface FittedMod {
 }
 
 export const MOD_SLOT_MAX = 6;
+/** Soft budget — going over is allowed (each mod still ranges freely 1-15), it just flags red as a warning, like Power/Cycles. */
 export const MOD_LEVEL_BUDGET = 60;
+export const MOD_LEVEL_MIN = 1;
+export const MOD_LEVEL_MAX = 15;
 
 /**
  * Mutually exclusive with each other and with any modules fitted — trade one
@@ -96,9 +99,6 @@ export function canAddMod(shortname: string, installed: FittedMod[], hasModulesF
   if (installed.length >= MOD_SLOT_MAX) {
     return { ok: false, reason: `All ${MOD_SLOT_MAX} mod slots are full.` };
   }
-  if (modLevelSum(installed) + 1 > MOD_LEVEL_BUDGET) {
-    return { ok: false, reason: `Would exceed the ${MOD_LEVEL_BUDGET}-level budget.` };
-  }
   const conflicts = conflictsFor(shortname, installed);
   if (conflicts.length) {
     return { ok: false, reason: `Conflicts with ${conflicts.join(', ')}.` };
@@ -118,10 +118,4 @@ export function canRemoveMod(shortname: string, hasModulesFitted: boolean): ModA
     return { ok: false, reason: 'Requires all modules uninstalled.' };
   }
   return { ok: true };
-}
-
-/** Highest level `shortname` can be set to without busting the shared level budget. */
-export function maxLevelFor(shortname: string, installed: FittedMod[]): number {
-  const othersSum = modLevelSum(installed.filter((m) => m.shortname !== shortname));
-  return Math.max(1, Math.min(15, MOD_LEVEL_BUDGET - othersSum));
 }

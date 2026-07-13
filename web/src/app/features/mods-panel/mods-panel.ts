@@ -9,10 +9,11 @@ import { TagModule } from 'primeng/tag';
 import {
   FittedMod,
   MOD_LEVEL_BUDGET,
+  MOD_LEVEL_MAX,
+  MOD_LEVEL_MIN,
   MOD_SLOT_MAX,
   canAddMod,
   canRemoveMod,
-  maxLevelFor,
   modLevelSum,
 } from '../../core/calc/mod-capacity';
 import { DataService } from '../../core/data/data.service';
@@ -38,6 +39,8 @@ export class ModsPanel {
 
   protected readonly slotMax = MOD_SLOT_MAX;
   protected readonly levelBudget = MOD_LEVEL_BUDGET;
+  protected readonly levelMin = MOD_LEVEL_MIN;
+  protected readonly levelMax = MOD_LEVEL_MAX;
 
   private readonly costMultiplier = computed(() => {
     const shipClass = this.build.hullClass();
@@ -94,12 +97,8 @@ export class ModsPanel {
     this.addError.set(null);
   }
 
-  maxLevel(shortname: string): number {
-    return maxLevelFor(shortname, this.build.mods());
-  }
-
   setLevel(shortname: string, level: number): void {
-    const clamped = Math.min(Math.max(1, level), this.maxLevel(shortname));
+    const clamped = Math.min(Math.max(this.levelMin, level), this.levelMax);
     this.build.setModLevel(shortname, clamped);
   }
 
