@@ -1,4 +1,4 @@
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
@@ -14,13 +14,12 @@ interface StatRow {
   value: number | null;
   format: string;
   unit: string;
-  warn: boolean;
   breakdown: { base: number; contributions: ModContribution[] } | null;
 }
 
 @Component({
   selector: 'app-stats-panel',
-  imports: [CardModule, DecimalPipe],
+  imports: [CardModule, DecimalPipe, NgTemplateOutlet],
   templateUrl: './stats-panel.html',
   styleUrl: './stats-panel.scss',
 })
@@ -53,6 +52,11 @@ export class StatsPanel {
     );
   });
 
+  protected readonly hullTitle = computed(() => {
+    const hull = this.build.hull();
+    return hull ? `${hull.make} ${hull.model}` : 'Stats';
+  });
+
   protected readonly overBudget = computed(() => {
     const s = this.stats();
     if (!s) return false;
@@ -69,26 +73,28 @@ export class StatsPanel {
     };
   });
 
-  protected readonly rows = computed<StatRow[]>(() => {
+  protected readonly hullRows = computed<StatRow[]>(() => {
     const s = this.stats();
     if (!s) return [];
-    const hasCapacitor = this.build.capacitor() != null;
-    const hasSensor = this.build.sensor() != null;
-    const hasShield = this.build.shield() != null;
-    const hasWeapons = this.build.weaponModules().length > 0;
+    return [this.row('Mass', s.mass, '1.0-0', ' t'), this.row('Cargo Capacity', s.cargoCapacityTons, '1.0-0', ' t')];
+  });
 
+  protected readonly combatRows = computed<StatRow[]>(() => {
+    const s = this.stats();
+    if (!s) return [];
+    const hasWeapons = this.build.weaponModules().length > 0;
     return [
       this.row('Alpha Strike', s.alphaStrike, '1.0-0', ''),
       this.row('DPS', s.dps, '1.2-2', ''),
       this.row('Weapon Kear Drain', hasWeapons ? s.totalCapDrainKear : null, '1.0-0', ' kear'),
-      this.row('Mass', s.mass, '1.0-0', ' t'),
-      this.row('Thrust / Mass', s.thrustOverMass, '1.3-3', ''),
-      this.row('Turn Speed', s.turnSpeedSeconds, '1.2-2', 's'),
-      this.row('Max Speed', s.maxSpeed, '1.0-0', ''),
-      this.row('Time to Max Speed', s.timeToMaxSpeedSeconds, '1.0-0', 's'),
-      this.row('Cargo Capacity', s.cargoCapacityTons, '1.0-0', ' t'),
-      this.row('Capacitance', hasCapacitor ? s.capacitance : null, '1.0-0', ' kear'),
-      this.row('Sensor Jam Strength', hasSensor ? s.sensorJamStrength : null, '1.0-0', ''),
+    ];
+  });
+
+  protected readonly defenseRows = computed<StatRow[]>(() => {
+    const s = this.stats();
+    if (!s) return [];
+    const hasShield = this.build.shield() != null;
+    return [
       this.row('Shield Recharge', hasShield ? s.shieldRechargeSeconds : null, '1.0-0', 's'),
       this.row('Hull Thermal Res.', s.resistances.hullThermal, '1.1-2', '%'),
       this.row('Hull Kinetic Res.', s.resistances.hullKinetic, '1.1-2', '%'),
@@ -99,14 +105,35 @@ export class StatsPanel {
     ];
   });
 
+  protected readonly mobilityRows = computed<StatRow[]>(() => {
+    const s = this.stats();
+    if (!s) return [];
+    return [
+      this.row('Thrust / Mass', s.thrustOverMass, '1.3-3', ''),
+      this.row('Turn Speed', s.turnSpeedSeconds, '1.2-2', 's'),
+      this.row('Max Speed', s.maxSpeed, '1.0-0', ''),
+      this.row('Time to Max Speed', s.timeToMaxSpeedSeconds, '1.0-0', 's'),
+    ];
+  });
+
+  protected readonly systemsRows = computed<StatRow[]>(() => {
+    const s = this.stats();
+    if (!s) return [];
+    const hasCapacitor = this.build.capacitor() != null;
+    const hasSensor = this.build.sensor() != null;
+    return [
+      this.row('Capacitance', hasCapacitor ? s.capacitance : null, '1.0-0', ' kear'),
+      this.row('Sensor Jam Strength', hasSensor ? s.sensorJamStrength : null, '1.0-0', ''),
+    ];
+  });
+
   private row(label: string, breakdown: StatBreakdown | null, format: string, unit: string): StatRow {
-    if (!breakdown) return { label, value: null, format, unit, warn: false, breakdown: null };
+    if (!breakdown) return { label, value: null, format, unit, breakdown: null };
     return {
       label,
       value: breakdown.final,
       format,
       unit,
-      warn: false,
       breakdown: breakdown.contributions.length ? { base: breakdown.base, contributions: breakdown.contributions } : null,
     };
   }
@@ -114,9 +141,5 @@ export class StatsPanel {
   protected contributionText(c: ModContribution): string {
     const sign = c.deltaPct >= 0 ? '+' : '';
     return `${c.modName} (Lv${c.level}) ${sign}${c.deltaPct.toFixed(2)}%`;
-  }
-
-  protected modNamesText(contributions: ModContribution[]): string {
-    return contributions.map((c) => `${c.modName} (Lv${c.level})`).join(', ');
   }
 }

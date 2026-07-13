@@ -1,5 +1,67 @@
 @if (stats(); as s) {
-  <p-card header="Stats">
+  <p-card [header]="hullTitle()">
+    <p class="cost-line">Cost: {{ s.baseline.price | number }} marks</p>
+
+    <ng-template #rowTpl let-row>
+      <div class="stat">
+        <dt>{{ row.label }}</dt>
+        <dd>{{ row.value != null ? (row.value | number: row.format) + row.unit : '—' }}</dd>
+        @if (row.breakdown) {
+          <ul class="mod-breakdown">
+            <li class="base-line">Base {{ row.breakdown.base | number: row.format }}{{ row.unit }}</li>
+            @for (c of row.breakdown.contributions; track c.modName + c.level) {
+              <li class="mod-line">{{ contributionText(c) }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </ng-template>
+
+    <h4>Hull</h4>
+    <dl class="stat-grid">
+      @if (build.hull(); as hull) {
+        <div class="stat"><dt>Class</dt><dd>{{ hull.class }}</dd></div>
+        <div class="stat"><dt>Size</dt><dd>{{ hull.size }}</dd></div>
+      }
+      @for (row of hullRows(); track row.label) {
+        <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: row }" />
+      }
+    </dl>
+
+    <h4>Combat</h4>
+    <dl class="stat-grid">
+      @for (row of combatRows(); track row.label) {
+        <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: row }" />
+      }
+    </dl>
+
+    <h4>Defense</h4>
+    <dl class="stat-grid">
+      <div class="stat">
+        <dt>Health</dt>
+        <dd>{{ s.health.total | number: '1.0-0' }} ({{ s.health.hull.final | number: '1.0-0' }}+{{ s.health.shield.final | number: '1.0-0' }})</dd>
+        @if (healthBreakdown()?.contributions?.length) {
+          <ul class="mod-breakdown">
+            <li class="base-line">Base {{ healthBreakdown()!.base | number: '1.0-0' }}</li>
+            @for (c of healthBreakdown()!.contributions; track c.modName + c.level) {
+              <li class="mod-line">{{ contributionText(c) }}</li>
+            }
+          </ul>
+        }
+      </div>
+      @for (row of defenseRows(); track row.label) {
+        <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: row }" />
+      }
+    </dl>
+
+    <h4>Mobility</h4>
+    <dl class="stat-grid">
+      @for (row of mobilityRows(); track row.label) {
+        <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: row }" />
+      }
+    </dl>
+
+    <h4>Systems</h4>
     <dl class="stat-grid">
       <div class="stat" [class.warn]="s.power.remaining < 0">
         <dt>Power</dt>
@@ -25,63 +87,13 @@
           </ul>
         }
       </div>
-      <div class="stat">
-        <dt>Health</dt>
-        <dd>{{ s.health.total | number: '1.0-0' }} ({{ s.health.hull.final | number: '1.0-0' }}+{{ s.health.shield.final | number: '1.0-0' }})</dd>
-        @if (healthBreakdown()?.contributions?.length) {
-          <ul class="mod-breakdown">
-            <li class="base-line">Base {{ healthBreakdown()!.base | number: '1.0-0' }}</li>
-            @for (c of healthBreakdown()!.contributions; track c.modName + c.level) {
-              <li class="mod-line">{{ contributionText(c) }}</li>
-            }
-          </ul>
-        }
-      </div>
-
-      @for (row of rows(); track row.label) {
-        <div class="stat" [class.warn]="row.warn">
-          <dt>{{ row.label }}</dt>
-          <dd>{{ row.value != null ? (row.value | number: row.format) + row.unit : '—' }}</dd>
-          @if (row.breakdown) {
-            <ul class="mod-breakdown">
-              <li class="base-line">Base {{ row.breakdown.base | number: row.format }}{{ row.unit }}</li>
-              @for (c of row.breakdown.contributions; track c.modName + c.level) {
-                <li class="mod-line">{{ contributionText(c) }}</li>
-              }
-            </ul>
-          }
-        </div>
+      @for (row of systemsRows(); track row.label) {
+        <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: row }" />
       }
-
-      <div class="stat">
-        <dt>Price</dt>
-        <dd>{{ s.baseline.price | number }}</dd>
-      </div>
     </dl>
 
     @if (overBudget()) {
       <p class="over-budget-warning">Over budget — reduce fitted power/cycles draw.</p>
-    }
-
-    @if (s.damageTypeBonuses.length) {
-      <h4>Damage Type Bonuses <span class="hint">(ammo-based, not tied to a specific weapon)</span></h4>
-      <ul class="mod-breakdown">
-        @for (d of s.damageTypeBonuses; track d.damageType) {
-          <li class="mod-line">
-            {{ d.damageType }} {{ d.totalPct >= 0 ? '+' : '' }}{{ d.totalPct | number: '1.1-2' }}%
-            <span class="hint">({{ modNamesText(d.contributions) }})</span>
-          </li>
-        }
-      </ul>
-    }
-
-    @if (s.weaponBreakdown.length) {
-      <h4>Weapons</h4>
-      <ul class="weapon-breakdown">
-        @for (w of s.weaponBreakdown; track $index) {
-          <li>{{ w.module.name }} — {{ w.alphaStrike.final | number: '1.0-0' }} alpha, {{ w.dps.final | number: '1.2-2' }} DPS</li>
-        }
-      </ul>
     }
   </p-card>
 } @else {

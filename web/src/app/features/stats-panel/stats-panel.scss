@@ -1,3 +1,19 @@
+.cost-line {
+  margin: -0.25rem 0 1rem;
+  color: var(--p-text-muted-color);
+  font-size: 0.9rem;
+}
+
+h4 {
+  font-size: 0.9rem;
+  margin: 1rem 0 0.35rem;
+  color: var(--p-text-muted-color);
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -26,14 +42,6 @@
   color: var(--p-red-400, #f87171);
   font-weight: 600;
   margin-top: 1rem;
-}
-
-.weapon-breakdown {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--p-text-muted-color);
 }
 
 .hint {

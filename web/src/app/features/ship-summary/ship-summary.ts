@@ -86,6 +86,11 @@ export class ShipSummary {
   protected readonly weaponSizeBreakdown = computed(() => this.sizeBreakdown(this.build.weaponModules()));
   protected readonly moduleSizeBreakdown = computed(() => this.sizeBreakdown(this.build.nonWeaponModules()));
 
+  protected readonly weaponBreakdown = computed(() => this.stats()?.weaponBreakdown ?? []);
+  protected readonly damageTypeBonuses = computed(() => this.stats()?.damageTypeBonuses ?? []);
+
+  protected readonly modulesMassTons = computed(() => this.build.modules().reduce((sum, m) => sum + m.mass_tons, 0));
+
   protected readonly powerBreakdown = computed<PowerLine[]>(() => {
     const s = this.stats();
     if (!s) return [];
@@ -118,5 +123,9 @@ export class ShipSummary {
   contributionText(c: ModContribution): string {
     const sign = c.deltaPct >= 0 ? '+' : '';
     return `${c.modName} (Lv${c.level}) ${sign}${c.deltaPct.toFixed(2)}%`;
+  }
+
+  protected modNamesText(contributions: ModContribution[]): string {
+    return contributions.map((c) => `${c.modName} (Lv${c.level})`).join(', ');
   }
 }
