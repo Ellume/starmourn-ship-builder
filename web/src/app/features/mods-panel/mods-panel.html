@@ -1,12 +1,17 @@
 @if (!build.hull()) {
   <p class="hint">Select a hull to begin fitting mods.</p>
 } @else {
-  <h2>
-    Ship Mods
-    <span class="capacity" [class.warn]="levelsUsed() > levelBudget">
-      {{ slotsUsed() }}/{{ slotMax }} slots — {{ levelsUsed() }}/{{ levelBudget }} levels
-    </span>
-  </h2>
+  <div class="mods-heading">
+    <h2>
+      Ship Mods
+      <span class="capacity" [class.warn]="levelsUsed() > levelBudget">
+        {{ slotsUsed() }}/{{ slotMax }} slots — {{ levelsUsed() }}/{{ levelBudget }} levels
+      </span>
+    </h2>
+    @if (totalParts().length) {
+      <span class="total-parts">Total parts: {{ partsText(totalParts()) }}</span>
+    }
+  </div>
 
   <p-select
     [options]="availableMods()"

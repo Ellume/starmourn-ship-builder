@@ -17,7 +17,7 @@ import {
   modLevelSum,
 } from '../../core/calc/mod-capacity';
 import { DataService } from '../../core/data/data.service';
-import { MOD_CLASS_COST_MULTIPLIER, ModEffect, PartCost, ShipModSummary } from '../../core/models/ship-mod';
+import { Material, MOD_CLASS_COST_MULTIPLIER, ModEffect, PartCost, ShipModSummary } from '../../core/models/ship-mod';
 import { BuildStore } from '../../core/state/build.store';
 
 interface FittedModRow {
@@ -71,6 +71,17 @@ export class ModsPanel {
       })
       .sort((a, b) => a.summary.full_name.localeCompare(b.summary.full_name)),
   );
+
+  /** Summed parts cost across every fitted mod (post class-multiplier), one entry per material. */
+  protected readonly totalParts = computed<PartCost[]>(() => {
+    const totals = new Map<Material, number>();
+    for (const row of this.fittedRows()) {
+      for (const p of row.parts) {
+        totals.set(p.material, (totals.get(p.material) ?? 0) + p.qty);
+      }
+    }
+    return [...totals.entries()].map(([material, qty]) => ({ material, qty }));
+  });
 
   protected readonly pendingMod = signal<ShipModSummary | null>(null);
   protected readonly addError = signal<string | null>(null);
