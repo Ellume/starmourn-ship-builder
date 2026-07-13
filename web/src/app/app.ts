@@ -7,12 +7,13 @@ import { DataService } from './core/data/data.service';
 import { ThemeService } from './core/theme/theme.service';
 import { CommandOutput } from './features/command-output/command-output';
 import { LoadoutEditor } from './features/loadout-editor/loadout-editor';
+import { ModsPanel } from './features/mods-panel/mods-panel';
 import { ShipPicker } from './features/ship-picker/ship-picker';
 import { StatsPanel } from './features/stats-panel/stats-panel';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarModule, ButtonModule, ShipPicker, LoadoutEditor, StatsPanel, CommandOutput],
+  imports: [RouterOutlet, ToolbarModule, ButtonModule, ShipPicker, LoadoutEditor, ModsPanel, StatsPanel, CommandOutput],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

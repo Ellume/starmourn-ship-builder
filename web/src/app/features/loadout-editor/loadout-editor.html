@@ -99,6 +99,9 @@
       >
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
+      @if (weaponError()) {
+        <p-message severity="error" [text]="weaponError()!" styleClass="add-error" />
+      }
       <ul class="fitted-list">
         @for (m of build.weaponModules(); track $index) {
           <li>
@@ -121,6 +124,9 @@
       >
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
+      @if (moduleError()) {
+        <p-message severity="error" [text]="moduleError()!" styleClass="add-error" />
+      }
       <ul class="fitted-list">
         @for (m of build.nonWeaponModules(); track $index) {
           <li>

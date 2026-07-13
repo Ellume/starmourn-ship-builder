@@ -1,4 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
+import { FittedMod } from '../calc/mod-capacity';
 import { ShipComponent } from '../models/component';
 import { ShipModule } from '../models/module';
 import { ShipModel } from '../models/ship-model';
@@ -12,9 +13,12 @@ export class BuildStore {
   readonly shipsim = signal<ShipComponent | null>(null);
   readonly sensor = signal<ShipComponent | null>(null);
   readonly modules = signal<ShipModule[]>([]);
+  /** Crafted ship mods (data/ship-mods.json) — a separate 6-slot/60-level-budget system from `modules`. Not hull-specific, so not cleared on hull change. */
+  readonly mods = signal<FittedMod[]>([]);
 
   readonly weaponModules = computed(() => this.modules().filter((m) => m.weapon_module === 'Yes'));
   readonly nonWeaponModules = computed(() => this.modules().filter((m) => m.weapon_module === 'No'));
+  readonly hullClass = computed(() => this.hull()?.class ?? null);
 
   /** Hull selection clears the fitted components/modules — the old catalog is class-restricted, a stale fit could be invalid on the new hull. */
   setHull(hull: ShipModel | null): void {
@@ -39,7 +43,20 @@ export class BuildStore {
     });
   }
 
+  addMod(shortname: string): void {
+    this.mods.update((mods) => [...mods, { shortname, level: 1 }]);
+  }
+
+  removeMod(shortname: string): void {
+    this.mods.update((mods) => mods.filter((m) => m.shortname !== shortname));
+  }
+
+  setModLevel(shortname: string, level: number): void {
+    this.mods.update((mods) => mods.map((m) => (m.shortname === shortname ? { ...m, level } : m)));
+  }
+
   reset(): void {
     this.setHull(null);
+    this.mods.set([]);
   }
 }

@@ -1,6 +1,7 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, WritableSignal, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
 import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 
@@ -12,15 +13,13 @@ import { BuildStore } from '../../core/state/build.store';
 
 @Component({
   selector: 'app-loadout-editor',
-  imports: [SelectModule, FormsModule, ButtonModule, TagModule],
+  imports: [SelectModule, FormsModule, ButtonModule, TagModule, MessageModule],
   templateUrl: './loadout-editor.html',
   styleUrl: './loadout-editor.scss',
 })
 export class LoadoutEditor {
   private readonly data = inject(DataService);
   protected readonly build = inject(BuildStore);
-
-  private readonly hullClass = computed(() => this.build.hull()?.class ?? null);
 
   protected readonly capacitors = computed<ShipComponent[]>(() => this.componentsFor('Capacitor'));
   protected readonly engines = computed<ShipComponent[]>(() => this.componentsFor('Engine'));
@@ -29,7 +28,7 @@ export class LoadoutEditor {
   protected readonly sensors = computed<ShipComponent[]>(() => this.componentsFor('Sensor'));
 
   private readonly modulesForHull = computed<ShipModule[]>(() => {
-    const shipClass = this.hullClass();
+    const shipClass = this.build.hullClass();
     return shipClass ? this.data.modulesByClass(shipClass) : [];
   });
 
@@ -38,6 +37,8 @@ export class LoadoutEditor {
 
   protected readonly pendingWeapon = signal<ShipModule | null>(null);
   protected readonly pendingModule = signal<ShipModule | null>(null);
+  protected readonly weaponError = signal<string | null>(null);
+  protected readonly moduleError = signal<string | null>(null);
 
   protected readonly hardpointsMax = computed(() => this.build.hull()?.hardpoints ?? 0);
   protected readonly hardpointsUsed = computed(() => hardpointPointsUsed(this.build.modules()));
@@ -48,25 +49,47 @@ export class LoadoutEditor {
     this.build.modules().reduce((sum, m) => sum + m.shipsim_cycles, 0),
   );
 
+  constructor() {
+    // A hull swap invalidates stale capacity errors from the previous hull's budget —
+    // key off the hull object itself (not just its class), since two hulls of the same
+    // class can still have different hardpoint/mod_cap capacity.
+    effect(() => {
+      this.build.hull();
+      this.weaponError.set(null);
+      this.moduleError.set(null);
+    });
+  }
+
   private componentsFor(type: ShipComponent['type']): ShipComponent[] {
-    const shipClass = this.hullClass();
+    const shipClass = this.build.hullClass();
     return shipClass ? this.data.componentsByType(type).filter((c) => c.class === shipClass) : [];
   }
 
   addWeapon(module: ShipModule | null): void {
-    if (!module) return;
-    if (this.hardpointsUsed() + MODULE_SIZE_POINTS[module.size] > this.hardpointsMax()) return;
-    if (this.cyclesUsed() + module.shipsim_cycles > this.cyclesMax()) return;
-    this.build.addModule(module);
     this.pendingWeapon.set(null);
+    this.tryAddModule(module, this.hardpointsUsed(), this.hardpointsMax(), 'hardpoint capacity', this.weaponError);
   }
 
   addModule(module: ShipModule | null): void {
-    if (!module) return;
-    if (this.modCapUsed() + MODULE_SIZE_POINTS[module.size] > this.modCapMax()) return;
-    if (this.cyclesUsed() + module.shipsim_cycles > this.cyclesMax()) return;
-    this.build.addModule(module);
     this.pendingModule.set(null);
+    this.tryAddModule(module, this.modCapUsed(), this.modCapMax(), 'module capacity', this.moduleError);
+  }
+
+  private tryAddModule(
+    module: ShipModule | null,
+    used: number,
+    max: number,
+    capacityLabel: string,
+    errorSignal: WritableSignal<string | null>,
+  ): void {
+    if (!module) return;
+    const needed = MODULE_SIZE_POINTS[module.size];
+    if (used + needed > max) {
+      errorSignal.set(`Not enough ${capacityLabel} for ${module.name} (needs ${needed}pt, ${max - used}pt free).`);
+      return;
+    }
+    errorSignal.set(null);
+    this.build.addModule(module);
   }
 
   remove(module: ShipModule): void {

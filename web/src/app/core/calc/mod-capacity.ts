@@ -1,0 +1,127 @@
+/**
+ * Capacity/validation rules for the crafted Mods system (data/ship-mods.json),
+ * confirmed by the user (an active player) — see the project-game-mechanics
+ * memory. Distinct from the Modules hardpoint/mod_cap points model in capacity.ts:
+ * mods use a flat 6-slot count plus a shared level-sum budget instead of per-item
+ * size points.
+ */
+
+export interface FittedMod {
+  shortname: string;
+  level: number;
+}
+
+export const MOD_SLOT_MAX = 6;
+export const MOD_LEVEL_BUDGET = 60;
+
+/**
+ * Mutually exclusive with each other and with any modules fitted — trade one
+ * ship-wide capacity stat for another. See data/ship-mods-notes.md "Facts".
+ */
+export const CAPACITY_TRADE_MODS: readonly string[] = [
+  'expanded_hardpoints',
+  'expanded_modulebay',
+  'cargohold_optimizer',
+];
+
+/**
+ * Each `*_optimize` mod blocks other mods on the same component/weapon type.
+ * Keyed by the optimize mod's shortname; values are the shortnames it locks out.
+ * Confirmed pairing (not a blanket family-wide rule) — e.g. engine_optimize
+ * blocks engine_bulwark/engine_overclock but NOT max_speed, even though all
+ * three share the "Engine Modification" family. See project-game-mechanics memory.
+ */
+export const OPTIMIZE_LOCKOUTS: Record<string, string[]> = {
+  capacitor_optimize: ['capacitor_bulwark', 'capacitor_overclock'],
+  engine_optimize: ['engine_bulwark', 'engine_overclock'],
+  sensor_optimize: ['sensor_bulwark', 'sensor_overclock'],
+  shield_optimize: [
+    'shield_augment',
+    'shield_recharge',
+    'shield_redundancy',
+    'shield_res_em',
+    'shield_res_gravitic',
+    'shield_res_kinetic',
+  ],
+  shipsim_optimize: ['shipsim_bulwark', 'shipsim_overclock'],
+  cannon_optimize: ['cannon_attenuate'],
+  laser_optimize: ['laser_attenuate'],
+  missile_optimize: ['missile_attenuate'],
+  turret_optimize: ['turret_attenuate'],
+};
+
+export function modLevelSum(mods: FittedMod[]): number {
+  return mods.reduce((sum, m) => sum + m.level, 0);
+}
+
+/** Shortnames among `installed` that `shortname` cannot coexist with. */
+export function conflictsFor(shortname: string, installed: FittedMod[]): string[] {
+  const installedNames = installed.map((m) => m.shortname);
+  const conflicts = new Set<string>();
+
+  if (CAPACITY_TRADE_MODS.includes(shortname)) {
+    for (const other of CAPACITY_TRADE_MODS) {
+      if (other !== shortname && installedNames.includes(other)) conflicts.add(other);
+    }
+  }
+
+  const lockedOutByThis = OPTIMIZE_LOCKOUTS[shortname] ?? [];
+  for (const other of lockedOutByThis) {
+    if (installedNames.includes(other)) conflicts.add(other);
+  }
+
+  for (const [optimizeName, lockedOut] of Object.entries(OPTIMIZE_LOCKOUTS)) {
+    if (lockedOut.includes(shortname) && installedNames.includes(optimizeName)) {
+      conflicts.add(optimizeName);
+    }
+  }
+
+  return [...conflicts];
+}
+
+export interface ModAddCheck {
+  ok: boolean;
+  reason?: string;
+}
+
+/**
+ * Can `shortname` be added (at its default/minimum level of 1) to `installed`?
+ * `hasModulesFitted` gates the capacity-trade group, which the game requires all
+ * modules uninstalled to install/remove.
+ */
+export function canAddMod(shortname: string, installed: FittedMod[], hasModulesFitted: boolean): ModAddCheck {
+  if (installed.some((m) => m.shortname === shortname)) {
+    return { ok: false, reason: 'Already installed.' };
+  }
+  if (installed.length >= MOD_SLOT_MAX) {
+    return { ok: false, reason: `All ${MOD_SLOT_MAX} mod slots are full.` };
+  }
+  if (modLevelSum(installed) + 1 > MOD_LEVEL_BUDGET) {
+    return { ok: false, reason: `Would exceed the ${MOD_LEVEL_BUDGET}-level budget.` };
+  }
+  const conflicts = conflictsFor(shortname, installed);
+  if (conflicts.length) {
+    return { ok: false, reason: `Conflicts with ${conflicts.join(', ')}.` };
+  }
+  if (CAPACITY_TRADE_MODS.includes(shortname) && hasModulesFitted) {
+    return { ok: false, reason: 'Requires all modules uninstalled.' };
+  }
+  return { ok: true };
+}
+
+/**
+ * Can `shortname` be removed? Mirrors the install-side gate in `canAddMod` —
+ * the capacity-trade mods require all modules uninstalled to install *or remove*.
+ */
+export function canRemoveMod(shortname: string, hasModulesFitted: boolean): ModAddCheck {
+  if (CAPACITY_TRADE_MODS.includes(shortname) && hasModulesFitted) {
+    return { ok: false, reason: 'Requires all modules uninstalled.' };
+  }
+  return { ok: true };
+}
+
+/** Highest level `shortname` can be set to without busting the shared level budget. */
+export function maxLevelFor(shortname: string, installed: FittedMod[]): number {
+  const othersSum = modLevelSum(installed.filter((m) => m.shortname !== shortname));
+  return Math.max(1, Math.min(15, MOD_LEVEL_BUDGET - othersSum));
+}

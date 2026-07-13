@@ -1,0 +1,42 @@
+@if (!build.hull()) {
+  <p class="hint">Select a hull to begin fitting mods.</p>
+} @else {
+  <h2>
+    Ship Mods
+    <span class="capacity">{{ slotsUsed() }}/{{ slotMax }} slots — {{ levelsUsed() }}/{{ levelBudget }} levels</span>
+  </h2>
+
+  <p-select
+    [options]="availableMods()"
+    optionLabel="full_name"
+    [ngModel]="pendingMod()"
+    (ngModelChange)="addMod($event)"
+    placeholder="Add a mod…"
+  >
+    <ng-template #item let-m>{{ m.full_name }} ({{ m.shortname }})</ng-template>
+  </p-select>
+
+  @if (addError()) {
+    <p-message severity="error" [text]="addError()!" styleClass="add-error" />
+  }
+
+  <ul class="fitted-list">
+    @for (row of fittedRows(); track row.mod.shortname) {
+      <li>
+        <div class="mod-header">
+          <span class="name">{{ row.summary.full_name }}</span>
+          <p-tag [value]="'Lv ' + row.mod.level" severity="secondary" />
+          <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="removeMod(row.mod.shortname)" [ariaLabel]="'Remove ' + row.summary.full_name" />
+        </div>
+        <p-slider
+          [ngModel]="row.mod.level"
+          (ngModelChange)="setLevel(row.mod.shortname, $event)"
+          [min]="1"
+          [max]="maxLevel(row.mod.shortname)"
+        />
+        <p class="effects">{{ row.effects.map(effectText).join(', ') }}</p>
+        <p class="parts">Parts: {{ partsText(row.parts) }}</p>
+      </li>
+    }
+  </ul>
+}
