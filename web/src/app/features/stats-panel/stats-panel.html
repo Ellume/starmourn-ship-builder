@@ -5,7 +5,7 @@
     <ng-template #rowTpl let-row>
       <div class="stat" [class.boosted]="row.breakdown">
         <dt>{{ row.label }}</dt>
-        <dd>{{ row.value != null ? (row.value | number: row.format) + row.unit : '—' }}</dd>
+        <dd>{{ row.value != null ? (row.prefix ?? '') + (row.value | number: row.format) + row.unit : '—' }}</dd>
         @if (row.breakdown) {
           <ul class="mod-breakdown">
             <li class="base-line">Base {{ row.breakdown.base | number: row.format }}{{ row.unit }}</li>

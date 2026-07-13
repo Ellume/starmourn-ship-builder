@@ -15,6 +15,8 @@ interface StatRow {
   format: string;
   unit: string;
   breakdown: { base: number; contributions: ModContribution[] } | null;
+  /** Prepended to the displayed value, e.g. '~' to mark an approximation. */
+  prefix?: string;
 }
 
 @Component({
@@ -113,7 +115,7 @@ export class StatsPanel {
       this.row('Thrust / Mass', s.thrustOverMass, '1.3-3', ''),
       this.row('Turn Speed', s.turnSpeedSeconds, '1.2-2', 's'),
       this.row('Max Speed', s.maxSpeed, '1.0-0', ''),
-      this.row('Time to Max Speed', s.timeToMaxSpeedSeconds, '1.0-0', 's'),
+      this.row('Time to Max Speed', s.timeToMaxSpeedSeconds, '1.0-0', 's', '~'),
     ];
   });
 
@@ -128,14 +130,15 @@ export class StatsPanel {
     ];
   });
 
-  private row(label: string, breakdown: StatBreakdown | null, format: string, unit: string): StatRow {
-    if (!breakdown) return { label, value: null, format, unit, breakdown: null };
+  private row(label: string, breakdown: StatBreakdown | null, format: string, unit: string, prefix?: string): StatRow {
+    if (!breakdown) return { label, value: null, format, unit, breakdown: null, prefix };
     return {
       label,
       value: breakdown.final,
       format,
       unit,
       breakdown: breakdown.contributions.length ? { base: breakdown.base, contributions: breakdown.contributions } : null,
+      prefix,
     };
   }
 

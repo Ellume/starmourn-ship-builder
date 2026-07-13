@@ -1,7 +1,7 @@
 import { hardpointPointsUsed, modCapPointsUsed } from './capacity';
 import { ShipModule, cargoCapacityBonusTons } from '../models/module';
 import { ModEffect } from '../models/ship-mod';
-import { BASE_MAX_SPEED, BuildInput, BuildStats, calculateBuildStats } from './stats-engine';
+import { ACCEL_SCALE, BASE_MAX_SPEED, BuildInput, BuildStats, calculateBuildStats } from './stats-engine';
 
 /**
  * Applies crafted-mod effects (data/ship-mod-levels.json, parsed by mod-effect-parser)
@@ -485,9 +485,9 @@ export function computeModdedStats(
   const maxSpeed = applyDeltas(BASE_MAX_SPEED, maxSpeedContribs);
   const timeToMaxSpeedSeconds = thrustOverMass
     ? {
-        base: maxSpeed.base / thrustOverMass.base,
+        base: maxSpeed.base / (thrustOverMass.base * ACCEL_SCALE),
         contributions: dedupeContributions([...maxSpeed.contributions, ...thrustOverMass.contributions]),
-        final: maxSpeed.final / thrustOverMass.final,
+        final: maxSpeed.final / (thrustOverMass.final * ACCEL_SCALE),
       }
     : null;
 

@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { computeModdedStats, ModEffectSource, OTHER_EFFECT_REASONS, STAT_TARGETS } from './mod-effects';
+import { ACCEL_SCALE } from './stats-engine';
 import { parseEffectText } from '../models/mod-effect-parser';
 import { ShipModLevelRaw } from '../models/ship-mod';
 import { ShipComponent } from '../models/component';
@@ -103,7 +104,7 @@ describe('computeModdedStats', () => {
     // Engine halon cost doesn't touch thrust or mass, so thrust/mass is unchanged —
     // time-to-max-speed moves purely because the speed cap itself rose.
     expect(modded.thrustOverMass!.final).toBeCloseTo(modded.baseline.thrustOverMass!, 6);
-    expect(modded.timeToMaxSpeedSeconds!.final).toBeCloseTo(modded.maxSpeed.final / modded.thrustOverMass!.final, 6);
+    expect(modded.timeToMaxSpeedSeconds!.final).toBeCloseTo(modded.maxSpeed.final / (modded.thrustOverMass!.final * ACCEL_SCALE), 6);
     expect(modded.power.used.final).toBeGreaterThan(modded.baseline.power.used);
   });
 

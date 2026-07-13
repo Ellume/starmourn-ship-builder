@@ -23,7 +23,14 @@ import { ShipModel } from '../models/ship-model';
  * - Max speed is a flat 3000 for every hull — confirmed by the user (an active
  *   player), not present anywhere in ship-models.json. Thrust/Mass is the
  *   acceleration proxy that determines how quickly a ship reaches that shared
- *   cap, so Time to Max Speed = maxSpeed / thrustOverMass.
+ *   cap, but a raw `maxSpeed / thrustOverMass` overshoots real in-game timings
+ *   by ~1000x (e.g. 4618s instead of ~4.6s for a fast Interceptor build) —
+ *   confirmed against a live GMCP speed/time log the user captured for an
+ *   Ixodon Maw Superhauler (thrustOverMass 0.0547) reaching 2020/3000 u/s in
+ *   ~20s, which only lines up once the accel term is scaled by ACCEL_SCALE.
+ *   Real acceleration isn't even constant — it decays as speed approaches the
+ *   cap — so this is still an approximation (hence the UI's leading "~"), just
+ *   a correctly-scaled one. See ACCEL_SCALE below.
  */
 
 export interface BuildInput {
@@ -52,6 +59,13 @@ export interface BudgetStat {
 
 /** Same across every hull — see this file's header comment. */
 export const BASE_MAX_SPEED = 3000;
+
+/**
+ * Empirical correction factor between `thrustOverMass` (thrust_halons / mass_tons)
+ * and the ship's actual in-game acceleration in u/s². See this file's header
+ * comment for the calibration data this was derived from.
+ */
+export const ACCEL_SCALE = 1000;
 
 export interface ResistanceStats {
   hullThermal: number;
@@ -142,7 +156,7 @@ export function calculateBuildStats(build: BuildInput): BuildStats {
     thrustOverMass,
     turnSpeedSeconds: build.hull.turn_time_s,
     maxSpeed: BASE_MAX_SPEED,
-    timeToMaxSpeedSeconds: thrustOverMass ? BASE_MAX_SPEED / thrustOverMass : null,
+    timeToMaxSpeedSeconds: thrustOverMass ? BASE_MAX_SPEED / (thrustOverMass * ACCEL_SCALE) : null,
     cargoCapacityTons: build.hull.capacity_tons,
     resistances: {
       hullThermal: build.hull.therm_res,

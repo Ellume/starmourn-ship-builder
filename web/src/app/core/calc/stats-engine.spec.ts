@@ -52,7 +52,7 @@ describe('calculateBuildStats — calibration build (hull 20 + capacitor 3 + eng
     expect(stats.thrustOverMass).toBeCloseTo(0.6496, 3); // old site displays this rounded to 0.650
     expect(stats.turnSpeedSeconds).toBe(hull.turn_time_s);
     expect(stats.maxSpeed).toBe(3000);
-    expect(stats.timeToMaxSpeedSeconds).toBeCloseTo(4618.42, 2);
+    expect(stats.timeToMaxSpeedSeconds).toBeCloseTo(4.61842, 5);
     expect(stats.cargoCapacityTons).toBe(hull.capacity_tons);
     expect(stats.resistances).toEqual({
       hullThermal: hull.therm_res,
