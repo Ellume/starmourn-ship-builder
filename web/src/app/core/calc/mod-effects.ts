@@ -261,6 +261,47 @@ function sumBreakdowns(parts: StatBreakdown[]): StatBreakdown {
   };
 }
 
+/**
+ * Like sumBreakdowns, but for summing several *differently-based* parts (one
+ * per fitted weapon) where a contribution's raw deltaPct is only meaningful
+ * relative to its own part's base — e.g. a linked Damage Boost's +10% applies
+ * to one weapon's damage, not to the ship-wide total. Recomputes each named
+ * contribution's aggregate deltaPct from its actual dollar amount (part.base *
+ * deltaPct/100) as a share of the summed base, so a boost on one weapon out of
+ * several shows its true (smaller) overall %. For a contribution applied
+ * uniformly across every part (the common case — a ship mod that boosts a
+ * whole weapon family equally), this reduces to the same raw deltaPct, so it's
+ * a strict improvement over sumBreakdowns rather than a behavior change for
+ * the uniform case.
+ */
+function sumWeightedBreakdowns(parts: StatBreakdown[]): StatBreakdown {
+  const base = parts.reduce((sum, p) => sum + p.base, 0);
+  const final = parts.reduce((sum, p) => sum + p.final, 0);
+  const byKey = new Map<string, { modName: string; level: number | null; dollars: number; count: number }>();
+  for (const p of parts) {
+    for (const c of p.contributions) {
+      const key = `${c.modName}#${c.level}`;
+      const dollars = (p.base * c.deltaPct) / 100;
+      const existing = byKey.get(key);
+      if (existing) {
+        existing.dollars += dollars;
+        existing.count += 1;
+      } else {
+        byKey.set(key, { modName: c.modName, level: c.level, dollars, count: 1 });
+      }
+    }
+  }
+  const contributions: ModContribution[] = [...byKey.values()].map((e) => {
+    // Round off float noise from the dollars/base round-trip (e.g. a single
+    // uniformly-applied contribution should come back as exactly its original
+    // deltaPct, not 9.899999999999999) — percentages here only ever originate
+    // from 2-decimal source data anyway.
+    const deltaPct = base ? Math.round((e.dollars / base) * 1e8) / 1e6 : 0;
+    return { modName: e.modName, level: e.level, deltaPct, ...(e.count > 1 ? { count: e.count } : {}) };
+  });
+  return { base, contributions, final };
+}
+
 export function computeModdedStats(
   build: BuildInput,
   modSources: ModEffectSource[],
@@ -512,9 +553,9 @@ export function computeModdedStats(
       const kear = applyDeltas(m.cap_drain_kear ?? 0, kearContribs);
       return { module: m, alphaStrike: dmg, dps, kear };
     });
-  const alphaStrike = sumBreakdowns(weaponDamageBreakdowns.map((w) => w.alphaStrike));
-  const dps = sumBreakdowns(weaponDamageBreakdowns.map((w) => w.dps));
-  const totalCapDrainKear = sumBreakdowns(weaponDamageBreakdowns.map((w) => w.kear));
+  const alphaStrike = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.alphaStrike));
+  const dps = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.dps));
+  const totalCapDrainKear = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.kear));
 
   // --- Cargo ---
   // Cargo Hold I/II/III grant a flat tons bonus, unlike ship mods' percentage

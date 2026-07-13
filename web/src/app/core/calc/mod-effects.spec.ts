@@ -226,6 +226,10 @@ describe('computeModdedStats', () => {
     // No ship-mod level applies to a linked module effect.
     expect(boosted[0].alphaStrike.contributions).toEqual([{ modName: 'Damage Boost (linked)', level: null, deltaPct: 10 }]);
     expect(modded.alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 2.1, 6);
+    // The ship-wide aggregate contribution must reflect the boost's *true* overall
+    // share (here, half the weapons boosted at +10% each = +5% overall), not the
+    // raw +10% that only applies to the one boosted weapon.
+    expect(modded.alphaStrike.contributions).toEqual([{ modName: 'Damage Boost (linked)', level: null, deltaPct: 5 }]);
   });
 
   it('boosts both instances of a duplicated weapon when two boosts are linked to that weapon type', () => {
@@ -234,6 +238,10 @@ describe('computeModdedStats', () => {
 
     expect(modded.weaponBreakdown.every((w) => w.alphaStrike.contributions.length === 1)).toBe(true);
     expect(modded.alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 2 * 1.1, 6);
+    // Every weapon boosted equally — the aggregate % should reduce to the same raw +10%.
+    expect(modded.alphaStrike.contributions).toEqual([
+      { modName: 'Damage Boost (linked)', level: null, deltaPct: 10, count: 2 },
+    ]);
   });
 
   it('adds a fitted Cargo Hold module\'s flat tons bonus to cargo capacity', () => {
