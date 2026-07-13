@@ -69,11 +69,23 @@ export class LoadoutEditor {
     return [...seen.values()];
   });
 
-  /** A weapon can only take one Damage Boost link — excludes weapons already claimed by a *different* boost instance, so each weapon shows up in at most one dropdown at a time. */
+  /**
+   * Each physical weapon can only take one Damage Boost link, but a weapon *type*
+   * can take as many links as it has fitted instances (e.g. 2 fitted Cannon Is can
+   * each hold their own link) — excludes a weapon type only once every instance of
+   * it is already claimed by *other* boost modules, so it disappears from further
+   * dropdowns once its instances are all spoken for.
+   */
   availableLinkTargets(boostIndex: number): ShipModule[] {
     const links = this.build.damageBoostLinks();
-    const linkedElsewhere = new Set(links.filter((_, i) => i !== boostIndex).filter((id): id is number => id != null));
-    return this.linkableWeapons().filter((w) => !linkedElsewhere.has(w.id));
+    const linkedElsewhereCounts = new Map<number, number>();
+    links.forEach((weaponId, i) => {
+      if (i === boostIndex || weaponId == null) return;
+      linkedElsewhereCounts.set(weaponId, (linkedElsewhereCounts.get(weaponId) ?? 0) + 1);
+    });
+    const instanceCounts = new Map<number, number>();
+    for (const w of this.build.weaponModules()) instanceCounts.set(w.id, (instanceCounts.get(w.id) ?? 0) + 1);
+    return this.linkableWeapons().filter((w) => (linkedElsewhereCounts.get(w.id) ?? 0) < (instanceCounts.get(w.id) ?? 0));
   }
 
   /**

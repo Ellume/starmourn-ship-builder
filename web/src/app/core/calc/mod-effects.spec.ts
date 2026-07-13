@@ -36,6 +36,8 @@ describe('computeModdedStats', () => {
   const shipsim = components.find((c) => c.type === 'Shipsim' && c.id === 3 && c.class === 'Interceptor')!;
   const sensor = components.find((c) => c.type === 'Sensor' && c.id === 1 && c.class === 'Interceptor')!;
   const cannon1 = modules.find((m) => m.id === 4)!;
+  const cargoHold1 = modules.find((m) => m.id === 27)!;
+  const cargoHold2 = modules.find((m) => m.id === 41)!;
 
   const build = { hull, capacitor, engine, shield, shipsim, sensor, modules: [] as ShipModule[] };
 
@@ -209,5 +211,60 @@ describe('computeModdedStats', () => {
     const byType = Object.fromEntries(modded.damageTypeBonuses.map((d) => [d.damageType, d.totalPct]));
     expect(byType).toEqual({ EM: 2.1, Thermal: -0.7, Gravitic: -0.7, Kinetic: -0.7 });
     expect(modded.other).toEqual([]);
+  });
+
+  it('applies a linked Damage Boost to exactly one fitted instance of a duplicated weapon, not to every instance', () => {
+    const withTwoCannons = { ...build, modules: [cannon1, cannon1] };
+    const modded = computeModdedStats(withTwoCannons, [], new Map([[cannon1.id, 1]]));
+
+    const boosted = modded.weaponBreakdown.filter((w) => w.alphaStrike.contributions.length > 0);
+    const unboosted = modded.weaponBreakdown.filter((w) => w.alphaStrike.contributions.length === 0);
+    expect(boosted).toHaveLength(1);
+    expect(unboosted).toHaveLength(1);
+    expect(boosted[0].alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 1.1, 6);
+    expect(unboosted[0].alphaStrike.final).toBe(cannon1.weapon_damage);
+    // No ship-mod level applies to a linked module effect.
+    expect(boosted[0].alphaStrike.contributions).toEqual([{ modName: 'Damage Boost (linked)', level: null, deltaPct: 10 }]);
+    expect(modded.alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 2.1, 6);
+  });
+
+  it('boosts both instances of a duplicated weapon when two boosts are linked to that weapon type', () => {
+    const withTwoCannons = { ...build, modules: [cannon1, cannon1] };
+    const modded = computeModdedStats(withTwoCannons, [], new Map([[cannon1.id, 2]]));
+
+    expect(modded.weaponBreakdown.every((w) => w.alphaStrike.contributions.length === 1)).toBe(true);
+    expect(modded.alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 2 * 1.1, 6);
+  });
+
+  it('adds a fitted Cargo Hold module\'s flat tons bonus to cargo capacity', () => {
+    const withCargoHold = { ...build, modules: [cargoHold1] };
+    const modded = computeModdedStats(withCargoHold, []);
+
+    expect(modded.cargoCapacityTons.final).toBeCloseTo(hull.capacity_tons + 100, 6);
+    expect(modded.cargoCapacityTons.contributions).toHaveLength(1);
+    expect(modded.cargoCapacityTons.contributions[0].modName).toBe('Cargo Hold I');
+    expect(modded.cargoCapacityTons.contributions[0].level).toBeNull();
+    expect(modded.cargoCapacityTons.contributions[0].count).toBe(1);
+  });
+
+  it('sums two fitted instances of the same Cargo Hold module into one combined contribution, not one dropped', () => {
+    const withTwoCargoHolds = { ...build, modules: [cargoHold1, cargoHold1] };
+    const modded = computeModdedStats(withTwoCargoHolds, []);
+
+    expect(modded.cargoCapacityTons.final).toBeCloseTo(hull.capacity_tons + 200, 6);
+    expect(modded.cargoCapacityTons.contributions).toHaveLength(1);
+    expect(modded.cargoCapacityTons.contributions[0].count).toBe(2);
+  });
+
+  it('combines a flat Cargo Hold bonus with a percentage ship-mod cargo bonus against the same unmodified base', () => {
+    const withBoth = { ...build, modules: [cargoHold1, cargoHold2] };
+    const modSources: ModEffectSource[] = [
+      { modName: 'Cargohold Optimizer', level: 1, effects: parseEffectText('+2.10% cargohold capacity') },
+    ];
+    const modded = computeModdedStats(withBoth, modSources);
+
+    const expectedFinal = hull.capacity_tons * 1.021 + 100 + 150;
+    expect(modded.cargoCapacityTons.final).toBeCloseTo(expectedFinal, 6);
+    expect(modded.cargoCapacityTons.contributions).toHaveLength(3);
   });
 });

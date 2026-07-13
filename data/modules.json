@@ -123,7 +123,7 @@
   {
     "id": 20,
     "size": "small",
-    "name": "Damage Boost +10%",
+    "name": "Damage Boost",
     "weapon_module": "No",
     "weapon_type": null,
     "classes": [

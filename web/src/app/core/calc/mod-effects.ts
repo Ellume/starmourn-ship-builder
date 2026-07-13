@@ -1,5 +1,5 @@
 import { hardpointPointsUsed, modCapPointsUsed } from './capacity';
-import { ShipModule } from '../models/module';
+import { ShipModule, cargoCapacityBonusTons } from '../models/module';
 import { ModEffect } from '../models/ship-mod';
 import { BASE_MAX_SPEED, BuildInput, BuildStats, calculateBuildStats } from './stats-engine';
 
@@ -147,11 +147,20 @@ export interface ModEffectSource {
   effects: ModEffect[];
 }
 
-/** One mod's contribution to a stat — a mod appears once here even if it affects several fitted items of the same kind (e.g. 2 fitted cannons). */
+/**
+ * One mod's contribution to a stat — a mod appears once here even if it affects
+ * several fitted items of the same kind (e.g. 2 fitted cannons). `level` is null
+ * for non-leveled sources (e.g. a linked Damage Boost module), which have no
+ * ship-mod level to show. `count` is set only when this single entry already
+ * combines several fitted instances of the same-named source (e.g. 2 fitted
+ * Cargo Hold Is merged into one line, since dedup keys on modName+level) — display
+ * as an "Nx " prefix so the combination isn't mistaken for one bigger bonus.
+ */
 export interface ModContribution {
   modName: string;
-  level: number;
+  level: number | null;
   deltaPct: number;
+  count?: number;
 }
 
 export interface StatBreakdown {
@@ -317,7 +326,8 @@ export function computeModdedStats(
 
   for (const source of modSources) {
     for (const effect of source.effects) {
-      const contribution: ModContribution = { modName: source.modName, level: source.level, deltaPct: effect.delta_pct };
+      // Not typed as ModContribution here — source.level (a ship mod's level) is always a number, and OtherEffect below requires that, unlike ModContribution which also allows null for non-leveled sources.
+      const contribution = { modName: source.modName, level: source.level, deltaPct: effect.delta_pct };
       const target = STAT_TARGETS[effect.stat];
       if (!target) {
         other.push({
@@ -474,17 +484,26 @@ export function computeModdedStats(
   };
 
   // --- Weapons: damage, plus kear cost per fitted weapon ---
+  // Each fitted Damage Boost module links to one physical weapon, but fitted weapon
+  // instances of the same type are indistinguishable in this data model (see
+  // BuildStore.damageBoostLinks) — so `damageBoostCounts` (linked-boost count per
+  // weapon *type*) is consumed one credit per instance as we walk the fitted
+  // weapons, instead of applying the full count to every instance of that type.
+  const boostCreditsRemaining = new Map(damageBoostCounts ?? []);
   const weaponDamageBreakdowns = build.modules
     .filter((m) => m.weapon_module === 'Yes')
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((m) => {
       const family = m.weapon_type as WeaponFamily | null;
-      const boostCount = damageBoostCounts?.get(m.id) ?? 0;
+      const creditsLeft = boostCreditsRemaining.get(m.id) ?? 0;
+      const boosted = creditsLeft > 0;
+      if (boosted) boostCreditsRemaining.set(m.id, creditsLeft - 1);
       const dmgContribs = [...(family ? (weaponDamageContribs[family] ?? []) : [])];
       const kearContribs = [...(family ? (weaponKearContribs[family] ?? []) : [])];
-      if (boostCount > 0) {
-        dmgContribs.push({ modName: 'Damage Boost +10% (linked)', level: boostCount, deltaPct: 10 * boostCount });
-        kearContribs.push({ modName: 'Damage Boost +10% (linked)', level: boostCount, deltaPct: 30 * boostCount });
+      if (boosted) {
+        // No level — this is a linked module effect, not a leveled ship mod.
+        dmgContribs.push({ modName: 'Damage Boost (linked)', level: null, deltaPct: 10 });
+        kearContribs.push({ modName: 'Damage Boost (linked)', level: null, deltaPct: 30 });
       }
       const dmg = applyDeltas(m.weapon_damage ?? 0, dmgContribs);
       const dps: StatBreakdown = m.firing_speed_s
@@ -498,6 +517,28 @@ export function computeModdedStats(
   const totalCapDrainKear = sumBreakdowns(weaponDamageBreakdowns.map((w) => w.kear));
 
   // --- Cargo ---
+  // Cargo Hold I/II/III grant a flat tons bonus, unlike ship mods' percentage
+  // bonuses — expressed here as the equivalent % of the hull's base capacity so
+  // both sources compose through the same single applyDeltas pass (matches how
+  // every other modded stat sums its deltas once against an unmodified base,
+  // rather than compounding sequentially). Tons are summed per module name first
+  // (rather than pushed one contribution per fitted instance) since dedupeContributions
+  // keys on modName+level and would otherwise silently drop all but one instance
+  // of the same fitted module — level is null here so every same-named module
+  // would collide on the same key.
+  if (build.hull.capacity_tons > 0) {
+    const cargoByModuleName = new Map<string, { tons: number; count: number }>();
+    for (const m of build.modules) {
+      const tons = cargoCapacityBonusTons(m);
+      if (tons > 0) {
+        const existing = cargoByModuleName.get(m.name) ?? { tons: 0, count: 0 };
+        cargoByModuleName.set(m.name, { tons: existing.tons + tons, count: existing.count + 1 });
+      }
+    }
+    for (const [modName, { tons, count }] of cargoByModuleName) {
+      cargoContribs.push({ modName, level: null, count, deltaPct: (tons / build.hull.capacity_tons) * 100 });
+    }
+  }
   const cargoCapacityTons = applyDeltas(build.hull.capacity_tons, cargoContribs);
 
   // --- Resistances (additive) ---

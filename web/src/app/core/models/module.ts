@@ -58,7 +58,7 @@ export interface ShipModule {
 }
 
 /**
- * "Damage Boost +10%" is the only module (as of the current data snapshot) whose
+ * "Damage Boost" is the only module (as of the current data snapshot) whose
  * bonus isn't passive — it only applies once linked to one specific fitted weapon
  * in-game via `SHIP MODULE LINK <#> TO <#>`. Matched on the "linked module" phrase
  * in its effect text rather than by name/id, so any future module with the same
@@ -66,4 +66,16 @@ export interface ShipModule {
  */
 export function isDamageBoostModule(m: ShipModule): boolean {
   return m.effect_bonus?.includes('linked module') ?? false;
+}
+
+/**
+ * Cargo Hold I/II/III grant a flat tons bonus ("100 extra cargo space"), unlike
+ * every other modded stat in this app which is a percentage delta — parsed
+ * generically off the "<N> extra cargo space" phrasing rather than hardcoded to
+ * these three modules' names/ids, so any future module using the same wording is
+ * picked up automatically. Returns 0 for modules with no such bonus.
+ */
+export function cargoCapacityBonusTons(m: ShipModule): number {
+  const match = m.effect_bonus?.match(/^(\d+(?:\.\d+)?)\s+extra cargo space$/);
+  return match ? Number(match[1]) : 0;
 }

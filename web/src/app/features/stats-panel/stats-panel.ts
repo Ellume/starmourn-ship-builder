@@ -141,6 +141,8 @@ export class StatsPanel {
 
   protected contributionText(c: ModContribution): string {
     const sign = c.deltaPct >= 0 ? '+' : '';
-    return `${c.modName} (Lv${c.level}) ${sign}${c.deltaPct.toFixed(2)}%`;
+    const countPrefix = c.count && c.count > 1 ? `${c.count}x ` : '';
+    const levelPart = c.level != null ? ` (Lv${c.level})` : '';
+    return `${countPrefix}${c.modName}${levelPart} ${sign}${c.deltaPct.toFixed(2)}%`;
   }
 }

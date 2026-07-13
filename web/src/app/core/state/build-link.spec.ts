@@ -79,7 +79,7 @@ const cannon: ShipModule = {
 const damageBoost: ShipModule = {
   id: 20,
   size: 'medium',
-  name: 'Damage Boost +10%',
+  name: 'Damage Boost',
   weapon_module: 'No',
   weapon_type: null,
   classes: ['Interceptor'],

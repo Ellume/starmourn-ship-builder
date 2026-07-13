@@ -103,20 +103,25 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
 
   /**
    * One token per fitted Damage Boost module (same order as `damageBoostLinks`,
-   * reconstructed above by the `addModule` calls) — empty token means unlinked.
-   * A weapon id must belong to a weapon actually fitted in this build and must not
-   * already be claimed by an earlier token, mirroring the one-boost-per-weapon rule
-   * the editor UI enforces — a hand-edited or stale link degrades to unlinked
-   * instead of double-applying.
+   * reconstructed above by the `addModule` calls) — empty token means unlinked. A
+   * weapon type can be claimed by as many tokens as it has fitted instances (each
+   * physical weapon takes at most one link, but e.g. 2 fitted Cannon Is can each
+   * hold their own) — a hand-edited or stale link beyond that count, or naming a
+   * weapon id not fitted at all, degrades to unlinked instead of double-applying.
    */
-  const fittedWeaponIds = new Set(build.modules().filter((m) => m.weapon_module === 'Yes').map((m) => m.id));
-  const claimedWeaponIds = new Set<number>();
+  const fittedWeaponCounts = new Map<number, number>();
+  for (const m of build.modules()) {
+    if (m.weapon_module === 'Yes') fittedWeaponCounts.set(m.id, (fittedWeaponCounts.get(m.id) ?? 0) + 1);
+  }
+  const claimedWeaponCounts = new Map<number, number>();
   const boostLinkTokens = (params.get('bl') ?? '').split(',');
   boostLinkTokens.forEach((token, index) => {
     if (!token) return;
     const weaponId = Number(token);
-    if (!Number.isInteger(weaponId) || !fittedWeaponIds.has(weaponId) || claimedWeaponIds.has(weaponId)) return;
-    claimedWeaponIds.add(weaponId);
+    if (!Number.isInteger(weaponId)) return;
+    const claimed = claimedWeaponCounts.get(weaponId) ?? 0;
+    if (claimed >= (fittedWeaponCounts.get(weaponId) ?? 0)) return;
+    claimedWeaponCounts.set(weaponId, claimed + 1);
     build.setDamageBoostLink(index, weaponId);
   });
 
