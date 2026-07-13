@@ -1,5 +1,9 @@
 .hint {
   color: var(--p-text-muted-color);
+
+  &.warn {
+    color: var(--p-red-400, #f87171);
+  }
 }
 
 section {

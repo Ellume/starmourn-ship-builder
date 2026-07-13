@@ -1,8 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
-import { MODULE_SIZE_POINTS, hardpointPointsUsed, modCapPointsUsed } from '../../core/calc/capacity';
-import { calculateBuildStats } from '../../core/calc/stats-engine';
+import { MODULE_SIZE_POINTS } from '../../core/calc/capacity';
+import { ModEffectSource, computeModdedStats } from '../../core/calc/mod-effects';
+import { DataService } from '../../core/data/data.service';
 import { ShipModule } from '../../core/models/module';
 import { BuildStore } from '../../core/state/build.store';
 import { StatsPanel } from '../stats-panel/stats-panel';
@@ -34,19 +35,31 @@ interface PowerLine {
 })
 export class ShipSummary {
   protected readonly build = inject(BuildStore);
+  private readonly data = inject(DataService);
+
+  private readonly modEffectSources = computed<ModEffectSource[]>(() =>
+    this.build.mods().map((mod) => {
+      const summary = this.data.shipMods().find((s) => s.shortname === mod.shortname);
+      const level = this.data.modLevelsFor(mod.shortname)[mod.level - 1];
+      return { modName: summary?.full_name ?? mod.shortname, level: mod.level, effects: level?.effects ?? [] };
+    }),
+  );
 
   protected readonly stats = computed(() => {
     const hull = this.build.hull();
     if (!hull) return null;
-    return calculateBuildStats({
-      hull,
-      capacitor: this.build.capacitor() ?? undefined,
-      engine: this.build.engine() ?? undefined,
-      shield: this.build.shield() ?? undefined,
-      shipsim: this.build.shipsim() ?? undefined,
-      sensor: this.build.sensor() ?? undefined,
-      modules: this.build.modules(),
-    });
+    return computeModdedStats(
+      {
+        hull,
+        capacitor: this.build.capacitor() ?? undefined,
+        engine: this.build.engine() ?? undefined,
+        shield: this.build.shield() ?? undefined,
+        shipsim: this.build.shipsim() ?? undefined,
+        sensor: this.build.sensor() ?? undefined,
+        modules: this.build.modules(),
+      },
+      this.modEffectSources(),
+    );
   });
 
   protected readonly componentsMassTons = computed(() =>
@@ -55,10 +68,10 @@ export class ShipSummary {
       .reduce((sum, c) => sum + c.mass_tons, 0),
   );
 
-  protected readonly hardpointsMax = computed(() => this.build.hull()?.hardpoints ?? 0);
-  protected readonly hardpointsUsed = computed(() => hardpointPointsUsed(this.build.modules()));
-  protected readonly modCapMax = computed(() => this.build.hull()?.mod_cap ?? 0);
-  protected readonly modCapUsed = computed(() => modCapPointsUsed(this.build.modules()));
+  protected readonly hardpointsMax = computed(() => this.stats()?.hardpoints.max.final ?? 0);
+  protected readonly hardpointsUsed = computed(() => this.stats()?.hardpoints.used ?? 0);
+  protected readonly modCapMax = computed(() => this.stats()?.modCap.max.final ?? 0);
+  protected readonly modCapUsed = computed(() => this.stats()?.modCap.used ?? 0);
 
   protected readonly weaponSizeBreakdown = computed(() => this.sizeBreakdown(this.build.weaponModules()));
   protected readonly moduleSizeBreakdown = computed(() => this.sizeBreakdown(this.build.nonWeaponModules()));

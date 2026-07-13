@@ -18,8 +18,12 @@ import { ShipModel } from '../models/ship-model';
  *   information (likely per-component durability for a different mechanic) with
  *   no confirmed role in the aggregate Health stat.
  * - DPS = weapon_damage / firing_speed_s, not factoring in reload_speed_s.
- * - Turn speed is the hull's base turn_time_s, unmodified (mods aren't applied
- *   in this baseline engine — see the Phase 4 task for turn_time and similar mods).
+ * - Turn speed is the hull's base turn_time_s, unmodified (mods are layered on
+ *   top separately — see core/calc/mod-effects.ts).
+ * - Max speed is a flat 3000 for every hull — confirmed by the user (an active
+ *   player), not present anywhere in ship-models.json. Thrust/Mass is the
+ *   acceleration proxy that determines how quickly a ship reaches that shared
+ *   cap, so Time to Max Speed = maxSpeed / thrustOverMass.
  */
 
 export interface BuildInput {
@@ -37,12 +41,25 @@ export interface WeaponContribution {
   module: ShipModule;
   alphaStrike: number;
   dps: number;
+  capDrainKear: number;
 }
 
 export interface BudgetStat {
   used: number;
   max: number;
   remaining: number;
+}
+
+/** Same across every hull — see this file's header comment. */
+export const BASE_MAX_SPEED = 3000;
+
+export interface ResistanceStats {
+  hullThermal: number;
+  hullKinetic: number;
+  hullGravitic: number;
+  shieldEM: number;
+  shieldKinetic: number;
+  shieldGravitic: number;
 }
 
 export interface BuildStats {
@@ -53,10 +70,23 @@ export interface BuildStats {
   dps: number;
   /** Per-weapon contribution — old site only shows a ship-wide total, this is a v1 improvement. */
   weaponBreakdown: WeaponContribution[];
+  /** Total capacitor drain across all fitted weapons, one shot each. */
+  totalCapDrainKear: number;
   mass: number;
   /** null when no engine is fitted (can't compute a thrust ratio). */
   thrustOverMass: number | null;
   turnSpeedSeconds: number;
+  maxSpeed: number;
+  /** null when no engine is fitted (same guard as thrustOverMass). */
+  timeToMaxSpeedSeconds: number | null;
+  cargoCapacityTons: number;
+  resistances: ResistanceStats;
+  /** 0 when no sensor is fitted. */
+  sensorJamStrength: number;
+  /** 0 when no shield is fitted. */
+  shieldRechargeSeconds: number;
+  /** 0 when no capacitor is fitted. */
+  capacitance: number;
   price: number;
 }
 
@@ -85,6 +115,7 @@ export function calculateBuildStats(build: BuildInput): BuildStats {
     module,
     alphaStrike: module.weapon_damage ?? 0,
     dps: module.firing_speed_s ? (module.weapon_damage ?? 0) / module.firing_speed_s : 0,
+    capDrainKear: module.cap_drain_kear ?? 0,
   }));
 
   const mass =
@@ -97,6 +128,8 @@ export function calculateBuildStats(build: BuildInput): BuildStats {
     components.reduce((sum, c) => sum + c.price_marks, 0) +
     build.modules.reduce((sum, m) => sum + m.price_marks, 0);
 
+  const thrustOverMass = build.engine ? (build.engine.thrust_halons ?? 0) / mass : null;
+
   return {
     power: { used: powerUsed, max: powerMax, remaining: powerMax - powerUsed },
     cycles: { used: cyclesUsed, max: cyclesMax, remaining: cyclesMax - cyclesUsed },
@@ -104,9 +137,24 @@ export function calculateBuildStats(build: BuildInput): BuildStats {
     alphaStrike: weaponBreakdown.reduce((sum, w) => sum + w.alphaStrike, 0),
     dps: weaponBreakdown.reduce((sum, w) => sum + w.dps, 0),
     weaponBreakdown,
+    totalCapDrainKear: weaponBreakdown.reduce((sum, w) => sum + w.capDrainKear, 0),
     mass,
-    thrustOverMass: build.engine ? (build.engine.thrust_halons ?? 0) / mass : null,
+    thrustOverMass,
     turnSpeedSeconds: build.hull.turn_time_s,
+    maxSpeed: BASE_MAX_SPEED,
+    timeToMaxSpeedSeconds: thrustOverMass ? BASE_MAX_SPEED / thrustOverMass : null,
+    cargoCapacityTons: build.hull.capacity_tons,
+    resistances: {
+      hullThermal: build.hull.therm_res,
+      hullKinetic: build.hull.kin_res,
+      hullGravitic: build.hull.grav_res,
+      shieldEM: build.shield?.em_res ?? 0,
+      shieldKinetic: build.shield?.kin_res ?? 0,
+      shieldGravitic: build.shield?.grav_res ?? 0,
+    },
+    sensorJamStrength: build.sensor?.jam_str ?? 0,
+    shieldRechargeSeconds: build.shield?.recharge_s ?? 0,
+    capacitance: build.capacitor?.capacity_kear ?? 0,
     price,
   };
 }

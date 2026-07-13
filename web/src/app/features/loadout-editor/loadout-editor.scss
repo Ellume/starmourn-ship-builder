@@ -59,15 +59,14 @@ h3 {
     font-weight: 400;
     color: var(--p-text-muted-color);
     font-size: 0.85rem;
+
+    &.warn {
+      color: var(--p-red-400, #f87171);
+    }
   }
 
   p-select {
     width: 100%;
-  }
-
-  .add-error {
-    margin-top: 0.5rem;
-    display: block;
   }
 }
 

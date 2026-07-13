@@ -13,7 +13,6 @@ import {
   MOD_LEVEL_MIN,
   MOD_SLOT_MAX,
   canAddMod,
-  canRemoveMod,
   modLevelSum,
 } from '../../core/calc/mod-capacity';
 import { DataService } from '../../core/data/data.service';
@@ -89,7 +88,7 @@ export class ModsPanel {
   addMod(summary: ShipModSummary | null): void {
     this.pendingMod.set(null);
     if (!summary) return;
-    const check = canAddMod(summary.shortname, this.build.mods(), this.build.modules().length > 0);
+    const check = canAddMod(summary.shortname, this.build.mods());
     if (!check.ok) {
       this.addError.set(check.reason ?? 'Cannot add this mod.');
       return;
@@ -99,11 +98,6 @@ export class ModsPanel {
   }
 
   removeMod(shortname: string): void {
-    const check = canRemoveMod(shortname, this.build.modules().length > 0);
-    if (!check.ok) {
-      this.addError.set(check.reason ?? 'Cannot remove this mod.');
-      return;
-    }
     this.build.removeMod(shortname);
     this.addError.set(null);
   }

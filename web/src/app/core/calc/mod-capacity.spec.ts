@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CAPACITY_TRADE_MODS, FittedMod, canAddMod, canRemoveMod, conflictsFor, modLevelSum } from './mod-capacity';
+import { CAPACITY_TRADE_MODS, FittedMod, canAddMod, conflictsFor, modLevelSum } from './mod-capacity';
 
 describe('modLevelSum', () => {
   it('sums installed mod levels', () => {
@@ -35,56 +35,40 @@ describe('conflictsFor', () => {
 
 describe('canAddMod', () => {
   it('allows adding within the slot limit', () => {
-    expect(canAddMod('hull_augment', [], false)).toEqual({ ok: true });
+    expect(canAddMod('hull_augment', [])).toEqual({ ok: true });
   });
 
   it('rejects a duplicate shortname', () => {
     const installed: FittedMod[] = [{ shortname: 'hull_augment', level: 3 }];
-    expect(canAddMod('hull_augment', installed, false).ok).toBe(false);
+    expect(canAddMod('hull_augment', installed).ok).toBe(false);
   });
 
   it('rejects once 6 slots are full', () => {
     const installed: FittedMod[] = Array.from({ length: 6 }, (_, i) => ({ shortname: `mod${i}`, level: 1 }));
-    const result = canAddMod('hull_augment', installed, false);
+    const result = canAddMod('hull_augment', installed);
     expect(result.ok).toBe(false);
     expect(result.reason).toMatch(/slots/);
   });
 
   it('allows adding even when it would push the level sum over the 60 budget (soft budget, not a hard block)', () => {
     const installed: FittedMod[] = [{ shortname: 'hull_augment', level: 60 }];
-    expect(canAddMod('mass_reducer', installed, false)).toEqual({ ok: true });
+    expect(canAddMod('mass_reducer', installed)).toEqual({ ok: true });
   });
 
-  it('rejects a capacity-trade mod while modules are fitted', () => {
-    const result = canAddMod('expanded_hardpoints', [], true);
+  it('allows a capacity-trade mod regardless of fitted modules — hardpoint/module capacity is a warn-only budget here, not a hard in-game restriction this tool enforces', () => {
+    expect(canAddMod('expanded_hardpoints', [])).toEqual({ ok: true });
+  });
+
+  it('still rejects a capacity-trade mod against another already-installed capacity-trade mod', () => {
+    const result = canAddMod('expanded_modulebay', [{ shortname: 'expanded_hardpoints', level: 1 }]);
     expect(result.ok).toBe(false);
-    expect(result.reason).toMatch(/modules uninstalled/);
-  });
-
-  it('allows a capacity-trade mod when no modules are fitted and no other trade mod is installed', () => {
-    expect(canAddMod('expanded_hardpoints', [], false)).toEqual({ ok: true });
+    expect(result.reason).toMatch(/expanded_hardpoints/);
   });
 
   it('rejects an optimize mod that conflicts with an already-installed mod', () => {
-    const result = canAddMod('shield_optimize', [{ shortname: 'shield_augment', level: 1 }], false);
+    const result = canAddMod('shield_optimize', [{ shortname: 'shield_augment', level: 1 }]);
     expect(result.ok).toBe(false);
     expect(result.reason).toMatch(/shield_augment/);
-  });
-});
-
-describe('canRemoveMod', () => {
-  it('rejects removing a capacity-trade mod while modules are fitted', () => {
-    const result = canRemoveMod('expanded_hardpoints', true);
-    expect(result.ok).toBe(false);
-    expect(result.reason).toMatch(/modules uninstalled/);
-  });
-
-  it('allows removing a capacity-trade mod when no modules are fitted', () => {
-    expect(canRemoveMod('expanded_hardpoints', false)).toEqual({ ok: true });
-  });
-
-  it('allows removing a non-capacity-trade mod regardless of fitted modules', () => {
-    expect(canRemoveMod('hull_augment', true)).toEqual({ ok: true });
   });
 });
 

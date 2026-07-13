@@ -3,39 +3,59 @@
     <dl class="stat-grid">
       <div class="stat" [class.warn]="s.power.remaining < 0">
         <dt>Power</dt>
-        <dd>{{ s.power.remaining }} / {{ s.power.max }}</dd>
+        <dd>{{ s.power.remaining | number }} / {{ s.power.max | number }}</dd>
+        @if (s.power.used.contributions.length) {
+          <ul class="mod-breakdown">
+            <li class="base-line">Base usage {{ s.power.used.base | number }} halons</li>
+            @for (c of s.power.used.contributions; track c.modName + c.level) {
+              <li class="mod-line">{{ contributionText(c) }}</li>
+            }
+          </ul>
+        }
       </div>
       <div class="stat" [class.warn]="s.cycles.remaining < 0">
         <dt>Cycles</dt>
-        <dd>{{ s.cycles.remaining }} / {{ s.cycles.max }}</dd>
+        <dd>{{ s.cycles.remaining | number }} / {{ s.cycles.max.final | number: '1.0-0' }}</dd>
+        @if (s.cycles.max.contributions.length) {
+          <ul class="mod-breakdown">
+            <li class="base-line">Base {{ s.cycles.max.base | number }}</li>
+            @for (c of s.cycles.max.contributions; track c.modName + c.level) {
+              <li class="mod-line">{{ contributionText(c) }}</li>
+            }
+          </ul>
+        }
       </div>
       <div class="stat">
         <dt>Health</dt>
-        <dd>{{ s.health.total }} ({{ s.health.hull }}+{{ s.health.shield }})</dd>
+        <dd>{{ s.health.total | number: '1.0-0' }} ({{ s.health.hull.final | number: '1.0-0' }}+{{ s.health.shield.final | number: '1.0-0' }})</dd>
+        @if (healthBreakdown()?.contributions?.length) {
+          <ul class="mod-breakdown">
+            <li class="base-line">Base {{ healthBreakdown()!.base | number: '1.0-0' }}</li>
+            @for (c of healthBreakdown()!.contributions; track c.modName + c.level) {
+              <li class="mod-line">{{ contributionText(c) }}</li>
+            }
+          </ul>
+        }
       </div>
-      <div class="stat">
-        <dt>Alpha Strike</dt>
-        <dd>{{ s.alphaStrike }}</dd>
-      </div>
-      <div class="stat">
-        <dt>DPS</dt>
-        <dd>{{ s.dps | number: '1.2-2' }}</dd>
-      </div>
-      <div class="stat">
-        <dt>Mass</dt>
-        <dd>{{ s.mass }}</dd>
-      </div>
-      <div class="stat">
-        <dt>Thrust / Mass</dt>
-        <dd>{{ s.thrustOverMass != null ? (s.thrustOverMass | number: '1.3-3') : '—' }}</dd>
-      </div>
-      <div class="stat">
-        <dt>Turn Speed</dt>
-        <dd>{{ s.turnSpeedSeconds }}s</dd>
-      </div>
+
+      @for (row of rows(); track row.label) {
+        <div class="stat" [class.warn]="row.warn">
+          <dt>{{ row.label }}</dt>
+          <dd>{{ row.value != null ? (row.value | number: row.format) + row.unit : '—' }}</dd>
+          @if (row.breakdown) {
+            <ul class="mod-breakdown">
+              <li class="base-line">Base {{ row.breakdown.base | number: row.format }}{{ row.unit }}</li>
+              @for (c of row.breakdown.contributions; track c.modName + c.level) {
+                <li class="mod-line">{{ contributionText(c) }}</li>
+              }
+            </ul>
+          }
+        </div>
+      }
+
       <div class="stat">
         <dt>Price</dt>
-        <dd>{{ s.price | number }}</dd>
+        <dd>{{ s.baseline.price | number }}</dd>
       </div>
     </dl>
 
@@ -43,11 +63,23 @@
       <p class="over-budget-warning">Over budget — reduce fitted power/cycles draw.</p>
     }
 
+    @if (s.damageTypeBonuses.length) {
+      <h4>Damage Type Bonuses <span class="hint">(ammo-based, not tied to a specific weapon)</span></h4>
+      <ul class="mod-breakdown">
+        @for (d of s.damageTypeBonuses; track d.damageType) {
+          <li class="mod-line">
+            {{ d.damageType }} {{ d.totalPct >= 0 ? '+' : '' }}{{ d.totalPct | number: '1.1-2' }}%
+            <span class="hint">({{ modNamesText(d.contributions) }})</span>
+          </li>
+        }
+      </ul>
+    }
+
     @if (s.weaponBreakdown.length) {
       <h4>Weapons</h4>
       <ul class="weapon-breakdown">
         @for (w of s.weaponBreakdown; track $index) {
-          <li>{{ w.module.name }} — {{ w.alphaStrike }} alpha, {{ w.dps | number: '1.2-2' }} DPS</li>
+          <li>{{ w.module.name }} — {{ w.alphaStrike.final | number: '1.0-0' }} alpha, {{ w.dps.final | number: '1.2-2' }} DPS</li>
         }
       </ul>
     }

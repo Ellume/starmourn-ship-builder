@@ -1,12 +1,11 @@
-import { Component, WritableSignal, computed, effect, inject, signal, viewChild } from '@angular/core';
+import { Component, WritableSignal, computed, inject, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { MessageModule } from 'primeng/message';
 import { Select, SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 
-import { MODULE_SIZE_POINTS, hardpointPointsUsed, modCapPointsUsed } from '../../core/calc/capacity';
-import { calculateBuildStats } from '../../core/calc/stats-engine';
+import { MODULE_SIZE_POINTS } from '../../core/calc/capacity';
+import { ModEffectSource, computeModdedStats } from '../../core/calc/mod-effects';
 import { DataService } from '../../core/data/data.service';
 import { ShipComponent } from '../../core/models/component';
 import { ShipModule } from '../../core/models/module';
@@ -14,7 +13,7 @@ import { BuildStore } from '../../core/state/build.store';
 
 @Component({
   selector: 'app-loadout-editor',
-  imports: [SelectModule, FormsModule, ButtonModule, TagModule, MessageModule],
+  imports: [SelectModule, FormsModule, ButtonModule, TagModule],
   templateUrl: './loadout-editor.html',
   styleUrl: './loadout-editor.scss',
 })
@@ -46,8 +45,6 @@ export class LoadoutEditor {
 
   protected readonly pendingWeapon = signal<ShipModule | null>(null);
   protected readonly pendingModule = signal<ShipModule | null>(null);
-  protected readonly weaponError = signal<string | null>(null);
-  protected readonly moduleError = signal<string | null>(null);
 
   /**
    * PrimeNG's Select.onOptionSelect only re-fires a selection when the clicked option
@@ -62,53 +59,59 @@ export class LoadoutEditor {
   private readonly weaponSelect = viewChild<Select>('weaponSelect');
   private readonly moduleSelect = viewChild<Select>('moduleSelect');
 
-  protected readonly hardpointsMax = computed(() => this.build.hull()?.hardpoints ?? 0);
-  protected readonly hardpointsUsed = computed(() => hardpointPointsUsed(this.build.modules()));
-  protected readonly modCapMax = computed(() => this.build.hull()?.mod_cap ?? 0);
-  protected readonly modCapUsed = computed(() => modCapPointsUsed(this.build.modules()));
+  private readonly modEffectSources = computed<ModEffectSource[]>(() =>
+    this.build.mods().map((mod) => {
+      const summary = this.data.shipMods().find((s) => s.shortname === mod.shortname);
+      const level = this.data.modLevelsFor(mod.shortname)[mod.level - 1];
+      return { modName: summary?.full_name ?? mod.shortname, level: mod.level, effects: level?.effects ?? [] };
+    }),
+  );
 
-  /** Basics shown right under Components — reuses stats-engine so the numbers never drift from the Stats panel. */
+  /** Reuses stats-engine/mod-effects so these numbers never drift from the Stats panel. */
   private readonly stats = computed(() => {
     const hull = this.build.hull();
     if (!hull) return null;
-    return calculateBuildStats({
-      hull,
-      capacitor: this.build.capacitor() ?? undefined,
-      engine: this.build.engine() ?? undefined,
-      shield: this.build.shield() ?? undefined,
-      shipsim: this.build.shipsim() ?? undefined,
-      sensor: this.build.sensor() ?? undefined,
-      modules: this.build.modules(),
-    });
+    return computeModdedStats(
+      {
+        hull,
+        capacitor: this.build.capacitor() ?? undefined,
+        engine: this.build.engine() ?? undefined,
+        shield: this.build.shield() ?? undefined,
+        shipsim: this.build.shipsim() ?? undefined,
+        sensor: this.build.sensor() ?? undefined,
+        modules: this.build.modules(),
+      },
+      this.modEffectSources(),
+    );
   });
-  protected readonly powerUsed = computed(() => this.stats()?.power.used ?? 0);
+  protected readonly powerUsed = computed(() => this.stats()?.power.used.final ?? 0);
   protected readonly powerMax = computed(() => this.stats()?.power.max ?? 0);
   protected readonly cyclesUsed = computed(() => this.stats()?.cycles.used ?? 0);
-  protected readonly cyclesMax = computed(() => this.stats()?.cycles.max ?? 0);
-
-  constructor() {
-    // A hull swap invalidates stale capacity errors from the previous hull's budget —
-    // key off the hull object itself (not just its class), since two hulls of the same
-    // class can still have different hardpoint/mod_cap capacity.
-    effect(() => {
-      this.build.hull();
-      this.weaponError.set(null);
-      this.moduleError.set(null);
-    });
-  }
+  protected readonly cyclesMax = computed(() => this.stats()?.cycles.max.final ?? 0);
+  protected readonly hardpointsUsed = computed(() => this.stats()?.hardpoints.used ?? 0);
+  protected readonly hardpointsMax = computed(() => this.stats()?.hardpoints.max.final ?? 0);
+  protected readonly modCapUsed = computed(() => this.stats()?.modCap.used ?? 0);
+  protected readonly modCapMax = computed(() => this.stats()?.modCap.max.final ?? 0);
 
   private componentsFor(type: ShipComponent['type']): ShipComponent[] {
     const shipClass = this.build.hullClass();
     return shipClass ? this.data.componentsByType(type).filter((c) => c.class === shipClass) : [];
   }
 
+  /**
+   * Hardpoint/module capacity is a warn-only budget, like Power/Cycles (see
+   * stats-panel's overBudget) — a ship mod can raise or lower it, so blocking the
+   * add outright would leave no way to recover from "fit a capacity mod, add
+   * weapons with the new room, then remove the mod" without going negative first.
+   * The Weapons/Modules headers in the template turn red instead when over.
+   */
   addWeapon(module: ShipModule | null): void {
-    this.tryAddModule(module, this.hardpointsUsed(), this.hardpointsMax(), 'hardpoint capacity', this.weaponError);
+    if (module) this.build.addModule(module);
     this.resetSelectAfterPick(this.pendingWeapon, this.weaponSelect());
   }
 
   addModule(module: ShipModule | null): void {
-    this.tryAddModule(module, this.modCapUsed(), this.modCapMax(), 'module capacity', this.moduleError);
+    if (module) this.build.addModule(module);
     this.resetSelectAfterPick(this.pendingModule, this.moduleSelect());
   }
 
@@ -117,23 +120,6 @@ export class LoadoutEditor {
       pending.set(null);
       select?.writeValue(null);
     });
-  }
-
-  private tryAddModule(
-    module: ShipModule | null,
-    used: number,
-    max: number,
-    capacityLabel: string,
-    errorSignal: WritableSignal<string | null>,
-  ): void {
-    if (!module) return;
-    const needed = MODULE_SIZE_POINTS[module.size];
-    if (used + needed > max) {
-      errorSignal.set(`Not enough ${capacityLabel} for ${module.name} (needs ${needed}pt, ${max - used}pt free).`);
-      return;
-    }
-    errorSignal.set(null);
-    this.build.addModule(module);
   }
 
   remove(module: ShipModule): void {

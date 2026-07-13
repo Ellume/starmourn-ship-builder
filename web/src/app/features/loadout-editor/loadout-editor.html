@@ -93,7 +93,12 @@
 
   <div class="slots">
     <div class="slot-group">
-      <h3>Weapons <span class="capacity">{{ hardpointsUsed() }}/{{ hardpointsMax() }}</span></h3>
+      <h3>
+        Weapons
+        <span class="capacity" [class.warn]="hardpointsUsed() > hardpointsMax()">
+          {{ hardpointsUsed() }}/{{ hardpointsMax() }}
+        </span>
+      </h3>
       <p-select
         #weaponSelect
         [options]="weaponOptions()"
@@ -104,9 +109,6 @@
       >
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
-      @if (weaponError()) {
-        <p-message severity="error" [text]="weaponError()!" styleClass="add-error" />
-      }
       <ul class="fitted-list">
         @for (m of build.weaponModules(); track $index) {
           <li>
@@ -123,7 +125,10 @@
     </div>
 
     <div class="slot-group">
-      <h3>Modules <span class="capacity">{{ modCapUsed() }}/{{ modCapMax() }}</span></h3>
+      <h3>
+        Modules
+        <span class="capacity" [class.warn]="modCapUsed() > modCapMax()">{{ modCapUsed() }}/{{ modCapMax() }}</span>
+      </h3>
       <p-select
         #moduleSelect
         [options]="nonWeaponOptions()"
@@ -134,9 +139,6 @@
       >
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
-      @if (moduleError()) {
-        <p-message severity="error" [text]="moduleError()!" styleClass="add-error" />
-      }
       <ul class="fitted-list">
         @for (m of build.nonWeaponModules(); track $index) {
           <li>

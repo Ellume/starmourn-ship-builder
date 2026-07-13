@@ -51,6 +51,21 @@ describe('calculateBuildStats — calibration build (hull 20 + capacitor 3 + eng
     expect(stats.mass).toBe(2925);
     expect(stats.thrustOverMass).toBeCloseTo(0.6496, 3); // old site displays this rounded to 0.650
     expect(stats.turnSpeedSeconds).toBe(hull.turn_time_s);
+    expect(stats.maxSpeed).toBe(3000);
+    expect(stats.timeToMaxSpeedSeconds).toBeCloseTo(4618.42, 2);
+    expect(stats.cargoCapacityTons).toBe(hull.capacity_tons);
+    expect(stats.resistances).toEqual({
+      hullThermal: hull.therm_res,
+      hullKinetic: hull.kin_res,
+      hullGravitic: hull.grav_res,
+      shieldEM: shield.em_res,
+      shieldKinetic: shield.kin_res,
+      shieldGravitic: shield.grav_res,
+    });
+    expect(stats.sensorJamStrength).toBe(sensor.jam_str);
+    expect(stats.shieldRechargeSeconds).toBe(shield.recharge_s);
+    expect(stats.capacitance).toBe(capacitor.capacity_kear);
+    expect(stats.totalCapDrainKear).toBe(0);
     expect(stats.price).toBe(24424);
   });
 
@@ -69,7 +84,10 @@ describe('calculateBuildStats — calibration build (hull 20 + capacitor 3 + eng
     expect(stats.cycles).toEqual({ used: 1000, max: 1000, remaining: 0 });
     expect(stats.alphaStrike).toBe(300);
     expect(stats.dps).toBe(100);
-    expect(stats.weaponBreakdown).toEqual([{ module: cannon1, alphaStrike: 300, dps: 100 }]);
+    expect(stats.weaponBreakdown).toEqual([
+      { module: cannon1, alphaStrike: 300, dps: 100, capDrainKear: cannon1.cap_drain_kear },
+    ]);
+    expect(stats.totalCapDrainKear).toBe(cannon1.cap_drain_kear);
     expect(stats.mass).toBe(2925); // modules always carry 0 mass_tons in this data
     expect(stats.price).toBe(27424);
   });

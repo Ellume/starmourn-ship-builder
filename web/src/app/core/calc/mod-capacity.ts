@@ -18,8 +18,13 @@ export const MOD_LEVEL_MIN = 1;
 export const MOD_LEVEL_MAX = 15;
 
 /**
- * Mutually exclusive with each other and with any modules fitted — trade one
- * ship-wide capacity stat for another. See data/ship-mods-notes.md "Facts".
+ * Mutually exclusive with each other — trade one ship-wide capacity stat for
+ * another. See data/ship-mods-notes.md "Facts". In-game these also require all
+ * modules uninstalled to install/remove, but this tool is a design aid, not a
+ * simulator of that specific restriction: hardpoint/module capacity are a
+ * warn-only budget here (see loadout-editor.ts), so adding/removing one of these
+ * mods with weapons/modules already fitted is allowed and just re-evaluates
+ * whether you're over budget, the same as any other capacity-changing edit.
  */
 export const CAPACITY_TRADE_MODS: readonly string[] = [
   'expanded_hardpoints',
@@ -87,12 +92,8 @@ export interface ModAddCheck {
   reason?: string;
 }
 
-/**
- * Can `shortname` be added (at its default/minimum level of 1) to `installed`?
- * `hasModulesFitted` gates the capacity-trade group, which the game requires all
- * modules uninstalled to install/remove.
- */
-export function canAddMod(shortname: string, installed: FittedMod[], hasModulesFitted: boolean): ModAddCheck {
+/** Can `shortname` be added (at its default/minimum level of 1) to `installed`? */
+export function canAddMod(shortname: string, installed: FittedMod[]): ModAddCheck {
   if (installed.some((m) => m.shortname === shortname)) {
     return { ok: false, reason: 'Already installed.' };
   }
@@ -102,20 +103,6 @@ export function canAddMod(shortname: string, installed: FittedMod[], hasModulesF
   const conflicts = conflictsFor(shortname, installed);
   if (conflicts.length) {
     return { ok: false, reason: `Conflicts with ${conflicts.join(', ')}.` };
-  }
-  if (CAPACITY_TRADE_MODS.includes(shortname) && hasModulesFitted) {
-    return { ok: false, reason: 'Requires all modules uninstalled.' };
-  }
-  return { ok: true };
-}
-
-/**
- * Can `shortname` be removed? Mirrors the install-side gate in `canAddMod` —
- * the capacity-trade mods require all modules uninstalled to install *or remove*.
- */
-export function canRemoveMod(shortname: string, hasModulesFitted: boolean): ModAddCheck {
-  if (CAPACITY_TRADE_MODS.includes(shortname) && hasModulesFitted) {
-    return { ok: false, reason: 'Requires all modules uninstalled.' };
   }
   return { ok: true };
 }
