@@ -252,7 +252,11 @@ function sumBreakdowns(parts: StatBreakdown[]): StatBreakdown {
   };
 }
 
-export function computeModdedStats(build: BuildInput, modSources: ModEffectSource[]): ModdedBuildStats {
+export function computeModdedStats(
+  build: BuildInput,
+  modSources: ModEffectSource[],
+  damageBoostCounts?: Map<number, number>,
+): ModdedBuildStats {
   const baseline = calculateBuildStats(build);
   const other: OtherEffect[] = [];
 
@@ -472,14 +476,20 @@ export function computeModdedStats(build: BuildInput, modSources: ModEffectSourc
   // --- Weapons: damage, plus kear cost per fitted weapon ---
   const weaponDamageBreakdowns = build.modules
     .filter((m) => m.weapon_module === 'Yes')
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map((m) => {
       const family = m.weapon_type as WeaponFamily | null;
-      const dmgContribs = family ? (weaponDamageContribs[family] ?? []) : [];
+      const boostCount = damageBoostCounts?.get(m.id) ?? 0;
+      const dmgContribs = [...(family ? (weaponDamageContribs[family] ?? []) : [])];
+      const kearContribs = [...(family ? (weaponKearContribs[family] ?? []) : [])];
+      if (boostCount > 0) {
+        dmgContribs.push({ modName: 'Damage Boost +10% (linked)', level: boostCount, deltaPct: 10 * boostCount });
+        kearContribs.push({ modName: 'Damage Boost +10% (linked)', level: boostCount, deltaPct: 30 * boostCount });
+      }
       const dmg = applyDeltas(m.weapon_damage ?? 0, dmgContribs);
       const dps: StatBreakdown = m.firing_speed_s
         ? { base: dmg.base / m.firing_speed_s, contributions: dmg.contributions, final: dmg.final / m.firing_speed_s }
         : { base: 0, contributions: dmg.contributions, final: 0 };
-      const kearContribs = family ? (weaponKearContribs[family] ?? []) : [];
       const kear = applyDeltas(m.cap_drain_kear ?? 0, kearContribs);
       return { module: m, alphaStrike: dmg, dps, kear };
     });

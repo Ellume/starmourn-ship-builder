@@ -101,3 +101,12 @@ h3 {
   font-size: 0.8rem;
   color: var(--p-text-muted-color);
 }
+
+.boost-link {
+  margin-top: 0.35rem;
+
+  label {
+    font-size: 0.75rem;
+    color: var(--p-text-muted-color);
+  }
+}

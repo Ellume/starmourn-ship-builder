@@ -33,6 +33,11 @@ h4 {
     font-weight: 600;
   }
 
+  /* Same blue as .mod-breakdown's .mod-line below — a quick "this number has an active bonus" signal without expanding the breakdown. */
+  &.boosted dd {
+    color: var(--p-blue-300, #93c5fd);
+  }
+
   &.warn dd {
     color: var(--p-red-400, #f87171);
   }

@@ -49,6 +49,7 @@ export class StatsPanel {
         modules: this.build.modules(),
       },
       this.modEffectSources(),
+      this.build.damageBoostCounts(),
     );
   });
 

@@ -38,6 +38,9 @@ export function encodeBuild(build: BuildStore): string {
   const modules = build.modules();
   if (modules.length) parts.push(`m=${modules.map((m) => m.id).join(',')}`);
 
+  const boostLinks = build.damageBoostLinks();
+  if (boostLinks.some((id) => id != null)) parts.push(`bl=${boostLinks.map((id) => id ?? '').join(',')}`);
+
   const mods = build.mods();
   if (mods.length) parts.push(`mo=${mods.map((m) => `${m.shortname}:${m.level}`).join(',')}`);
 
@@ -97,6 +100,25 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
     const module = data.modules().find((m) => m.id === moduleId);
     if (module) build.addModule(module);
   }
+
+  /**
+   * One token per fitted Damage Boost module (same order as `damageBoostLinks`,
+   * reconstructed above by the `addModule` calls) — empty token means unlinked.
+   * A weapon id must belong to a weapon actually fitted in this build and must not
+   * already be claimed by an earlier token, mirroring the one-boost-per-weapon rule
+   * the editor UI enforces — a hand-edited or stale link degrades to unlinked
+   * instead of double-applying.
+   */
+  const fittedWeaponIds = new Set(build.modules().filter((m) => m.weapon_module === 'Yes').map((m) => m.id));
+  const claimedWeaponIds = new Set<number>();
+  const boostLinkTokens = (params.get('bl') ?? '').split(',');
+  boostLinkTokens.forEach((token, index) => {
+    if (!token) return;
+    const weaponId = Number(token);
+    if (!Number.isInteger(weaponId) || !fittedWeaponIds.has(weaponId) || claimedWeaponIds.has(weaponId)) return;
+    claimedWeaponIds.add(weaponId);
+    build.setDamageBoostLink(index, weaponId);
+  });
 
   const knownShortnames = new Set(data.shipMods().map((m) => m.shortname));
   const modTokens = (params.get('mo') ?? '').split(',').filter(Boolean);

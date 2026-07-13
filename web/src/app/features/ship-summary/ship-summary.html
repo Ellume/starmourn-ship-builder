@@ -19,7 +19,21 @@
     @if (weaponBreakdown().length) {
       <ul class="item-list">
         @for (w of weaponBreakdown(); track $index) {
-          <li><span>{{ moduleName(w.module) }}</span><span>{{ pointsFor(w.module) }}pt, {{ w.alphaStrike.final | number: '1.0-0' }} alpha, {{ w.dps.final | number: '1.2-2' }} DPS</span></li>
+          <li class="weapon-row">
+            <div class="weapon-row-main">
+              <span>{{ moduleName(w.module) }}</span>
+              <span [class.boosted]="w.alphaStrike.contributions.length">
+                {{ pointsFor(w.module) }}pt, {{ w.alphaStrike.final | number: '1.0-0' }} alpha, {{ w.dps.final | number: '1.2-2' }} DPS
+              </span>
+            </div>
+            @if (w.alphaStrike.contributions.length) {
+              <ul class="mod-breakdown">
+                @for (c of w.alphaStrike.contributions; track c.modName + c.level) {
+                  <li class="mod-line">{{ contributionText(c) }}</li>
+                }
+              </ul>
+            }
+          </li>
         }
       </ul>
     }

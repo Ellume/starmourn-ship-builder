@@ -3,7 +3,7 @@
     <p class="cost-line">Cost: {{ s.baseline.price | number }} marks</p>
 
     <ng-template #rowTpl let-row>
-      <div class="stat">
+      <div class="stat" [class.boosted]="row.breakdown">
         <dt>{{ row.label }}</dt>
         <dd>{{ row.value != null ? (row.value | number: row.format) + row.unit : '—' }}</dd>
         @if (row.breakdown) {
@@ -37,7 +37,7 @@
 
     <h4>Defense</h4>
     <dl class="stat-grid">
-      <div class="stat">
+      <div class="stat" [class.boosted]="healthBreakdown()?.contributions?.length">
         <dt>Health</dt>
         <dd>{{ s.health.total | number: '1.0-0' }} ({{ s.health.hull.final | number: '1.0-0' }}+{{ s.health.shield.final | number: '1.0-0' }})</dd>
         @if (healthBreakdown()?.contributions?.length) {

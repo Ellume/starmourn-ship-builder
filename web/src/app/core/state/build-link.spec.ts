@@ -76,6 +76,30 @@ const cannon: ShipModule = {
   notes: null,
 };
 
+const damageBoost: ShipModule = {
+  id: 20,
+  size: 'medium',
+  name: 'Damage Boost +10%',
+  weapon_module: 'No',
+  weapon_type: null,
+  classes: ['Interceptor'],
+  description: '',
+  mass_tons: 0,
+  power_use_halons: 100,
+  shipsim_cycles: 0,
+  firing_speed_s: null,
+  weapon_damage: null,
+  cap_drain_kear: null,
+  reload_speed_s: null,
+  optimal_range: null,
+  fall_off: null,
+  use_no_ammo: null,
+  cooldown_s: null,
+  effect_bonus: '+10.00% damage; +30.00% linked module capacitor drain',
+  price_marks: 50000,
+  notes: null,
+};
+
 const hullAugment: ShipModSummary = {
   shortname: 'hull_augment',
   full_name: 'Hull Augment',
@@ -94,7 +118,7 @@ function fakeData(): DataService {
   return {
     shipModels: () => [hull],
     componentsByType: (type: string) => (type === 'Capacitor' ? [capacitor] : []),
-    modules: () => [cannon],
+    modules: () => [cannon, damageBoost],
     shipMods: () => [hullAugment],
   } as unknown as DataService;
 }
@@ -126,6 +150,42 @@ describe('build-link', () => {
     expect(restored.capacitor()?.id).toBe(1);
     expect(restored.modules().map((m) => m.id)).toEqual([4, 4]);
     expect(restored.mods()).toEqual([{ shortname: 'hull_augment', level: 7 }]);
+  });
+
+  it('round-trips a Damage Boost link to its fitted weapon', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.addModule(cannon);
+    build.addModule(damageBoost);
+    build.setDamageBoostLink(0, cannon.id);
+
+    const url = buildShareUrl(build);
+    const [, query] = url.split('?');
+    history.pushState('', '', `?${query}`);
+
+    const restored = new BuildStore();
+    const ok = applySharedBuildFromUrl(restored, fakeData());
+
+    expect(ok).toBe(true);
+    expect(restored.damageBoostLinks()).toEqual([cannon.id]);
+  });
+
+  it('drops a Damage Boost link if its weapon is no longer fitted', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.addModule(cannon);
+    build.addModule(damageBoost);
+    build.setDamageBoostLink(0, cannon.id);
+    build.removeModule(cannon);
+
+    const url = buildShareUrl(build);
+    const [, query] = url.split('?');
+    history.pushState('', '', `?${query}`);
+
+    const restored = new BuildStore();
+    applySharedBuildFromUrl(restored, fakeData());
+
+    expect(restored.damageBoostLinks()).toEqual([null]);
   });
 
   it('returns an empty token (bare URL) when no hull is selected', () => {

@@ -59,6 +59,7 @@ export class ShipSummary {
         modules: this.build.modules(),
       },
       this.modEffectSources(),
+      this.build.damageBoostCounts(),
     );
   });
 

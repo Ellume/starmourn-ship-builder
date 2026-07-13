@@ -140,17 +140,37 @@
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
       <ul class="fitted-list">
-        @for (m of build.nonWeaponModules(); track $index) {
+        @for (row of nonWeaponRows(); track $index) {
           <li>
             <div class="item-header">
-              <span class="name">{{ m.name }}</span>
-              <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
-              <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+              <span class="name">{{ row.module.name }}</span>
+              <p-tag [value]="pointsFor(row.module) + 'pt'" severity="secondary" />
+              <p-button
+                icon="pi pi-times"
+                [text]="true"
+                size="small"
+                (onClick)="remove(row.module)"
+                [ariaLabel]="'Remove ' + row.module.name"
+              />
             </div>
-            @if (moduleDetails(m)) {
-              <p class="details">{{ moduleDetails(m) }}</p>
+            @if (moduleDetails(row.module)) {
+              <p class="details">{{ moduleDetails(row.module) }}</p>
             }
-            <p class="details">{{ resourceLine(m) }}</p>
+            <p class="details">{{ resourceLine(row.module) }}</p>
+            @if (row.boostIndex !== null) {
+              <div class="field boost-link">
+                <label [for]="'boost-link-' + row.boostIndex">Link to weapon</label>
+                <p-select
+                  [inputId]="'boost-link-' + row.boostIndex"
+                  [options]="availableLinkTargets(row.boostIndex)"
+                  optionLabel="name"
+                  [ngModel]="linkedWeaponFor(row.boostIndex)"
+                  (ngModelChange)="setDamageBoostLink(row.boostIndex, $event)"
+                  placeholder="Not linked"
+                  [showClear]="true"
+                />
+              </div>
+            }
           </li>
         }
       </ul>

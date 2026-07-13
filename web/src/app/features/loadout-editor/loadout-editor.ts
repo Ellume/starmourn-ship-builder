@@ -8,8 +8,14 @@ import { MODULE_SIZE_POINTS } from '../../core/calc/capacity';
 import { ModEffectSource, computeModdedStats } from '../../core/calc/mod-effects';
 import { DataService } from '../../core/data/data.service';
 import { ShipComponent } from '../../core/models/component';
-import { ShipModule } from '../../core/models/module';
+import { ShipModule, isDamageBoostModule } from '../../core/models/module';
 import { BuildStore } from '../../core/state/build.store';
+
+/** One rendered row in the Modules list — `boostIndex` is set only for Damage Boost modules, giving each fitted instance its own link dropdown. */
+interface NonWeaponRow {
+  module: ShipModule;
+  boostIndex: number | null;
+}
 
 @Component({
   selector: 'app-loadout-editor',
@@ -45,6 +51,30 @@ export class LoadoutEditor {
 
   protected readonly pendingWeapon = signal<ShipModule | null>(null);
   protected readonly pendingModule = signal<ShipModule | null>(null);
+
+  /** Non-weapon list rows, with an ordinal assigned to each Damage Boost instance for its link dropdown. */
+  protected readonly nonWeaponRows = computed<NonWeaponRow[]>(() => {
+    let boostIndex = 0;
+    return this.build.nonWeaponModules().map((module) => {
+      const row: NonWeaponRow = { module, boostIndex: isDamageBoostModule(module) ? boostIndex : null };
+      if (isDamageBoostModule(module)) boostIndex++;
+      return row;
+    });
+  });
+
+  /** Fitted weapon types a Damage Boost module can link to — deduped, since duplicate weapon fits are otherwise indistinguishable. */
+  protected readonly linkableWeapons = computed<ShipModule[]>(() => {
+    const seen = new Map<number, ShipModule>();
+    for (const w of this.build.weaponModules()) seen.set(w.id, w);
+    return [...seen.values()];
+  });
+
+  /** A weapon can only take one Damage Boost link — excludes weapons already claimed by a *different* boost instance, so each weapon shows up in at most one dropdown at a time. */
+  availableLinkTargets(boostIndex: number): ShipModule[] {
+    const links = this.build.damageBoostLinks();
+    const linkedElsewhere = new Set(links.filter((_, i) => i !== boostIndex).filter((id): id is number => id != null));
+    return this.linkableWeapons().filter((w) => !linkedElsewhere.has(w.id));
+  }
 
   /**
    * PrimeNG's Select.onOptionSelect only re-fires a selection when the clicked option
@@ -82,6 +112,7 @@ export class LoadoutEditor {
         modules: this.build.modules(),
       },
       this.modEffectSources(),
+      this.build.damageBoostCounts(),
     );
   });
   protected readonly powerUsed = computed(() => this.stats()?.power.used.final ?? 0);
@@ -124,6 +155,15 @@ export class LoadoutEditor {
 
   remove(module: ShipModule): void {
     this.build.removeModule(module);
+  }
+
+  linkedWeaponFor(boostIndex: number): ShipModule | null {
+    const id = this.build.damageBoostLinks()[boostIndex] ?? null;
+    return id == null ? null : (this.linkableWeapons().find((w) => w.id === id) ?? null);
+  }
+
+  setDamageBoostLink(boostIndex: number, weapon: ShipModule | null): void {
+    this.build.setDamageBoostLink(boostIndex, weapon?.id ?? null);
   }
 
   pointsFor(module: ShipModule): number {

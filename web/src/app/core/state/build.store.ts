@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { FittedMod } from '../calc/mod-capacity';
 import { ShipComponent } from '../models/component';
-import { ShipModule } from '../models/module';
+import { ShipModule, isDamageBoostModule } from '../models/module';
 import { ShipModel } from '../models/ship-model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,6 +15,29 @@ export class BuildStore {
   readonly modules = signal<ShipModule[]>([]);
   /** Crafted ship mods (data/ship-mods.json) — a separate 6-slot/60-level-budget system from `modules`. Not hull-specific, so not cleared on hull change. */
   readonly mods = signal<FittedMod[]>([]);
+
+  /**
+   * One entry per fitted Damage Boost module, in fit order — value is the linked
+   * weapon's module `id`, or null if unlinked. Fitted Damage Boost modules are
+   * otherwise indistinguishable from each other (duplicate fits are literally the
+   * same `ShipModule` object reference, same as every other module), so a link is
+   * tracked by ordinal position among Damage Boost fits rather than by instance
+   * identity. `addModule`/`removeModule` keep this array's length in sync with the
+   * fitted count; `removeModule` always drops index 0, matching its own "removes
+   * the first instance found" semantics below.
+   */
+  readonly damageBoostLinks = signal<(number | null)[]>([]);
+
+  /** Linked-boost count per weapon module id, ignoring links whose target weapon is no longer fitted. Feeds computeModdedStats. */
+  readonly damageBoostCounts = computed(() => {
+    const fittedWeaponIds = new Set(this.modules().filter((m) => m.weapon_module === 'Yes').map((m) => m.id));
+    const counts = new Map<number, number>();
+    for (const weaponId of this.damageBoostLinks()) {
+      if (weaponId == null || !fittedWeaponIds.has(weaponId)) continue;
+      counts.set(weaponId, (counts.get(weaponId) ?? 0) + 1);
+    }
+    return counts;
+  });
 
   readonly weaponModules = computed(() =>
     this.modules()
@@ -37,10 +60,14 @@ export class BuildStore {
     this.shipsim.set(null);
     this.sensor.set(null);
     this.modules.set([]);
+    this.damageBoostLinks.set([]);
   }
 
   addModule(module: ShipModule): void {
     this.modules.update((mods) => [...mods, module]);
+    if (isDamageBoostModule(module)) {
+      this.damageBoostLinks.update((links) => [...links, null]);
+    }
   }
 
   /** Removes one instance of `module` (by reference) — the same module can be fitted more than once. */
@@ -49,6 +76,14 @@ export class BuildStore {
       const index = mods.indexOf(module);
       return index === -1 ? mods : mods.filter((_, i) => i !== index);
     });
+    if (isDamageBoostModule(module)) {
+      this.damageBoostLinks.update((links) => links.slice(1));
+    }
+  }
+
+  /** `index` is the ordinal position among fitted Damage Boost modules (see `damageBoostLinks`). */
+  setDamageBoostLink(index: number, weaponModuleId: number | null): void {
+    this.damageBoostLinks.update((links) => links.map((v, i) => (i === index ? weaponModuleId : v)));
   }
 
   addMod(shortname: string): void {

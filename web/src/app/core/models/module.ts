@@ -56,3 +56,14 @@ export interface ShipModule {
   price_marks: number;
   notes: string | null;
 }
+
+/**
+ * "Damage Boost +10%" is the only module (as of the current data snapshot) whose
+ * bonus isn't passive — it only applies once linked to one specific fitted weapon
+ * in-game via `SHIP MODULE LINK <#> TO <#>`. Matched on the "linked module" phrase
+ * in its effect text rather than by name/id, so any future module with the same
+ * link-to-activate semantics is picked up automatically.
+ */
+export function isDamageBoostModule(m: ShipModule): boolean {
+  return m.effect_bonus?.includes('linked module') ?? false;
+}
