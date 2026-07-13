@@ -18,8 +18,11 @@ const COMPONENT_PARAM: Record<ComponentType, string> = {
   Sensor: 'sn',
 };
 
+/** Trailing marker on a module id in `m=` meaning "fitted but switched off" — see BuildStore.moduleActive. */
+const INACTIVE_SUFFIX = 'x';
+
 /** Encodes the current build into a query string (no leading `?`) for the share link. */
-export function encodeBuild(build: BuildStore): string {
+export function encodeBuild(build: BuildStore, data: DataService): string {
   const hull = build.hull();
   if (!hull) return '';
 
@@ -36,24 +39,32 @@ export function encodeBuild(build: BuildStore): string {
   }
 
   const modules = build.modules();
-  if (modules.length) parts.push(`m=${modules.map((m) => m.id).join(',')}`);
-
   const active = build.moduleActive();
-  const inactiveIndices = active.flatMap((isActive, i) => (isActive ? [] : [i]));
-  if (inactiveIndices.length) parts.push(`ia=${inactiveIndices.join(',')}`);
+  // The inactive flag rides along on the module id itself (e.g. `4x`) rather than a
+  // separate index-list param — one shorter token beats a whole extra `key=` pair.
+  if (modules.length) {
+    parts.push(`m=${modules.map((m, i) => `${m.id}${active[i] ?? true ? '' : INACTIVE_SUFFIX}`).join(',')}`);
+  }
 
   const boostLinks = build.damageBoostLinks();
   if (boostLinks.some((id) => id != null)) parts.push(`bl=${boostLinks.map((id) => id ?? '').join(',')}`);
 
-  const mods = build.mods();
-  if (mods.length) parts.push(`mo=${mods.map((m) => `${m.shortname}:${m.level}`).join(',')}`);
+  // Mods are keyed by shortname everywhere else in the app (mod-capacity.ts, BuildStore),
+  // but shortnames run 10-20+ chars each — too long to repeat in a URL. The catalog's own
+  // array position is a much shorter stand-in, valid as long as it's decoded against the
+  // same data snapshot it was encoded from (same tradeoff hull/component/module ids
+  // already make — see applySharedBuildFromUrl's header comment).
+  const shipMods = data.shipMods();
+  const modIndex = new Map(shipMods.map((m, i) => [m.shortname, i]));
+  const mods = build.mods().filter((m) => modIndex.has(m.shortname));
+  if (mods.length) parts.push(`mo=${mods.map((m) => `${modIndex.get(m.shortname)}:${m.level}`).join(',')}`);
 
   return parts.join('&');
 }
 
 /** Builds the full shareable URL for the current build (page's own origin/path + encoded query). */
-export function buildShareUrl(build: BuildStore): string {
-  const query = encodeBuild(build);
+export function buildShareUrl(build: BuildStore, data: DataService): string {
+  const query = encodeBuild(build, data);
   const base = `${location.origin}${location.pathname}`;
   return query ? `${base}?${query}` : base;
 }
@@ -95,23 +106,17 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
   const sensor = findComponent('Sensor');
   if (sensor) build.sensor.set(sensor);
 
-  const moduleIds = (params.get('m') ?? '')
-    .split(',')
-    .filter(Boolean)
-    .map(Number)
-    .filter(Number.isInteger);
-  for (const moduleId of moduleIds) {
+  /** Each token is a module id, optionally suffixed with `x` for "fitted but inactive" — see encodeBuild. */
+  const moduleTokens = (params.get('m') ?? '').split(',').filter(Boolean);
+  for (const token of moduleTokens) {
+    const inactive = token.endsWith(INACTIVE_SUFFIX);
+    const moduleId = Number(inactive ? token.slice(0, -INACTIVE_SUFFIX.length) : token);
+    if (!Number.isInteger(moduleId)) continue;
     const module = data.modules().find((m) => m.id === moduleId);
-    if (module) build.addModule(module);
+    if (!module) continue;
+    build.addModule(module);
+    if (inactive) build.setModuleActive(build.modules().length - 1, false);
   }
-
-  /** Indices (into the just-fitted `modules`/`moduleActive`) to switch off — see encodeBuild's `ia`. */
-  const inactiveIndices = (params.get('ia') ?? '')
-    .split(',')
-    .filter(Boolean)
-    .map(Number)
-    .filter(Number.isInteger);
-  for (const index of inactiveIndices) build.setModuleActive(index, false);
 
   /**
    * One token per fitted Damage Boost module (same order as `damageBoostLinks`,
@@ -137,12 +142,16 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
     build.setDamageBoostLink(index, weaponId);
   });
 
-  const knownShortnames = new Set(data.shipMods().map((m) => m.shortname));
+  /** Each token is `<catalog index>:<level>` — see encodeBuild's comment on why mods use an index, not their shortname. */
+  const shipMods = data.shipMods();
   const modTokens = (params.get('mo') ?? '').split(',').filter(Boolean);
   for (const token of modTokens) {
-    const [shortname, levelStr] = token.split(':');
+    const [indexStr, levelStr] = token.split(':');
+    const index = Number(indexStr);
     const level = Number(levelStr);
-    if (!shortname || !knownShortnames.has(shortname) || !Number.isInteger(level) || level < 1 || level > 15) continue;
+    if (!Number.isInteger(index) || !Number.isInteger(level) || level < 1 || level > 15) continue;
+    const shortname = shipMods[index]?.shortname;
+    if (!shortname) continue;
     build.addMod(shortname);
     build.setModLevel(shortname, level);
   }

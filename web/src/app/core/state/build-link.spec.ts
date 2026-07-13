@@ -137,7 +137,7 @@ describe('build-link', () => {
     build.addMod('hull_augment');
     build.setModLevel('hull_augment', 7);
 
-    const url = buildShareUrl(build);
+    const url = buildShareUrl(build, fakeData());
     const [, query] = url.split('?');
     history.pushState('', '', `?${query}`);
 
@@ -159,7 +159,7 @@ describe('build-link', () => {
     build.addModule(damageBoost);
     build.setDamageBoostLink(0, cannon.id);
 
-    const url = buildShareUrl(build);
+    const url = buildShareUrl(build, fakeData());
     const [, query] = url.split('?');
     history.pushState('', '', `?${query}`);
 
@@ -178,7 +178,7 @@ describe('build-link', () => {
     build.setDamageBoostLink(0, cannon.id);
     build.removeModule(cannon);
 
-    const url = buildShareUrl(build);
+    const url = buildShareUrl(build, fakeData());
     const [, query] = url.split('?');
     history.pushState('', '', `?${query}`);
 
@@ -195,9 +195,10 @@ describe('build-link', () => {
     build.addModule(cannon);
     build.setModuleActive(1, false);
 
-    const url = buildShareUrl(build);
+    const url = buildShareUrl(build, fakeData());
     const [, query] = url.split('?');
-    expect(query).toContain('ia=1');
+    // The inactive flag rides on the module id itself (`4x`) rather than a separate param.
+    expect(query).toContain('m=4,4x');
     history.pushState('', '', `?${query}`);
 
     const restored = new BuildStore();
@@ -206,14 +207,15 @@ describe('build-link', () => {
     expect(restored.moduleActive()).toEqual([true, false]);
   });
 
-  it('omits the `ia` param and defaults every module to active when nothing is deactivated', () => {
+  it('emits a plain module id with no suffix when nothing is deactivated', () => {
     const build = new BuildStore();
     build.setHull(hull);
     build.addModule(cannon);
 
-    expect(encodeBuild(build)).not.toContain('ia=');
+    expect(encodeBuild(build, fakeData())).toContain('m=4');
+    expect(encodeBuild(build, fakeData())).not.toContain('4x');
 
-    const url = buildShareUrl(build);
+    const url = buildShareUrl(build, fakeData());
     const [, query] = url.split('?');
     history.pushState('', '', `?${query}`);
     const restored = new BuildStore();
@@ -224,18 +226,31 @@ describe('build-link', () => {
 
   it('returns an empty token (bare URL) when no hull is selected', () => {
     const build = new BuildStore();
-    expect(encodeBuild(build)).toBe('');
+    expect(encodeBuild(build, fakeData())).toBe('');
   });
 
-  it('skips unknown mod shortnames and out-of-range levels rather than throwing', () => {
+  it('skips an out-of-range mod index and an out-of-range level rather than throwing', () => {
     const build = new BuildStore();
     build.setHull(hull);
-    history.pushState('', '', '?h=20&mo=not_a_real_mod:5,hull_augment:99');
+    // fakeData()'s catalog has exactly one mod (index 0) — 99 is out of range either way.
+    history.pushState('', '', '?h=20&mo=99:5,0:99');
 
     const ok = applySharedBuildFromUrl(build, fakeData());
 
     expect(ok).toBe(true);
     expect(build.mods()).toEqual([]);
+  });
+
+  it('encodes mods by their catalog index rather than their (much longer) shortname', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.capacitor.set(capacitor);
+    build.addModule(cannon);
+    build.addModule(cannon);
+    build.addMod('hull_augment');
+
+    // fakeData()'s shipMods() catalog is [hullAugment] — index 0.
+    expect(encodeBuild(build, fakeData())).toBe('h=20&c=1&m=4,4&mo=0:1');
   });
 
   it('encodes as plain, human-readable query params rather than a JSON blob', () => {
@@ -244,8 +259,7 @@ describe('build-link', () => {
     build.capacitor.set(capacitor);
     build.addModule(cannon);
     build.addModule(cannon);
-    build.addMod('hull_augment');
 
-    expect(encodeBuild(build)).toBe('h=20&c=1&m=4,4&mo=hull_augment:1');
+    expect(encodeBuild(build, fakeData())).toBe('h=20&c=1&m=4,4');
   });
 });

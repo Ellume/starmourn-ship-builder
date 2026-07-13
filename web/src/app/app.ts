@@ -76,6 +76,6 @@ export class App implements OnInit {
   }
 
   copyShareLink(): void {
-    navigator.clipboard.writeText(buildShareUrl(this.build));
+    navigator.clipboard.writeText(buildShareUrl(this.build, this.data));
   }
 }
