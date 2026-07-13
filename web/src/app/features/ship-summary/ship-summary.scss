@@ -86,3 +86,21 @@ section {
     color: var(--p-red-400, #f87171);
   }
 }
+
+/* Same neutral, informational styling as the Stats panel's mod breakdowns — a
+   mod's delta isn't inherently good or bad, so no red/green here either. */
+.mod-breakdown {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  font-size: 0.75rem;
+  font-weight: 400;
+
+  .base-line {
+    color: var(--p-text-muted-color);
+  }
+
+  .mod-line {
+    color: var(--p-blue-300, #93c5fd);
+  }
+}

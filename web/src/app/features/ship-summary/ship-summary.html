@@ -102,6 +102,14 @@
 
   <section>
     <h3>Hardpoints <span class="hint" [class.warn]="hardpointsUsed() > hardpointsMax()">— {{ hardpointsUsed() }} / {{ hardpointsMax() | number: '1.0-0' }}</span></h3>
+    @if (hardpointsBreakdown(); as b) {
+      <ul class="mod-breakdown">
+        <li class="base-line">Base {{ b.base | number: '1.0-0' }}</li>
+        @for (c of b.contributions; track c.modName + c.level) {
+          <li class="mod-line">{{ contributionText(c) }}</li>
+        }
+      </ul>
+    }
     <div class="size-breakdown">
       <span>Small: {{ weaponSizeBreakdown().small }}</span>
       <span>Medium: {{ weaponSizeBreakdown().medium }}</span>
@@ -118,6 +126,14 @@
 
   <section>
     <h3>Modules <span class="hint" [class.warn]="modCapUsed() > modCapMax()">— {{ modCapUsed() }} / {{ modCapMax() | number: '1.0-0' }}</span></h3>
+    @if (modCapBreakdown(); as b) {
+      <ul class="mod-breakdown">
+        <li class="base-line">Base {{ b.base | number: '1.0-0' }}</li>
+        @for (c of b.contributions; track c.modName + c.level) {
+          <li class="mod-line">{{ contributionText(c) }}</li>
+        }
+      </ul>
+    }
     <div class="size-breakdown">
       <span>Small: {{ moduleSizeBreakdown().small }}</span>
       <span>Medium: {{ moduleSizeBreakdown().medium }}</span>

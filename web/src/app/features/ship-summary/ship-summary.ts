@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
 import { MODULE_SIZE_POINTS } from '../../core/calc/capacity';
-import { ModEffectSource, computeModdedStats } from '../../core/calc/mod-effects';
+import { ModContribution, ModEffectSource, computeModdedStats } from '../../core/calc/mod-effects';
 import { DataService } from '../../core/data/data.service';
 import { ShipModule } from '../../core/models/module';
 import { BuildStore } from '../../core/state/build.store';
@@ -73,6 +73,16 @@ export class ShipSummary {
   protected readonly modCapMax = computed(() => this.stats()?.modCap.max.final ?? 0);
   protected readonly modCapUsed = computed(() => this.stats()?.modCap.used ?? 0);
 
+  /** null when no fitted mod touches hardpoint/module capacity — same "only show if it applies" rule as the Stats panel's rows. */
+  protected readonly hardpointsBreakdown = computed(() => {
+    const max = this.stats()?.hardpoints.max;
+    return max?.contributions.length ? max : null;
+  });
+  protected readonly modCapBreakdown = computed(() => {
+    const max = this.stats()?.modCap.max;
+    return max?.contributions.length ? max : null;
+  });
+
   protected readonly weaponSizeBreakdown = computed(() => this.sizeBreakdown(this.build.weaponModules()));
   protected readonly moduleSizeBreakdown = computed(() => this.sizeBreakdown(this.build.nonWeaponModules()));
 
@@ -103,5 +113,10 @@ export class ShipSummary {
 
   pointsFor(module: ShipModule): number {
     return MODULE_SIZE_POINTS[module.size];
+  }
+
+  contributionText(c: ModContribution): string {
+    const sign = c.deltaPct >= 0 ? '+' : '';
+    return `${c.modName} (Lv${c.level}) ${sign}${c.deltaPct.toFixed(2)}%`;
   }
 }
