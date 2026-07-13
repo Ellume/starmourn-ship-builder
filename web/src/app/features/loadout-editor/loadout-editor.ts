@@ -1,6 +1,7 @@
 import { Component, WritableSignal, computed, inject, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 import { Select, SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 
@@ -11,15 +12,22 @@ import { ShipComponent } from '../../core/models/component';
 import { ShipModule, isDamageBoostModule } from '../../core/models/module';
 import { BuildStore } from '../../core/state/build.store';
 
+/** One rendered row in the Weapons list — `index` is this instance's position in build.modules()/moduleActive(), for the active checkbox. */
+interface WeaponRow {
+  module: ShipModule;
+  index: number;
+}
+
 /** One rendered row in the Modules list — `boostIndex` is set only for Damage Boost modules, giving each fitted instance its own link dropdown. */
 interface NonWeaponRow {
   module: ShipModule;
+  index: number;
   boostIndex: number | null;
 }
 
 @Component({
   selector: 'app-loadout-editor',
-  imports: [SelectModule, FormsModule, ButtonModule, TagModule],
+  imports: [SelectModule, FormsModule, ButtonModule, TagModule, CheckboxModule],
   templateUrl: './loadout-editor.html',
   styleUrl: './loadout-editor.scss',
 })
@@ -52,14 +60,35 @@ export class LoadoutEditor {
   protected readonly pendingWeapon = signal<ShipModule | null>(null);
   protected readonly pendingModule = signal<ShipModule | null>(null);
 
-  /** Non-weapon list rows, with an ordinal assigned to each Damage Boost instance for its link dropdown. */
+  /** Weapon list rows, each carrying its position in build.modules()/moduleActive() for the active checkbox. */
+  protected readonly weaponRows = computed<WeaponRow[]>(() =>
+    this.build
+      .modules()
+      .map((module, index) => ({ module, index }))
+      .filter((row) => row.module.weapon_module === 'Yes')
+      .sort((a, b) => a.module.name.localeCompare(b.module.name)),
+  );
+
+  /**
+   * Non-weapon list rows, with an ordinal assigned to each Damage Boost instance
+   * for its link dropdown. Mapped-then-sorted (rather than sorting build.nonWeaponModules()
+   * directly) so each row still carries its original index into build.modules()/
+   * moduleActive() for the active checkbox — a stable sort preserves relative order
+   * among same-named ties, so the boostIndex ordinal still lines up with fit order
+   * the same way it always has.
+   */
   protected readonly nonWeaponRows = computed<NonWeaponRow[]>(() => {
     let boostIndex = 0;
-    return this.build.nonWeaponModules().map((module) => {
-      const row: NonWeaponRow = { module, boostIndex: isDamageBoostModule(module) ? boostIndex : null };
-      if (isDamageBoostModule(module)) boostIndex++;
-      return row;
-    });
+    return this.build
+      .modules()
+      .map((module, index) => ({ module, index }))
+      .filter((row) => row.module.weapon_module === 'No')
+      .sort((a, b) => a.module.name.localeCompare(b.module.name))
+      .map(({ module, index }) => {
+        const row: NonWeaponRow = { module, index, boostIndex: isDamageBoostModule(module) ? boostIndex : null };
+        if (isDamageBoostModule(module)) boostIndex++;
+        return row;
+      });
   });
 
   /** Fitted weapon types a Damage Boost module can link to — deduped, since duplicate weapon fits are otherwise indistinguishable. */
@@ -122,6 +151,7 @@ export class LoadoutEditor {
         shipsim: this.build.shipsim() ?? undefined,
         sensor: this.build.sensor() ?? undefined,
         modules: this.build.modules(),
+        moduleActive: this.build.moduleActive(),
       },
       this.modEffectSources(),
       this.build.damageBoostCounts(),
@@ -169,6 +199,14 @@ export class LoadoutEditor {
     this.build.removeModule(module);
   }
 
+  isActive(index: number): boolean {
+    return this.build.moduleActive()[index] ?? true;
+  }
+
+  setActive(index: number, active: boolean): void {
+    this.build.setModuleActive(index, active);
+  }
+
   linkedWeaponFor(boostIndex: number): ShipModule | null {
     const id = this.build.damageBoostLinks()[boostIndex] ?? null;
     return id == null ? null : (this.linkableWeapons().find((w) => w.id === id) ?? null);
@@ -202,8 +240,9 @@ export class LoadoutEditor {
     return parts.join(' · ');
   }
 
-  resourceLine(m: ShipModule): string {
-    return `${m.power_use_halons} halons · ${m.shipsim_cycles} cycles`;
+  /** Halons shown as 0 when disabled — cycles are unaffected (see BuildStore.moduleActive's doc comment). */
+  resourceLine(m: ShipModule, active: boolean): string {
+    return `${active ? m.power_use_halons : 0} halons · ${m.shipsim_cycles} cycles`;
   }
 
   componentLabel(c: ShipComponent): string {

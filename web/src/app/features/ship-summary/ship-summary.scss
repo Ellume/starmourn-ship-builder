@@ -69,6 +69,10 @@ section {
     justify-content: space-between;
     gap: 0.5rem;
     padding: 0.15rem 0;
+
+    &.inactive {
+      opacity: 0.55;
+    }
   }
 
   li.weapon-row {

@@ -19,9 +19,9 @@
     @if (weaponBreakdown().length) {
       <ul class="item-list">
         @for (w of weaponBreakdown(); track $index) {
-          <li class="weapon-row">
+          <li class="weapon-row" [class.inactive]="!weaponActiveFlags()[$index]">
             <div class="weapon-row-main">
-              <span>{{ moduleName(w.module) }}</span>
+              <span>{{ moduleName(w.module) }}@if (!weaponActiveFlags()[$index]) { <span class="hint">(inactive)</span> }</span>
               <span [class.boosted]="w.alphaStrike.contributions.length">
                 {{ pointsFor(w.module) }}pt, {{ w.alphaStrike.final | number: '1.0-0' }} alpha, {{ w.dps.final | number: '1.2-2' }} DPS
               </span>
@@ -68,7 +68,10 @@
     @if (build.nonWeaponModules().length) {
       <ul class="item-list">
         @for (m of build.nonWeaponModules(); track $index) {
-          <li><span>{{ moduleName(m) }}</span><span>{{ pointsFor(m) }}pt</span></li>
+          <li [class.inactive]="!nonWeaponActiveFlags()[$index]">
+            <span>{{ moduleName(m) }}@if (!nonWeaponActiveFlags()[$index]) { <span class="hint">(inactive)</span> }</span>
+            <span>{{ pointsFor(m) }}pt</span>
+          </li>
         }
       </ul>
     }
@@ -177,7 +180,10 @@
         <h4>Modules</h4>
         <ul class="item-list">
           @for (m of build.modules(); track $index) {
-            <li><span>{{ moduleName(m) }}</span><span>{{ m.power_use_halons | number }}</span></li>
+            <li [class.inactive]="!isActive($index)">
+              <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
+              <span>{{ isActive($index) ? (m.power_use_halons | number) : 0 }}</span>
+            </li>
           }
         </ul>
       }
@@ -192,7 +198,10 @@
         <h4>Modules</h4>
         <ul class="item-list">
           @for (m of build.modules(); track $index) {
-            <li><span>{{ moduleName(m) }}</span><span>{{ m.shipsim_cycles | number }}</span></li>
+            <li [class.inactive]="!isActive($index)">
+              <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
+              <span>{{ m.shipsim_cycles | number }}</span>
+            </li>
           }
         </ul>
       }
@@ -216,7 +225,10 @@
         <h4>Modules</h4>
         <ul class="item-list">
           @for (m of build.modules(); track $index) {
-            <li><span>{{ moduleName(m) }}</span><span>{{ m.mass_tons | number }} t</span></li>
+            <li [class.inactive]="!isActive($index)">
+              <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
+              <span>{{ m.mass_tons | number }} t</span>
+            </li>
           }
         </ul>
         <p class="total-line">Modules Total: {{ modulesMassTons() | number }} tons</p>

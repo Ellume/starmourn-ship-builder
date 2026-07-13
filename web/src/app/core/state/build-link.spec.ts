@@ -188,6 +188,40 @@ describe('build-link', () => {
     expect(restored.damageBoostLinks()).toEqual([null]);
   });
 
+  it('round-trips a deactivated module through encode/decode', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.addModule(cannon);
+    build.addModule(cannon);
+    build.setModuleActive(1, false);
+
+    const url = buildShareUrl(build);
+    const [, query] = url.split('?');
+    expect(query).toContain('ia=1');
+    history.pushState('', '', `?${query}`);
+
+    const restored = new BuildStore();
+    applySharedBuildFromUrl(restored, fakeData());
+
+    expect(restored.moduleActive()).toEqual([true, false]);
+  });
+
+  it('omits the `ia` param and defaults every module to active when nothing is deactivated', () => {
+    const build = new BuildStore();
+    build.setHull(hull);
+    build.addModule(cannon);
+
+    expect(encodeBuild(build)).not.toContain('ia=');
+
+    const url = buildShareUrl(build);
+    const [, query] = url.split('?');
+    history.pushState('', '', `?${query}`);
+    const restored = new BuildStore();
+    applySharedBuildFromUrl(restored, fakeData());
+
+    expect(restored.moduleActive()).toEqual([true]);
+  });
+
   it('returns an empty token (bare URL) when no hull is selected', () => {
     const build = new BuildStore();
     expect(encodeBuild(build)).toBe('');

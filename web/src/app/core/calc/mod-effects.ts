@@ -309,6 +309,7 @@ export function computeModdedStats(
 ): ModdedBuildStats {
   const baseline = calculateBuildStats(build);
   const other: OtherEffect[] = [];
+  const isActive = (index: number) => build.moduleActive?.[index] ?? true;
 
   const massContribs: Record<MassTarget, ModContribution[]> = { hull: [], capacitor: [], engine: [], sensor: [], shipsim: [] };
   const thrustContribs: ModContribution[] = [];
@@ -505,7 +506,8 @@ export function computeModdedStats(
     applyDeltas(build.shield?.power_need_halons ?? 0, halonContribs.shield),
   ]);
   const moduleHalon = sumBreakdowns(
-    build.modules.map((m) => {
+    build.modules.map((m, i) => {
+      if (!isActive(i)) return { base: 0, contributions: [], final: 0 };
       const family = m.weapon_type as WeaponFamily | null;
       const contribs = family ? (weaponHalonContribs[family] ?? []) : [];
       return applyDeltas(m.power_use_halons, contribs);
@@ -532,13 +534,19 @@ export function computeModdedStats(
   // weapons, instead of applying the full count to every instance of that type.
   const boostCreditsRemaining = new Map(damageBoostCounts ?? []);
   const weaponDamageBreakdowns = build.modules
-    .filter((m) => m.weapon_module === 'Yes')
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .map((m) => {
+    .map((m, i) => ({ m, active: isActive(i) }))
+    .filter((e) => e.m.weapon_module === 'Yes')
+    .sort((a, b) => a.m.name.localeCompare(b.m.name))
+    .map(({ m, active }) => {
       const family = m.weapon_type as WeaponFamily | null;
-      const creditsLeft = boostCreditsRemaining.get(m.id) ?? 0;
-      const boosted = creditsLeft > 0;
-      if (boosted) boostCreditsRemaining.set(m.id, creditsLeft - 1);
+      // An inactive weapon can't use a linked boost either — leave its credit
+      // available for another active instance of the same weapon type.
+      let boosted = false;
+      if (active) {
+        const creditsLeft = boostCreditsRemaining.get(m.id) ?? 0;
+        boosted = creditsLeft > 0;
+        if (boosted) boostCreditsRemaining.set(m.id, creditsLeft - 1);
+      }
       const dmgContribs = [...(family ? (weaponDamageContribs[family] ?? []) : [])];
       const kearContribs = [...(family ? (weaponKearContribs[family] ?? []) : [])];
       if (boosted) {
@@ -546,11 +554,12 @@ export function computeModdedStats(
         dmgContribs.push({ modName: 'Damage Boost (linked)', level: null, deltaPct: 10 });
         kearContribs.push({ modName: 'Damage Boost (linked)', level: null, deltaPct: 30 });
       }
-      const dmg = applyDeltas(m.weapon_damage ?? 0, dmgContribs);
-      const dps: StatBreakdown = m.firing_speed_s
-        ? { base: dmg.base / m.firing_speed_s, contributions: dmg.contributions, final: dmg.final / m.firing_speed_s }
-        : { base: 0, contributions: dmg.contributions, final: 0 };
-      const kear = applyDeltas(m.cap_drain_kear ?? 0, kearContribs);
+      const dmg = active ? applyDeltas(m.weapon_damage ?? 0, dmgContribs) : { base: 0, contributions: [], final: 0 };
+      const dps: StatBreakdown =
+        active && m.firing_speed_s
+          ? { base: dmg.base / m.firing_speed_s, contributions: dmg.contributions, final: dmg.final / m.firing_speed_s }
+          : { base: 0, contributions: dmg.contributions, final: 0 };
+      const kear = active ? applyDeltas(m.cap_drain_kear ?? 0, kearContribs) : { base: 0, contributions: [], final: 0 };
       return { module: m, alphaStrike: dmg, dps, kear };
     });
   const alphaStrike = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.alphaStrike));
@@ -569,13 +578,14 @@ export function computeModdedStats(
   // would collide on the same key.
   if (build.hull.capacity_tons > 0) {
     const cargoByModuleName = new Map<string, { tons: number; count: number }>();
-    for (const m of build.modules) {
+    build.modules.forEach((m, i) => {
+      if (!isActive(i)) return;
       const tons = cargoCapacityBonusTons(m);
       if (tons > 0) {
         const existing = cargoByModuleName.get(m.name) ?? { tons: 0, count: 0 };
         cargoByModuleName.set(m.name, { tons: existing.tons + tons, count: existing.count + 1 });
       }
-    }
+    });
     for (const [modName, { tons, count }] of cargoByModuleName) {
       cargoContribs.push({ modName, level: null, count, deltaPct: (tons / build.hull.capacity_tons) * 100 });
     }

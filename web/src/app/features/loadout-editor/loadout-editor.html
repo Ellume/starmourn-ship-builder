@@ -110,15 +110,27 @@
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
       <ul class="fitted-list">
-        @for (m of build.weaponModules(); track $index) {
-          <li>
+        @for (row of weaponRows(); track row.index) {
+          <li [class.inactive]="!isActive(row.index)">
             <div class="item-header">
-              <span class="name">{{ m.name }}</span>
-              <p-tag [value]="pointsFor(m) + 'pt'" severity="secondary" />
-              <p-button icon="pi pi-times" [text]="true" size="small" (onClick)="remove(m)" [ariaLabel]="'Remove ' + m.name" />
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="isActive(row.index)"
+                (ngModelChange)="setActive(row.index, $event)"
+                [ariaLabel]="(isActive(row.index) ? 'Deactivate ' : 'Activate ') + row.module.name"
+              />
+              <span class="name">{{ row.module.name }}</span>
+              <p-tag [value]="pointsFor(row.module) + 'pt'" severity="secondary" />
+              <p-button
+                icon="pi pi-times"
+                [text]="true"
+                size="small"
+                (onClick)="remove(row.module)"
+                [ariaLabel]="'Remove ' + row.module.name"
+              />
             </div>
-            <p class="details">{{ weaponDetails(m) }}</p>
-            <p class="details">{{ resourceLine(m) }}</p>
+            <p class="details">{{ weaponDetails(row.module) }}</p>
+            <p class="details">{{ resourceLine(row.module, isActive(row.index)) }}</p>
           </li>
         }
       </ul>
@@ -140,9 +152,15 @@
         <ng-template #item let-m>{{ m.name }} ({{ pointsFor(m) }}pt)</ng-template>
       </p-select>
       <ul class="fitted-list">
-        @for (row of nonWeaponRows(); track $index) {
-          <li>
+        @for (row of nonWeaponRows(); track row.index) {
+          <li [class.inactive]="!isActive(row.index)">
             <div class="item-header">
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="isActive(row.index)"
+                (ngModelChange)="setActive(row.index, $event)"
+                [ariaLabel]="(isActive(row.index) ? 'Deactivate ' : 'Activate ') + row.module.name"
+              />
               <span class="name">{{ row.module.name }}</span>
               <p-tag [value]="pointsFor(row.module) + 'pt'" severity="secondary" />
               <p-button
@@ -156,7 +174,7 @@
             @if (moduleDetails(row.module)) {
               <p class="details">{{ moduleDetails(row.module) }}</p>
             }
-            <p class="details">{{ resourceLine(row.module) }}</p>
+            <p class="details">{{ resourceLine(row.module, isActive(row.index)) }}</p>
             @if (row.boostIndex !== null) {
               <div class="field boost-link">
                 <label [for]="'boost-link-' + row.boostIndex">Link to weapon</label>

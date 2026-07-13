@@ -49,6 +49,7 @@ export class StatsPanel {
         shipsim: this.build.shipsim() ?? undefined,
         sensor: this.build.sensor() ?? undefined,
         modules: this.build.modules(),
+        moduleActive: this.build.moduleActive(),
       },
       this.modEffectSources(),
       this.build.damageBoostCounts(),

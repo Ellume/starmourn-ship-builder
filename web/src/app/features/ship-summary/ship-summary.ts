@@ -57,6 +57,7 @@ export class ShipSummary {
         shipsim: this.build.shipsim() ?? undefined,
         sensor: this.build.sensor() ?? undefined,
         modules: this.build.modules(),
+        moduleActive: this.build.moduleActive(),
       },
       this.modEffectSources(),
       this.build.damageBoostCounts(),
@@ -88,6 +89,14 @@ export class ShipSummary {
   protected readonly moduleSizeBreakdown = computed(() => this.sizeBreakdown(this.build.nonWeaponModules()));
 
   protected readonly weaponBreakdown = computed(() => this.stats()?.weaponBreakdown ?? []);
+  /**
+   * Parallel to `weaponBreakdown()`/`build.weaponModules()` — both are filtered/sorted
+   * from `build.modules()` the same way (filter by weapon_module, then sort by name),
+   * so a stable sort keeps them in lockstep position-for-position with this flag list.
+   */
+  protected readonly weaponActiveFlags = computed<boolean[]>(() => this.activeFlagsFor((m) => m.weapon_module === 'Yes'));
+  /** Parallel to `build.nonWeaponModules()` — see weaponActiveFlags. */
+  protected readonly nonWeaponActiveFlags = computed<boolean[]>(() => this.activeFlagsFor((m) => m.weapon_module === 'No'));
   protected readonly damageTypeBonuses = computed(() => this.stats()?.damageTypeBonuses ?? []);
 
   protected readonly modulesMassTons = computed(() => this.build.modules().reduce((sum, m) => sum + m.mass_tons, 0));
@@ -106,6 +115,20 @@ export class ShipSummary {
   });
 
   protected readonly moduleName = (m: ShipModule) => `${m.id}) ${m.name}`;
+
+  isActive(index: number): boolean {
+    return this.build.moduleActive()[index] ?? true;
+  }
+
+  private activeFlagsFor(predicate: (m: ShipModule) => boolean): boolean[] {
+    const active = this.build.moduleActive();
+    return this.build
+      .modules()
+      .map((module, index) => ({ module, index }))
+      .filter((r) => predicate(r.module))
+      .sort((a, b) => a.module.name.localeCompare(b.module.name))
+      .map((r) => active[r.index] ?? true);
+  }
 
   private sizeBreakdown(modules: ShipModule[]): SizeBreakdown {
     return modules.reduce(

@@ -42,6 +42,15 @@ export interface BuildInput {
   sensor?: ShipComponent;
   /** Fitted modules, weapon and non-weapon alike. */
   modules: ShipModule[];
+  /**
+   * Parallel to `modules` (same index) — whether each fitted instance is powered
+   * on. Defaults to all-active when omitted, so every caller that doesn't care
+   * about this (tests, older call sites) keeps behaving as if every module were
+   * active. An inactive module draws no power and, if a weapon, deals no damage —
+   * but still costs its shipsim cycles (a hull always has to simulate what's
+   * fitted, active or not) and still occupies its hardpoint/module-capacity slot.
+   */
+  moduleActive?: boolean[];
 }
 
 export interface WeaponContribution {
@@ -112,11 +121,11 @@ function fittedComponents(build: BuildInput): ShipComponent[] {
 
 export function calculateBuildStats(build: BuildInput): BuildStats {
   const components = fittedComponents(build);
-  const weapons = build.modules.filter((m) => m.weapon_module === 'Yes');
+  const isActive = (index: number) => build.moduleActive?.[index] ?? true;
 
   const powerUsed =
     components.reduce((sum, c) => sum + c.power_need_halons, 0) +
-    build.modules.reduce((sum, m) => sum + m.power_use_halons, 0);
+    build.modules.reduce((sum, m, i) => sum + (isActive(i) ? m.power_use_halons : 0), 0);
   const powerMax = build.hull.power_halons;
 
   const cyclesUsed = build.modules.reduce((sum, m) => sum + m.shipsim_cycles, 0);
@@ -125,12 +134,15 @@ export function calculateBuildStats(build: BuildInput): BuildStats {
   const hullHealth = build.hull.strength_dam;
   const shieldHealth = build.shield?.shield_strength_dam ?? 0;
 
-  const weaponBreakdown: WeaponContribution[] = weapons.map((module) => ({
-    module,
-    alphaStrike: module.weapon_damage ?? 0,
-    dps: module.firing_speed_s ? (module.weapon_damage ?? 0) / module.firing_speed_s : 0,
-    capDrainKear: module.cap_drain_kear ?? 0,
-  }));
+  const weaponBreakdown: WeaponContribution[] = build.modules
+    .map((module, index) => ({ module, active: isActive(index) }))
+    .filter((e) => e.module.weapon_module === 'Yes')
+    .map(({ module, active }) => ({
+      module,
+      alphaStrike: active ? (module.weapon_damage ?? 0) : 0,
+      dps: active && module.firing_speed_s ? (module.weapon_damage ?? 0) / module.firing_speed_s : 0,
+      capDrainKear: active ? (module.cap_drain_kear ?? 0) : 0,
+    }));
 
   const mass =
     build.hull.mass_tons +

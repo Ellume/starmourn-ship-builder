@@ -276,4 +276,52 @@ describe('computeModdedStats', () => {
     expect(modded.cargoCapacityTons.final).toBeCloseTo(expectedFinal, 6);
     expect(modded.cargoCapacityTons.contributions).toHaveLength(3);
   });
+
+  describe('moduleActive (deactivating a fitted weapon/module)', () => {
+    it('zeroes a deactivated weapon\'s alpha/DPS/kear and its power draw, but leaves shipsim cycles untouched', () => {
+      const withCannon = { ...build, modules: [cannon1], moduleActive: [false] };
+      const modded = computeModdedStats(withCannon, []);
+
+      expect(modded.weaponBreakdown).toEqual([
+        { module: cannon1, alphaStrike: { base: 0, contributions: [], final: 0 }, dps: { base: 0, contributions: [], final: 0 }, capDrainKear: { base: 0, contributions: [], final: 0 } },
+      ]);
+      expect(modded.alphaStrike.final).toBe(0);
+      expect(modded.dps.final).toBe(0);
+      expect(modded.totalCapDrainKear.final).toBe(0);
+      // Power still includes the fitted components (2350, per the no-modules-fitted baseline) —
+      // only the cannon's own 100-halon draw drops out while it's inactive.
+      expect(modded.power.used.final).toBe(2350);
+      // Cycles usage comes straight from baseline (calculateBuildStats), unaffected by active state.
+      expect(modded.cycles.used).toBe(cannon1.shipsim_cycles);
+      expect(modded.baseline.cycles.used).toBe(cannon1.shipsim_cycles);
+    });
+
+    it('an inactive weapon does not consume a linked Damage Boost credit, leaving it for an active instance', () => {
+      const withTwoCannons = { ...build, modules: [cannon1, cannon1], moduleActive: [false, true] };
+      const modded = computeModdedStats(withTwoCannons, [], new Map([[cannon1.id, 1]]));
+
+      const inactiveRow = modded.weaponBreakdown.find((w) => w.alphaStrike.final === 0)!;
+      const activeRow = modded.weaponBreakdown.find((w) => w.alphaStrike.final !== 0)!;
+      expect(inactiveRow.alphaStrike.contributions).toEqual([]);
+      // The active instance still gets the boost — the inactive one's credit wasn't wasted.
+      expect(activeRow.alphaStrike.contributions).toEqual([{ modName: 'Damage Boost (linked)', level: null, deltaPct: 10 }]);
+      expect(activeRow.alphaStrike.final).toBeCloseTo((cannon1.weapon_damage ?? 0) * 1.1, 6);
+    });
+
+    it('a deactivated Cargo Hold module stops contributing its tons bonus', () => {
+      const withCargoHold = { ...build, modules: [cargoHold1], moduleActive: [false] };
+      const modded = computeModdedStats(withCargoHold, []);
+
+      expect(modded.cargoCapacityTons.final).toBe(hull.capacity_tons);
+      expect(modded.cargoCapacityTons.contributions).toEqual([]);
+    });
+
+    it('omitting moduleActive defaults every module to active, matching every pre-existing call site', () => {
+      const withCannon = { ...build, modules: [cannon1] };
+      const modded = computeModdedStats(withCannon, []);
+
+      expect(modded.alphaStrike.final).toBe(cannon1.weapon_damage);
+      expect(modded.power.used.final).toBe(2350 + cannon1.power_use_halons);
+    });
+  });
 });

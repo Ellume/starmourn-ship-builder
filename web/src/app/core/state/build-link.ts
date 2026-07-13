@@ -38,6 +38,10 @@ export function encodeBuild(build: BuildStore): string {
   const modules = build.modules();
   if (modules.length) parts.push(`m=${modules.map((m) => m.id).join(',')}`);
 
+  const active = build.moduleActive();
+  const inactiveIndices = active.flatMap((isActive, i) => (isActive ? [] : [i]));
+  if (inactiveIndices.length) parts.push(`ia=${inactiveIndices.join(',')}`);
+
   const boostLinks = build.damageBoostLinks();
   if (boostLinks.some((id) => id != null)) parts.push(`bl=${boostLinks.map((id) => id ?? '').join(',')}`);
 
@@ -100,6 +104,14 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
     const module = data.modules().find((m) => m.id === moduleId);
     if (module) build.addModule(module);
   }
+
+  /** Indices (into the just-fitted `modules`/`moduleActive`) to switch off — see encodeBuild's `ia`. */
+  const inactiveIndices = (params.get('ia') ?? '')
+    .split(',')
+    .filter(Boolean)
+    .map(Number)
+    .filter(Number.isInteger);
+  for (const index of inactiveIndices) build.setModuleActive(index, false);
 
   /**
    * One token per fitted Damage Boost module (same order as `damageBoostLinks`,

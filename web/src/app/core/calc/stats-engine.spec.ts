@@ -154,4 +154,50 @@ describe('calculateBuildStats — edge cases', () => {
     expect(stats.power.remaining).toBe(-4000);
     expect(stats.cycles.remaining).toBe(-5000);
   });
+
+  it('an inactive module draws no power and a disabled weapon deals no damage/kear, but shipsim cycles are unaffected', () => {
+    const weaponModule: ShipModule = {
+      id: 2,
+      size: 'small',
+      name: 'Test Cannon',
+      weapon_module: 'Yes',
+      weapon_type: 'cannon',
+      classes: ['Interceptor'],
+      description: '',
+      mass_tons: 0,
+      power_use_halons: 100,
+      shipsim_cycles: 1000,
+      firing_speed_s: 2,
+      weapon_damage: 200,
+      cap_drain_kear: 50,
+      reload_speed_s: 2,
+      optimal_range: 6,
+      fall_off: 15,
+      use_no_ammo: null,
+      cooldown_s: null,
+      effect_bonus: null,
+      price_marks: 0,
+      notes: null,
+    };
+
+    const active = calculateBuildStats({ hull, modules: [weaponModule], moduleActive: [true] });
+    expect(active.power.used).toBe(100);
+    expect(active.cycles.used).toBe(1000);
+    expect(active.alphaStrike).toBe(200);
+    expect(active.dps).toBe(100);
+    expect(active.totalCapDrainKear).toBe(50);
+
+    const inactive = calculateBuildStats({ hull, modules: [weaponModule], moduleActive: [false] });
+    expect(inactive.power.used).toBe(0);
+    expect(inactive.cycles.used).toBe(1000); // shipsim cycles are drawn regardless of active state
+    expect(inactive.alphaStrike).toBe(0);
+    expect(inactive.dps).toBe(0);
+    expect(inactive.totalCapDrainKear).toBe(0);
+    expect(inactive.weaponBreakdown).toEqual([{ module: weaponModule, alphaStrike: 0, dps: 0, capDrainKear: 0 }]);
+
+    // Omitting moduleActive entirely defaults every module to active, matching every pre-existing caller.
+    const defaulted = calculateBuildStats({ hull, modules: [weaponModule] });
+    expect(defaulted.power.used).toBe(100);
+    expect(defaulted.alphaStrike).toBe(200);
+  });
 });
