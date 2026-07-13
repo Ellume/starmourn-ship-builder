@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { DrawerModule } from 'primeng/drawer';
 import { ToolbarModule } from 'primeng/toolbar';
 
@@ -15,7 +16,7 @@ import { ShipSummary } from './features/ship-summary/ship-summary';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarModule, ButtonModule, DrawerModule, ShipPicker, LoadoutEditor, ModsPanel, ShipSummary],
+  imports: [RouterOutlet, ToolbarModule, ButtonModule, DrawerModule, DialogModule, ShipPicker, LoadoutEditor, ModsPanel, ShipSummary],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -25,15 +26,17 @@ export class App implements OnInit {
   private readonly build = inject(BuildStore);
 
   protected readonly summaryOpen = signal(false);
+  protected readonly commandsDialogOpen = signal(false);
+  protected readonly copiedSection = signal<'hull' | 'mods' | null>(null);
 
   /**
-   * In-game command sequence to reproduce the current build. Confirmed live
-   * against the old site: "SF MODEL <id>", "SF INSTALL <TYPE> <id>" for the 5
-   * fitted components, and — resolving a gap noted in data/ship-purchases-notes.md
-   * ("module install command wasn't captured") — "SF INSTALL MODULE <id>" for
-   * both weapon and non-weapon modules alike.
+   * In-game command sequence to reproduce the current build's hull and components.
+   * Confirmed live against the old site: "SF MODEL <id>", "SF INSTALL <TYPE> <id>"
+   * for the 5 fitted components, and — resolving a gap noted in
+   * data/ship-purchases-notes.md ("module install command wasn't captured") —
+   * "SF INSTALL MODULE <id>" for both weapon and non-weapon modules alike.
    */
-  protected readonly commands = computed<string[]>(() => {
+  protected readonly hullCommands = computed<string[]>(() => {
     const hull = this.build.hull();
     if (!hull) return [];
 
@@ -49,12 +52,27 @@ export class App implements OnInit {
     return lines;
   });
 
+  /**
+   * In-game command sequence for fitted ship mods, kept separate from hullCommands
+   * since mods are crafted/installed independently of the hull (see
+   * data/ship-mods-notes.md). Syntax confirmed live against the old site:
+   * "MOD INSTALL <shortname> INTO SHIP AT LEVEL <level>", one line per fitted mod.
+   */
+  protected readonly modCommands = computed<string[]>(() =>
+    this.build.mods().map((mod) => `MOD INSTALL ${mod.shortname} INTO SHIP AT LEVEL ${mod.level}`),
+  );
+
   ngOnInit(): void {
     this.data.load();
   }
 
-  copyCommands(): void {
-    navigator.clipboard.writeText(this.commands().join('\n'));
+  copySection(section: 'hull' | 'mods'): void {
+    const lines = section === 'hull' ? this.hullCommands() : this.modCommands();
+    navigator.clipboard.writeText(lines.join('\n'));
+    this.copiedSection.set(section);
+    setTimeout(() => {
+      if (this.copiedSection() === section) this.copiedSection.set(null);
+    }, 1500);
   }
 
   copyShareLink(): void {

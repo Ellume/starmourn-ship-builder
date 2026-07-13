@@ -21,3 +21,37 @@
 .error {
   color: var(--p-red-400, #f87171);
 }
+
+.commands-section {
+  & + & {
+    margin-top: 1.25rem;
+  }
+}
+
+.commands-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.commands-block {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem;
+  background: var(--p-surface-ground, #1e1e1e);
+  border-radius: 8px;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.commands-empty {
+  margin: 0.5rem 0 0;
+  color: var(--p-text-muted-color, #888);
+  font-size: 0.9rem;
+}

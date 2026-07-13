@@ -9,9 +9,10 @@ scaling effect, and are applied via a `MOD EFFECT` command family rather than
 `SF MODEL`/`SF INSTALL`. No Marks price appears anywhere — crafting cost is
 entirely in parts.
 
-The install/craft mechanism itself (command syntax, any additional Marks
-cost, which slot pool a mod occupies) is not covered by this data — only the
-mod catalog and its per-level parts/effects are.
+The crafting mechanism itself (any additional Marks cost, which slot pool a
+mod occupies) is not covered by this data — only the mod catalog and its
+per-level parts/effects are. The install command *is* now confirmed (see
+below).
 
 ## In-game commands these are sourced from
 - `mod effect list shipmods` — the full catalog: shortname, type (always
@@ -19,6 +20,12 @@ mod catalog and its per-level parts/effects are.
 - `mod effect info <shortname>` — full detail for one mod: family,
   manufacturer, info text (the mechanical tradeoff), parts cost per level 1-15
   (stated for Interceptor hulls), and effect per level 1-15.
+- `MOD INSTALL <shortname> INTO SHIP AT LEVEL <level>` — installs/fits a
+  crafted mod at the given level. Confirmed live against the old fan tool
+  (seurimas.github.io/starmourn-ship-builder), which emits this line per
+  fitted mod in its command-output box; the shortnames it uses are unchanged
+  from this data's, so the syntax transfers even though some mod full names
+  have since changed.
 
 ## Data files
 - **`ship-mods.json`** (50 rows) — one row per mod: shortname, full name,

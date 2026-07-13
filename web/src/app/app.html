@@ -3,8 +3,8 @@
     <span class="app-title">Starmourn Ship Builder</span>
   </ng-template>
   <ng-template #end>
-    @if (commands().length) {
-      <p-button icon="pi pi-copy" label="Copy commands" size="small" [text]="true" (onClick)="copyCommands()" />
+    @if (hullCommands().length) {
+      <p-button icon="pi pi-copy" label="Copy commands" size="small" [text]="true" (onClick)="commandsDialogOpen.set(true)" />
       <p-button icon="pi pi-share-alt" label="Share link" size="small" [text]="true" (onClick)="copyShareLink()" />
       <p-button icon="pi pi-list" label="Ship Summary" size="small" [text]="true" (onClick)="summaryOpen.set(true)" />
     }
@@ -20,6 +20,42 @@
 <p-drawer [(visible)]="summaryOpen" position="right" header="Ship Summary" [modal]="false" styleClass="summary-drawer">
   <app-ship-summary />
 </p-drawer>
+
+<p-dialog [(visible)]="commandsDialogOpen" header="Copy commands" [modal]="true" styleClass="commands-dialog">
+  <section class="commands-section">
+    <div class="commands-section-header">
+      <h3>Hull &amp; Components</h3>
+      <p-button
+        [icon]="copiedSection() === 'hull' ? 'pi pi-check' : 'pi pi-copy'"
+        [label]="copiedSection() === 'hull' ? 'Copied' : 'Copy'"
+        size="small"
+        [text]="true"
+        (onClick)="copySection('hull')"
+      />
+    </div>
+    <pre class="commands-block">{{ hullCommands().join('\n') }}</pre>
+  </section>
+
+  <section class="commands-section">
+    <div class="commands-section-header">
+      <h3>Ship Mods</h3>
+      @if (modCommands().length) {
+        <p-button
+          [icon]="copiedSection() === 'mods' ? 'pi pi-check' : 'pi pi-copy'"
+          [label]="copiedSection() === 'mods' ? 'Copied' : 'Copy'"
+          size="small"
+          [text]="true"
+          (onClick)="copySection('mods')"
+        />
+      }
+    </div>
+    @if (modCommands().length) {
+      <pre class="commands-block">{{ modCommands().join('\n') }}</pre>
+    } @else {
+      <p class="commands-empty">No mods fitted.</p>
+    }
+  </section>
+</p-dialog>
 
 <main class="builder">
   @if (data.loadError()) {
