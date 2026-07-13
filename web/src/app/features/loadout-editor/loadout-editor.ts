@@ -179,6 +179,6 @@ export class LoadoutEditor {
             : c.type === 'Shield'
               ? `${c.shield_strength_dam}@${c.recharge_s}s`
               : `${c.max_cycles} cycles`;
-    return `${c.make} ${c.model} — ${keyStat} — ${c.mass_tons}t/${c.power_need_halons}h`;
+    return `${c.make} ${c.model} · ${keyStat} · ${c.mass_tons}t/${c.power_need_halons}h`;
   }
 }
