@@ -159,8 +159,8 @@ describe('computeModdedStats', () => {
 
     expect(modded.cargoCapacityTons.base).toBe(hull.capacity_tons);
     expect(modded.cargoCapacityTons.final).toBeCloseTo(hull.capacity_tons * 1.021, 6);
-    expect(modded.hardpoints.max.final).toBeCloseTo(hull.hardpoints * (1 - 0.014), 6);
-    expect(modded.modCap.max.final).toBeCloseTo(hull.mod_cap * (1 - 0.014), 6);
+    expect(modded.hardpoints.max.final).toBe(Math.floor(hull.hardpoints * (1 - 0.014)));
+    expect(modded.modCap.max.final).toBe(Math.floor(hull.mod_cap * (1 - 0.014)));
     expect(modded.other).toEqual([]);
   });
 
@@ -172,8 +172,8 @@ describe('computeModdedStats', () => {
     const modded = computeModdedStats(build, modSources);
 
     const converted = hull.hardpoints * 0.0175;
-    expect(modded.hardpoints.max.final).toBeCloseTo(hull.hardpoints - converted, 6);
-    expect(modded.modCap.max.final).toBeCloseTo(hull.mod_cap + converted, 6);
+    expect(modded.hardpoints.max.final).toBe(Math.floor(hull.hardpoints - converted));
+    expect(modded.modCap.max.final).toBe(Math.floor(hull.mod_cap + converted));
     expect(modded.hardpoints.max.contributions).toEqual([{ modName: 'Expanded Module Bay', level: 1, deltaPct: -1.75 }]);
     expect(modded.modCap.max.contributions).toEqual([{ modName: 'Expanded Module Bay', level: 1, deltaPct: 1.75 }]);
   });

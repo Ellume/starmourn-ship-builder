@@ -624,7 +624,9 @@ export function computeModdedStats(
       ...hpToMcContribs.map((c) => ({ ...c, deltaPct: -c.deltaPct })),
       ...mcToHpContribs,
     ]),
-    final: baseHardpoints * (1 + hardpointPct / 100) - hardpointsConvertedOut + hardpointsConvertedIn,
+    // Hardpoint/module capacity are always whole slots in-game — round down rather than
+    // showing a fractional budget from a percentage boost.
+    final: Math.floor(baseHardpoints * (1 + hardpointPct / 100) - hardpointsConvertedOut + hardpointsConvertedIn),
   };
   const moduleMax: StatBreakdown = {
     base: baseModCap,
@@ -633,7 +635,7 @@ export function computeModdedStats(
       ...mcToHpContribs.map((c) => ({ ...c, deltaPct: -c.deltaPct })),
       ...hpToMcContribs,
     ]),
-    final: baseModCap * (1 + modulePct / 100) - moduleConvertedOut + moduleConvertedIn,
+    final: Math.floor(baseModCap * (1 + modulePct / 100) - moduleConvertedOut + moduleConvertedIn),
   };
   const hardpointsUsed = hardpointPointsUsed(build.modules);
   const moduleUsed = modCapPointsUsed(build.modules);
