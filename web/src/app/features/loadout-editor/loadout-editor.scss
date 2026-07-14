@@ -3,8 +3,11 @@
 }
 
 h3 {
-  font-size: 1rem;
-  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .component-grid {
@@ -51,8 +54,6 @@ h3 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
 
   .capacity {
