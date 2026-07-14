@@ -13,7 +13,7 @@ h4 {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: var(--p-content-hover-background);
-  border-left: 3px solid var(--p-blue-300, #93c5fd);
+  border-left: 3px solid var(--accent-color);
   border-radius: 4px;
 
   &:first-of-type {
@@ -40,9 +40,9 @@ h4 {
     font-weight: 600;
   }
 
-  /* Same blue as .mod-breakdown's .mod-line below — a quick "this number has an active bonus" signal without expanding the breakdown. */
+  /* Same color as .mod-breakdown's .mod-line below — a quick "this number has an active bonus" signal without expanding the breakdown. */
   &.boosted dd {
-    color: var(--p-blue-300, #93c5fd);
+    color: var(--boost-color);
   }
 
   &.warn dd {
@@ -75,6 +75,6 @@ h4 {
   }
 
   .mod-line {
-    color: var(--p-blue-300, #93c5fd);
+    color: var(--boost-color);
   }
 }

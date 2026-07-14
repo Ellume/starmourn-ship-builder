@@ -9,6 +9,16 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* This app's two intentional accent colors, in one place so either can be
+   retinted by changing a single line: --accent-color for structural/nav
+   chrome (matches PrimeNG's green primary, used app-wide for buttons/toggles),
+   --boost-color for the one narrower meaning "this value has an active mod
+   bonus" (stats-panel, ship-summary breakdowns). */
+:root {
+  --accent-color: var(--p-primary-400, #34d399);
+  --boost-color: var(--p-blue-300, #93c5fd);
+}
+
 /* PrimeNG portals p-drawer's root element under its own component's view encapsulation,
    not the host app's — a scoped rule in app.scss can never match it, so this has to live
    in the global stylesheet instead. */
@@ -20,4 +30,21 @@ body {
 .p-dialog.commands-dialog {
   width: 34rem;
   max-width: 90vw;
+}
+
+/* Same portal-encapsulation reason as .summary-drawer above: p-card's internals
+   render inside PrimeNG's own component view, so these can't be scoped from
+   stats-panel.scss. Zeroing the card body's own left/right padding here means
+   its content lines up with the plain ship-summary sections below it, which
+   only get their inset from the drawer's own padding — otherwise the card
+   double-pads and reads as narrower/more centered than the rest. */
+.summary-drawer .p-card-body {
+  padding-inline: 0;
+}
+
+.summary-drawer .p-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid var(--accent-color);
 }
