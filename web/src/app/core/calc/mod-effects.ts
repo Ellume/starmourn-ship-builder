@@ -198,6 +198,12 @@ export interface CapacityStat {
   remaining: number;
 }
 
+/** One component's or module's share of ship-wide power draw, modded. */
+export interface PowerLine {
+  label: string;
+  halons: StatBreakdown;
+}
+
 export interface ModdedBuildStats {
   /** Unmodified stats-engine output, for reference/sanity-checking against `base` fields below. */
   baseline: BuildStats;
@@ -208,7 +214,15 @@ export interface ModdedBuildStats {
   /** null when no engine is fitted (same guard as thrustOverMass). */
   timeToMaxSpeedSeconds: StatBreakdown | null;
   health: { hull: StatBreakdown; shield: StatBreakdown; total: number };
-  power: { used: StatBreakdown; max: number; remaining: number };
+  power: {
+    used: StatBreakdown;
+    max: number;
+    remaining: number;
+    /** Capacitor/Engine/Sensor/Shield/Shipsim, each with its own mod contributions applied — see byComponent's use in ship-summary. */
+    byComponent: PowerLine[];
+    /** Index-aligned with `build.modules` (including inactive ones, shown as a 0 final by the caller via moduleActive). */
+    byModule: StatBreakdown[];
+  };
   cycles: { max: StatBreakdown; used: number; remaining: number };
   alphaStrike: StatBreakdown;
   dps: StatBreakdown;
@@ -498,24 +512,30 @@ export function computeModdedStats(
   const health = { hull: hullHp, shield: shieldHp, total: hullHp.final + shieldHp.final };
 
   // --- Power ---
-  const componentHalon = sumBreakdowns([
-    applyDeltas(build.capacitor?.power_need_halons ?? 0, halonContribs.capacitor),
-    applyDeltas(build.engine?.power_need_halons ?? 0, halonContribs.engine),
-    applyDeltas(build.sensor?.power_need_halons ?? 0, halonContribs.sensor),
-    applyDeltas(build.shipsim?.power_need_halons ?? 0, halonContribs.shipsim),
-    applyDeltas(build.shield?.power_need_halons ?? 0, halonContribs.shield),
-  ]);
-  const moduleHalon = sumBreakdowns(
-    build.modules.map((m, i) => {
-      if (!isActive(i)) return { base: 0, contributions: [], final: 0 };
-      const family = m.weapon_type as WeaponFamily | null;
-      const contribs = family ? (weaponHalonContribs[family] ?? []) : [];
-      return applyDeltas(m.power_use_halons, contribs);
-    }),
-  );
+  const powerByComponent: PowerLine[] = [
+    { label: 'Capacitor', halons: applyDeltas(build.capacitor?.power_need_halons ?? 0, halonContribs.capacitor) },
+    { label: 'Engine', halons: applyDeltas(build.engine?.power_need_halons ?? 0, halonContribs.engine) },
+    { label: 'Sensor', halons: applyDeltas(build.sensor?.power_need_halons ?? 0, halonContribs.sensor) },
+    { label: 'Shield', halons: applyDeltas(build.shield?.power_need_halons ?? 0, halonContribs.shield) },
+    { label: 'Shipsim', halons: applyDeltas(build.shipsim?.power_need_halons ?? 0, halonContribs.shipsim) },
+  ];
+  const componentHalon = sumBreakdowns(powerByComponent.map((l) => l.halons));
+  const powerByModule = build.modules.map((m, i) => {
+    if (!isActive(i)) return { base: 0, contributions: [], final: 0 };
+    const family = m.weapon_type as WeaponFamily | null;
+    const contribs = family ? (weaponHalonContribs[family] ?? []) : [];
+    return applyDeltas(m.power_use_halons, contribs);
+  });
+  const moduleHalon = sumBreakdowns(powerByModule);
   const powerUsed = sumBreakdowns([componentHalon, moduleHalon]);
   // No mod stat in the data raises/lowers a hull's power_halons max — only draw is ever modded.
-  const power = { used: powerUsed, max: baseline.power.max, remaining: baseline.power.max - powerUsed.final };
+  const power = {
+    used: powerUsed,
+    max: baseline.power.max,
+    remaining: baseline.power.max - powerUsed.final,
+    byComponent: powerByComponent,
+    byModule: powerByModule,
+  };
 
   // --- Cycles ---
   const cyclesMaxBreakdown = applyDeltas(build.shipsim?.max_cycles ?? 0, cyclesContribs);

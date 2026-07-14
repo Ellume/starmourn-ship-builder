@@ -18,6 +18,7 @@ interface PowerLine {
   label: string;
   halons: number;
   pctOfMax: number;
+  contributions: ModContribution[];
 }
 
 /**
@@ -104,15 +105,16 @@ export class ShipSummary {
   protected readonly powerBreakdown = computed<PowerLine[]>(() => {
     const s = this.stats();
     if (!s) return [];
-    const lines: PowerLine[] = [
-      { label: 'Capacitor', halons: this.build.capacitor()?.power_need_halons ?? 0, pctOfMax: 0 },
-      { label: 'Engine', halons: this.build.engine()?.power_need_halons ?? 0, pctOfMax: 0 },
-      { label: 'Sensor', halons: this.build.sensor()?.power_need_halons ?? 0, pctOfMax: 0 },
-      { label: 'Shield', halons: this.build.shield()?.power_need_halons ?? 0, pctOfMax: 0 },
-      { label: 'Shipsim', halons: this.build.shipsim()?.power_need_halons ?? 0, pctOfMax: 0 },
-    ];
-    return lines.map((l) => ({ ...l, pctOfMax: s.power.max ? (l.halons / s.power.max) * 100 : 0 }));
+    return s.power.byComponent.map((l) => ({
+      label: l.label,
+      halons: l.halons.final,
+      pctOfMax: s.power.max ? (l.halons.final / s.power.max) * 100 : 0,
+      contributions: l.halons.contributions,
+    }));
   });
+
+  /** Index-aligned with `build.modules()` — see mod-effects's power.byModule. */
+  protected readonly modulePowerBreakdown = computed(() => this.stats()?.power.byModule ?? []);
 
   protected readonly moduleName = (m: ShipModule) => `${m.id}) ${m.name}`;
 

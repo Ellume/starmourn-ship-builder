@@ -173,16 +173,37 @@
       <h4>Consumed</h4>
       <ul class="item-list">
         @for (line of powerBreakdown(); track line.label) {
-          <li><span>{{ line.label }}</span><span>{{ line.halons | number }} ({{ line.pctOfMax | number: '1.0-0' }}%)</span></li>
+          <li class="weapon-row">
+            <div class="weapon-row-main">
+              <span>{{ line.label }}</span>
+              <span>{{ line.halons | number }} ({{ line.pctOfMax | number: '1.0-0' }}%)</span>
+            </div>
+            @if (line.contributions.length) {
+              <ul class="mod-breakdown">
+                @for (c of line.contributions; track c.modName + c.level) {
+                  <li class="mod-line">{{ contributionText(c) }}</li>
+                }
+              </ul>
+            }
+          </li>
         }
       </ul>
       @if (build.modules().length) {
         <h4>Modules</h4>
         <ul class="item-list">
           @for (m of build.modules(); track $index) {
-            <li [class.inactive]="!isActive($index)">
-              <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
-              <span>{{ isActive($index) ? (m.power_use_halons | number) : 0 }}</span>
+            <li class="weapon-row" [class.inactive]="!isActive($index)">
+              <div class="weapon-row-main">
+                <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
+                <span>{{ modulePowerBreakdown()[$index]?.final | number }}</span>
+              </div>
+              @if (isActive($index) && modulePowerBreakdown()[$index]?.contributions?.length) {
+                <ul class="mod-breakdown">
+                  @for (c of modulePowerBreakdown()[$index].contributions; track c.modName + c.level) {
+                    <li class="mod-line">{{ contributionText(c) }}</li>
+                  }
+                </ul>
+              }
             </li>
           }
         </ul>
