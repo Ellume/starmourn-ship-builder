@@ -5,7 +5,16 @@
   <ng-template #end>
     @if (hullCommands().length) {
       <p-button icon="pi pi-copy" label="Copy commands" size="small" [text]="true" (onClick)="commandsDialogOpen.set(true)" />
-      <p-button icon="pi pi-share-alt" label="Share link" size="small" [text]="true" (onClick)="copyShareLink()" />
+      <p-button
+        [icon]="copyIcon(shareLinkStatus(), 'pi pi-share-alt')"
+        [label]="copyLabel(shareLinkStatus(), 'Share link')"
+        size="small"
+        [text]="true"
+        [severity]="shareLinkStatus() === 'failed' ? 'danger' : undefined"
+        pTooltip="Copies a link to the current build"
+        tooltipPosition="bottom"
+        (onClick)="copyShareLink()"
+      />
       <p-button icon="pi pi-list" label="Ship Summary" size="small" [text]="true" (onClick)="summaryOpen.set(true)" />
     }
     <p-button
@@ -26,10 +35,11 @@
     <div class="commands-section-header">
       <h3>Hull &amp; Components</h3>
       <p-button
-        [icon]="copiedSection() === 'hull' ? 'pi pi-check' : 'pi pi-copy'"
-        [label]="copiedSection() === 'hull' ? 'Copied' : 'Copy'"
+        [icon]="copyIcon(sectionStatus('hull'), 'pi pi-copy')"
+        [label]="copyLabel(sectionStatus('hull'), 'Copy')"
         size="small"
         [text]="true"
+        [severity]="sectionStatus('hull') === 'failed' ? 'danger' : undefined"
         (onClick)="copySection('hull')"
       />
     </div>
@@ -41,10 +51,11 @@
       <h3>Ship Mods</h3>
       @if (modCommands().length) {
         <p-button
-          [icon]="copiedSection() === 'mods' ? 'pi pi-check' : 'pi pi-copy'"
-          [label]="copiedSection() === 'mods' ? 'Copied' : 'Copy'"
+          [icon]="copyIcon(sectionStatus('mods'), 'pi pi-copy')"
+          [label]="copyLabel(sectionStatus('mods'), 'Copy')"
           size="small"
           [text]="true"
+          [severity]="sectionStatus('mods') === 'failed' ? 'danger' : undefined"
           (onClick)="copySection('mods')"
         />
       }

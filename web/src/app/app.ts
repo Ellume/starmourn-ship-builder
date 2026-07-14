@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DrawerModule } from 'primeng/drawer';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { DataService } from './core/data/data.service';
 import { buildShareUrl } from './core/state/build-link';
@@ -16,7 +17,18 @@ import { ShipSummary } from './features/ship-summary/ship-summary';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarModule, ButtonModule, DrawerModule, DialogModule, ShipPicker, LoadoutEditor, ModsPanel, ShipSummary],
+  imports: [
+    RouterOutlet,
+    ToolbarModule,
+    ButtonModule,
+    DrawerModule,
+    DialogModule,
+    TooltipModule,
+    ShipPicker,
+    LoadoutEditor,
+    ModsPanel,
+    ShipSummary,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -27,7 +39,8 @@ export class App implements OnInit {
 
   protected readonly summaryOpen = signal(false);
   protected readonly commandsDialogOpen = signal(false);
-  protected readonly copiedSection = signal<'hull' | 'mods' | null>(null);
+  protected readonly copiedSection = signal<{ section: 'hull' | 'mods'; ok: boolean } | null>(null);
+  protected readonly shareLinkStatus = signal<'copied' | 'failed' | null>(null);
 
   /**
    * In-game command sequence to reproduce the current build's hull and components.
@@ -66,16 +79,49 @@ export class App implements OnInit {
     this.data.load();
   }
 
+  protected sectionStatus(section: 'hull' | 'mods'): 'copied' | 'failed' | null {
+    const current = this.copiedSection();
+    if (!current || current.section !== section) return null;
+    return current.ok ? 'copied' : 'failed';
+  }
+
+  protected copyIcon(status: 'copied' | 'failed' | null, defaultIcon: string): string {
+    if (status === 'copied') return 'pi pi-check';
+    if (status === 'failed') return 'pi pi-exclamation-triangle';
+    return defaultIcon;
+  }
+
+  protected copyLabel(status: 'copied' | 'failed' | null, defaultLabel: string): string {
+    if (status === 'copied') return 'Copied';
+    if (status === 'failed') return 'Copy failed';
+    return defaultLabel;
+  }
+
+  /** Writes to the clipboard and reports success/failure via `onResult` — a rejected
+   * write (e.g. Safari's clipboard restrictions, an insecure/http origin, a permission-
+   * denied iframe) should still surface *something* to the user rather than a click
+   * that silently does nothing. */
+  private writeToClipboard(text: string, onResult: (ok: boolean) => void): void {
+    navigator.clipboard.writeText(text).then(
+      () => onResult(true),
+      () => onResult(false),
+    );
+  }
+
   copySection(section: 'hull' | 'mods'): void {
     const lines = section === 'hull' ? this.hullCommands() : this.modCommands();
-    navigator.clipboard.writeText(lines.join('\n'));
-    this.copiedSection.set(section);
-    setTimeout(() => {
-      if (this.copiedSection() === section) this.copiedSection.set(null);
-    }, 1500);
+    this.writeToClipboard(lines.join('\n'), (ok) => {
+      this.copiedSection.set({ section, ok });
+      setTimeout(() => {
+        if (this.copiedSection()?.section === section) this.copiedSection.set(null);
+      }, 1500);
+    });
   }
 
   copyShareLink(): void {
-    navigator.clipboard.writeText(buildShareUrl(this.build, this.data));
+    this.writeToClipboard(buildShareUrl(this.build, this.data), (ok) => {
+      this.shareLinkStatus.set(ok ? 'copied' : 'failed');
+      setTimeout(() => this.shareLinkStatus.set(null), 1500);
+    });
   }
 }
