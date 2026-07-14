@@ -6,6 +6,11 @@
   }
 }
 
+/* Same color as .mod-breakdown's .mod-line below — flags a modded stat at a glance. */
+p.boosted {
+  color: var(--boost-color);
+}
+
 section {
   margin-bottom: 1.5rem;
 

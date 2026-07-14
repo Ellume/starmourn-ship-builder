@@ -176,7 +176,7 @@
           <li class="weapon-row">
             <div class="weapon-row-main">
               <span>{{ line.label }}</span>
-              <span>{{ line.halons | number }} ({{ line.pctOfMax | number: '1.0-0' }}%)</span>
+              <span [class.boosted]="line.contributions.length">{{ line.halons | number }} ({{ line.pctOfMax | number: '1.0-0' }}%)</span>
             </div>
             @if (line.contributions.length) {
               <ul class="mod-breakdown">
@@ -195,7 +195,7 @@
             <li class="weapon-row" [class.inactive]="!isActive($index)">
               <div class="weapon-row-main">
                 <span>{{ moduleName(m) }}@if (!isActive($index)) { <span class="hint">(inactive)</span> }</span>
-                <span>{{ modulePowerBreakdown()[$index]?.final | number }}</span>
+                <span [class.boosted]="modulePowerBreakdown()[$index]?.contributions?.length">{{ modulePowerBreakdown()[$index]?.final | number }}</span>
               </div>
               @if (isActive($index) && modulePowerBreakdown()[$index]?.contributions?.length) {
                 <ul class="mod-breakdown">
@@ -214,7 +214,15 @@
 
     <section>
       <h3>Cycles</h3>
-      <p>Shipsim: {{ s.cycles.max.final | number: '1.0-0' }}</p>
+      <p [class.boosted]="s.cycles.max.contributions.length">Shipsim: {{ s.cycles.max.final | number: '1.0-0' }}</p>
+      @if (s.cycles.max.contributions.length) {
+        <ul class="mod-breakdown">
+          <li class="base-line">Base {{ s.cycles.max.base | number: '1.0-0' }}</li>
+          @for (c of s.cycles.max.contributions; track c.modName + c.level) {
+            <li class="mod-line">{{ contributionText(c) }}</li>
+          }
+        </ul>
+      }
       @if (build.modules().length) {
         <h4>Modules</h4>
         <ul class="item-list">
