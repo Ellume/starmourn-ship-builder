@@ -63,9 +63,9 @@
 
     <h4>Systems</h4>
     <dl class="stat-grid">
-      <div class="stat" [class.warn]="s.power.max - s.power.used.base < 0" [class.boosted]="s.power.used.contributions.length">
-        <dt>Power</dt>
-        <dd>{{ s.power.max - s.power.used.base | number }} / {{ s.power.max | number }}</dd>
+      <div class="stat" [class.warn]="s.power.remaining < 0" [class.boosted]="s.power.used.contributions.length">
+        <dt>Power Usage</dt>
+        <dd>{{ s.power.used.final | number }} / {{ s.power.max | number }}</dd>
         @if (s.power.used.contributions.length) {
           <ul class="mod-breakdown">
             <li class="base-line">Base usage {{ s.power.used.base | number }} halons</li>
