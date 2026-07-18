@@ -1,0 +1,9 @@
+# Claude Code project instructions/config — kept locally, not published publicly
+CLAUDE.md
+.claude/
+
+# Editor-only AI tooling config — kept locally, not published publicly
+web/.vscode/mcp.json
+
+# Local dev-server launcher tied to this machine's environment quirks
+web/start-dev.cmd
