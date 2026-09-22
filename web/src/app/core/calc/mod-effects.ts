@@ -5,22 +5,18 @@ import { ACCEL_SCALE, BASE_MAX_SPEED, BuildInput, BuildStats, calculateBuildStat
 
 /**
  * Applies crafted-mod effects (data/ship-mod-levels.json, parsed by mod-effect-parser)
- * on top of the baseline stats-engine numbers. Mods are ship-wide, not per-component,
- * but their canonical stat names (see mod-effect-parser's canonicalizeStats) each
- * target one specific hull/component/module attribute — STAT_TARGETS below is that
- * mapping, built from a full scan of all 750 rows (66 distinct canonical stats).
- *
- * Not every canonical stat has somewhere to go: some name a mechanic this app
- * doesn't model at all (mining/interdiction/etc.), and some name a component-HP
- * concept stats-engine deliberately excludes from Health. Those are listed in
- * OTHER_EFFECT_REASONS instead of STAT_TARGETS so they still surface in the UI (as
- * an "other effects" list) rather than silently vanishing — see computeModdedStats's
- * `other` output.
+ * on top of the baseline stats-engine numbers. Each mod's canonical stat name
+ * (see mod-effect-parser's canonicalizeStats) targets one specific attribute —
+ * STAT_TARGETS is that mapping, built from a full scan of all 750 rows (66
+ * distinct canonical stats). Stats with nowhere to go (an unmodeled mechanic, or
+ * component-HP that stats-engine deliberately excludes) are listed in
+ * OTHER_EFFECT_REASONS instead, so they surface as an "other effects" list rather
+ * than silently vanishing — see computeModdedStats's `other` output.
  */
 
 type MassTarget = 'hull' | 'capacitor' | 'engine' | 'sensor' | 'shipsim';
 type HalonTarget = 'capacitor' | 'engine' | 'sensor' | 'shipsim' | 'shield';
-/** The 4 weapon families that have dedicated damage/halon/kear-cost mods — mine/web/interdictor/etc. don't. */
+/** Only these 4 weapon families have dedicated damage/halon/kear-cost mods. */
 type WeaponFamily = 'cannon' | 'turret' | 'missile' | 'laserbeam';
 type ResistanceTarget = 'hullThermal' | 'hullKinetic' | 'hullGravitic' | 'shieldEM' | 'shieldKinetic' | 'shieldGravitic';
 /** Ammo-based, not weapon-based — see the damageTypeBonus case in computeModdedStats. */
@@ -140,7 +136,6 @@ export const OTHER_EFFECT_REASONS: Record<string, string> = {
   'Skipfield Integrity': 'unique single-mod stat with no known base value anywhere in the data',
 };
 
-/** One fitted mod's parsed effects at its current level, ready to aggregate. */
 export interface ModEffectSource {
   modName: string;
   level: number;
@@ -148,13 +143,10 @@ export interface ModEffectSource {
 }
 
 /**
- * One mod's contribution to a stat — a mod appears once here even if it affects
- * several fitted items of the same kind (e.g. 2 fitted cannons). `level` is null
- * for non-leveled sources (e.g. a linked Damage Boost module), which have no
- * ship-mod level to show. `count` is set only when this single entry already
- * combines several fitted instances of the same-named source (e.g. 2 fitted
- * Cargo Hold Is merged into one line, since dedup keys on modName+level) — display
- * as an "Nx " prefix so the combination isn't mistaken for one bigger bonus.
+ * One mod's contribution to a stat. `level` is null for non-leveled sources
+ * (e.g. a linked Damage Boost module). `count` is set when this entry already
+ * merges several same-named fitted instances (dedup keys on modName+level, e.g.
+ * 2 fitted Cargo Hold Is) — display as an "Nx " prefix, not one bigger bonus.
  */
 export interface ModContribution {
   modName: string;
@@ -255,11 +247,9 @@ function applyDeltas(base: number, contribs: ModContribution[]): StatBreakdown {
 }
 
 /**
- * Resistances are already expressed as a percentage (every hull's therm/kin/grav
- * resistance is 0 in the source data; shields range -15..+15) — a mod's "+X%
- * resistance" adds X percentage points directly rather than scaling a physical
- * quantity, unlike mass/hp/halon-cost mods. Multiplying would leave a 0-base hull
- * resistance at 0 forever, which is exactly what these mods are meant to fix.
+ * Resistances are already a percentage, so a mod's "+X% resistance" adds X
+ * points directly rather than scaling like mass/hp/halon-cost mods — multiplying
+ * would leave a 0-base hull resistance at 0 forever, which these mods exist to fix.
  */
 function applyAdditiveDeltas(base: number, contribs: ModContribution[]): StatBreakdown {
   const contributions = dedupeContributions(contribs);
@@ -276,17 +266,12 @@ function sumBreakdowns(parts: StatBreakdown[]): StatBreakdown {
 }
 
 /**
- * Like sumBreakdowns, but for summing several *differently-based* parts (one
- * per fitted weapon) where a contribution's raw deltaPct is only meaningful
- * relative to its own part's base — e.g. a linked Damage Boost's +10% applies
- * to one weapon's damage, not to the ship-wide total. Recomputes each named
- * contribution's aggregate deltaPct from its actual dollar amount (part.base *
- * deltaPct/100) as a share of the summed base, so a boost on one weapon out of
- * several shows its true (smaller) overall %. For a contribution applied
- * uniformly across every part (the common case — a ship mod that boosts a
- * whole weapon family equally), this reduces to the same raw deltaPct, so it's
- * a strict improvement over sumBreakdowns rather than a behavior change for
- * the uniform case.
+ * Like sumBreakdowns, but for parts with *different bases* (one per fitted
+ * weapon), where a contribution's deltaPct is only meaningful relative to its
+ * own part — e.g. a linked Damage Boost's +10% applies to one weapon, not the
+ * ship-wide total. Recomputes each contribution's aggregate % from its actual
+ * amount as a share of the summed base, so a boost on one weapon among several
+ * shows its true (smaller) overall %.
  */
 function sumWeightedBreakdowns(parts: StatBreakdown[]): StatBreakdown {
   const base = parts.reduce((sum, p) => sum + p.base, 0);
@@ -306,10 +291,7 @@ function sumWeightedBreakdowns(parts: StatBreakdown[]): StatBreakdown {
     }
   }
   const contributions: ModContribution[] = [...byKey.values()].map((e) => {
-    // Round off float noise from the dollars/base round-trip (e.g. a single
-    // uniformly-applied contribution should come back as exactly its original
-    // deltaPct, not 9.899999999999999) — percentages here only ever originate
-    // from 2-decimal source data anyway.
+    // Round off float noise from the dollars/base round-trip.
     const deltaPct = base ? Math.round((e.dollars / base) * 1e8) / 1e6 : 0;
     return { modName: e.modName, level: e.level, deltaPct, ...(e.count > 1 ? { count: e.count } : {}) };
   });
@@ -382,7 +364,6 @@ export function computeModdedStats(
 
   for (const source of modSources) {
     for (const effect of source.effects) {
-      // Not typed as ModContribution here — source.level (a ship mod's level) is always a number, and OtherEffect below requires that, unlike ModContribution which also allows null for non-leveled sources.
       const contribution = { modName: source.modName, level: source.level, deltaPct: effect.delta_pct };
       const target = STAT_TARGETS[effect.stat];
       if (!target) {
@@ -461,10 +442,8 @@ export function computeModdedStats(
     }
   }
 
-  // --- Mass (per hull/component, then summed) ---
-  // No mod stat in the data targets shield mass, but the shield's mass_tons still
-  // counts toward the ship's total (see stats-engine's fittedComponents) — included
-  // here as a base-only, contribution-free term so the totals still match baseline.
+  // No mod stat targets shield mass, but it still counts toward the ship's total
+  // (see stats-engine's fittedComponents) — included as a base-only term below.
   const mass = sumBreakdowns([
     applyDeltas(build.hull.mass_tons, massContribs.hull),
     applyDeltas(build.capacitor?.mass_tons ?? 0, massContribs.capacitor),
@@ -473,13 +452,10 @@ export function computeModdedStats(
     applyDeltas(build.shipsim?.mass_tons ?? 0, massContribs.shipsim),
     applyDeltas(build.shield?.mass_tons ?? 0, []),
   ]);
-  // Modules always carry 0 mass_tons in the source data (see stats-engine.spec.ts) — added
-  // for symmetry with calculateBuildStats in case that ever changes, not because it does anything today.
   const moduleMass = build.modules.reduce((sum, m) => sum + m.mass_tons, 0);
   mass.base += moduleMass;
   mass.final += moduleMass;
 
-  // --- Thrust / Mass ---
   const thrustOverMass = build.engine
     ? (() => {
         const thrust = applyDeltas(build.engine!.thrust_halons ?? 0, thrustContribs);
@@ -493,10 +469,6 @@ export function computeModdedStats(
 
   const turnSpeedSeconds = applyDeltas(build.hull.turn_time_s, turnContribs);
 
-  // --- Max speed / time to max speed ---
-  // Max speed is a flat constant across every hull (confirmed by the user) — see
-  // stats-engine's BASE_MAX_SPEED. Time to max speed derives from thrust/mass, the
-  // acceleration proxy that determines how fast a ship climbs to that shared cap.
   const maxSpeed = applyDeltas(BASE_MAX_SPEED, maxSpeedContribs);
   const timeToMaxSpeedSeconds = thrustOverMass
     ? {
@@ -506,12 +478,10 @@ export function computeModdedStats(
       }
     : null;
 
-  // --- Health ---
   const hullHp = applyDeltas(build.hull.strength_dam, hullHpContribs);
   const shieldHp = applyDeltas(build.shield?.shield_strength_dam ?? 0, shieldHpContribs);
   const health = { hull: hullHp, shield: shieldHp, total: hullHp.final + shieldHp.final };
 
-  // --- Power ---
   const powerByComponent: PowerLine[] = [
     { label: 'Capacitor', halons: applyDeltas(build.capacitor?.power_need_halons ?? 0, halonContribs.capacitor) },
     { label: 'Engine', halons: applyDeltas(build.engine?.power_need_halons ?? 0, halonContribs.engine) },
@@ -528,7 +498,7 @@ export function computeModdedStats(
   });
   const moduleHalon = sumBreakdowns(powerByModule);
   const powerUsed = sumBreakdowns([componentHalon, moduleHalon]);
-  // No mod stat in the data raises/lowers a hull's power_halons max — only draw is ever modded.
+  // No mod stat raises/lowers a hull's power_halons max — only draw is ever modded.
   const power = {
     used: powerUsed,
     max: baseline.power.max,
@@ -537,7 +507,6 @@ export function computeModdedStats(
     byModule: powerByModule,
   };
 
-  // --- Cycles ---
   const cyclesMaxBreakdown = applyDeltas(build.shipsim?.max_cycles ?? 0, cyclesContribs);
   // No mod stat lowers a module's own cycle cost, only a shipsim's generation — used stays baseline.
   const cycles = {
@@ -546,12 +515,9 @@ export function computeModdedStats(
     remaining: cyclesMaxBreakdown.final - baseline.cycles.used,
   };
 
-  // --- Weapons: damage, plus kear cost per fitted weapon ---
-  // Each fitted Damage Boost module links to one physical weapon, but fitted weapon
-  // instances of the same type are indistinguishable in this data model (see
-  // BuildStore.damageBoostLinks) — so `damageBoostCounts` (linked-boost count per
-  // weapon *type*) is consumed one credit per instance as we walk the fitted
-  // weapons, instead of applying the full count to every instance of that type.
+  // Fitted weapon instances of the same type are indistinguishable (see
+  // BuildStore.damageBoostLinks), so `damageBoostCounts` (linked-boost count per
+  // weapon type) is consumed one credit per instance as we walk the fitted weapons.
   const boostCreditsRemaining = new Map(damageBoostCounts ?? []);
   const weaponDamageBreakdowns = build.modules
     .map((m, i) => ({ m, active: isActive(i) }))
@@ -586,16 +552,11 @@ export function computeModdedStats(
   const dps = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.dps));
   const totalCapDrainKear = sumWeightedBreakdowns(weaponDamageBreakdowns.map((w) => w.kear));
 
-  // --- Cargo ---
   // Cargo Hold I/II/III grant a flat tons bonus, unlike ship mods' percentage
-  // bonuses — expressed here as the equivalent % of the hull's base capacity so
-  // both sources compose through the same single applyDeltas pass (matches how
-  // every other modded stat sums its deltas once against an unmodified base,
-  // rather than compounding sequentially). Tons are summed per module name first
-  // (rather than pushed one contribution per fitted instance) since dedupeContributions
-  // keys on modName+level and would otherwise silently drop all but one instance
-  // of the same fitted module — level is null here so every same-named module
-  // would collide on the same key.
+  // bonuses — expressed here as an equivalent % of the hull's base capacity so
+  // both compose through the same applyDeltas pass. Tons are summed per module
+  // name first since dedupeContributions keys on modName+level (null here), which
+  // would otherwise drop all but one instance of the same fitted module.
   if (build.hull.capacity_tons > 0) {
     const cargoByModuleName = new Map<string, { tons: number; count: number }>();
     build.modules.forEach((m, i) => {
@@ -612,7 +573,6 @@ export function computeModdedStats(
   }
   const cargoCapacityTons = applyDeltas(build.hull.capacity_tons, cargoContribs);
 
-  // --- Resistances (additive) ---
   const resistances: Record<ResistanceTarget, StatBreakdown> = {
     hullThermal: applyAdditiveDeltas(build.hull.therm_res, resistanceContribs.hullThermal),
     hullKinetic: applyAdditiveDeltas(build.hull.kin_res, resistanceContribs.hullKinetic),
@@ -622,19 +582,14 @@ export function computeModdedStats(
     shieldGravitic: applyAdditiveDeltas(build.shield?.grav_res ?? 0, resistanceContribs.shieldGravitic),
   };
 
-  // --- Sensor jam strength / shield recharge / capacitance ---
   const sensorJamStrength = applyDeltas(build.sensor?.jam_str ?? 0, jamContribs);
   const shieldRechargeSeconds = applyDeltas(build.shield?.recharge_s ?? 0, rechargeContribs);
   const capacitance = applyDeltas(build.capacitor?.capacity_kear ?? 0, capacitanceContribs);
 
-  // --- Hardpoint / module capacity ---
-  // "hardpoint capacity" / "module capacity" are plain percentage boosts of their own
-  // budget (e.g. cargohold_optimizer's tradeoff cut). "X replaced as Y" mods (expanded_
-  // hardpoints/expanded_modulebay) instead convert a % of one hull budget into the
-  // other — modeled here as a % of each budget's own *base* value (not of the other's
-  // already-modded value) to keep the math order-independent; not confirmed against
-  // live play since crafted mods predate any old-site calibration data (see
-  // ship-mods-notes.md), so treat this conversion formula as a best-effort inference.
+  // "X replaced as Y" mods (expanded_hardpoints/expanded_modulebay) convert a % of
+  // one hull budget into the other — modeled as a % of each budget's own *base*
+  // value (not the other's already-modded value) to keep the math order-independent.
+  // Not confirmed against live play (see ship-mods-notes.md) — best-effort inference.
   const baseHardpoints = build.hull.hardpoints;
   const baseModCap = build.hull.mod_cap;
   const hardpointPct = dedupeContributions(hardpointCapacityContribs).reduce((sum, c) => sum + c.deltaPct, 0);
@@ -672,7 +627,6 @@ export function computeModdedStats(
   const hardpoints: CapacityStat = { used: hardpointsUsed, max: hardpointsMax, remaining: hardpointsMax.final - hardpointsUsed };
   const modCap: CapacityStat = { used: moduleUsed, max: moduleMax, remaining: moduleMax.final - moduleUsed };
 
-  // --- Weapon damage-type bonuses — flat aggregated %, no base/final (see StatTarget's damageTypeBonus case) ---
   const damageTypeBonuses: DamageTypeBonus[] = (['EM', 'Kinetic', 'Thermal', 'Gravitic'] as DamageType[])
     .map((damageType) => {
       const contributions = dedupeContributions(damageTypeContribs[damageType]);

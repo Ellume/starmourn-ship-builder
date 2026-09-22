@@ -3,12 +3,9 @@ import { DataService } from '../data/data.service';
 import { BuildStore } from './build.store';
 
 /**
- * Plain query params rather than a single base64(JSON) blob — a JSON envelope's
- * quoted keys/braces plus base64's ~33% inflation made links noticeably longer
- * for no real benefit (params are just as easy to validate on decode, and stay
- * human-inspectable in the URL bar). Commas/colons are left unescaped in the
- * values below since only `&`, `=`, `#`, `%`, and spaces actually need escaping
- * in a query value — none of our ids/shortnames ever contain those.
+ * Plain query params rather than a base64(JSON) blob — shorter links, and stays
+ * human-inspectable in the URL bar. Commas/colons are left unescaped below since
+ * only `&`, `=`, `#`, `%`, and spaces need escaping in a query value.
  */
 const COMPONENT_PARAM: Record<ComponentType, string> = {
   Capacitor: 'c',
@@ -49,11 +46,9 @@ export function encodeBuild(build: BuildStore, data: DataService): string {
   const boostLinks = build.damageBoostLinks();
   if (boostLinks.some((id) => id != null)) parts.push(`bl=${boostLinks.map((id) => id ?? '').join(',')}`);
 
-  // Mods are keyed by shortname everywhere else in the app (mod-capacity.ts, BuildStore),
-  // but shortnames run 10-20+ chars each — too long to repeat in a URL. The catalog's own
-  // array position is a much shorter stand-in, valid as long as it's decoded against the
-  // same data snapshot it was encoded from (same tradeoff hull/component/module ids
-  // already make — see applySharedBuildFromUrl's header comment).
+  // Mods are keyed by shortname elsewhere in the app, but shortnames are too long to
+  // repeat in a URL — the catalog's array index is a shorter stand-in, valid as long
+  // as it's decoded against the same data snapshot it was encoded from.
   const shipMods = data.shipMods();
   const modIndex = new Map(shipMods.map((m, i) => [m.shortname, i]));
   const mods = build.mods().filter((m) => modIndex.has(m.shortname));
@@ -119,12 +114,10 @@ export function applySharedBuildFromUrl(build: BuildStore, data: DataService): b
   }
 
   /**
-   * One token per fitted Damage Boost module (same order as `damageBoostLinks`,
-   * reconstructed above by the `addModule` calls) — empty token means unlinked. A
-   * weapon type can be claimed by as many tokens as it has fitted instances (each
-   * physical weapon takes at most one link, but e.g. 2 fitted Cannon Is can each
-   * hold their own) — a hand-edited or stale link beyond that count, or naming a
-   * weapon id not fitted at all, degrades to unlinked instead of double-applying.
+   * One token per fitted Damage Boost module, same order as `damageBoostLinks` —
+   * empty token means unlinked. A weapon type can be claimed by as many tokens as
+   * it has fitted instances; a stale/hand-edited link beyond that count degrades
+   * to unlinked instead of double-applying.
    */
   const fittedWeaponCounts = new Map<number, number>();
   for (const m of build.modules()) {

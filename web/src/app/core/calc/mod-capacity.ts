@@ -1,9 +1,7 @@
 /**
- * Capacity/validation rules for the crafted Mods system (data/ship-mods.json),
- * confirmed by the user (an active player) — see the project-game-mechanics
- * memory. Distinct from the Modules hardpoint/mod_cap points model in capacity.ts:
- * mods use a flat 6-slot count plus a shared level-sum budget instead of per-item
- * size points.
+ * Capacity/validation rules for the crafted Mods system (data/ship-mods.json).
+ * Distinct from the Modules hardpoint/mod_cap points model in capacity.ts: mods
+ * use a flat 6-slot count plus a shared level-sum budget instead of size points.
  */
 
 export interface FittedMod {
@@ -19,12 +17,9 @@ export const MOD_LEVEL_MAX = 15;
 
 /**
  * Mutually exclusive with each other — trade one ship-wide capacity stat for
- * another. See data/ship-mods-notes.md "Facts". In-game these also require all
- * modules uninstalled to install/remove, but this tool is a design aid, not a
- * simulator of that specific restriction: hardpoint/module capacity are a
- * warn-only budget here (see loadout-editor.ts), so adding/removing one of these
- * mods with weapons/modules already fitted is allowed and just re-evaluates
- * whether you're over budget, the same as any other capacity-changing edit.
+ * another (see data/ship-mods-notes.md). In-game these also require all modules
+ * uninstalled to install/remove; this tool doesn't simulate that restriction —
+ * hardpoint/module capacity is a warn-only budget here (see loadout-editor.ts).
  */
 export const CAPACITY_TRADE_MODS: readonly string[] = [
   'expanded_hardpoints',
@@ -33,11 +28,9 @@ export const CAPACITY_TRADE_MODS: readonly string[] = [
 ];
 
 /**
- * Each `*_optimize` mod blocks other mods on the same component/weapon type.
- * Keyed by the optimize mod's shortname; values are the shortnames it locks out.
- * Confirmed pairing (not a blanket family-wide rule) — e.g. engine_optimize
- * blocks engine_bulwark/engine_overclock but NOT max_speed, even though all
- * three share the "Engine Modification" family. See project-game-mechanics memory.
+ * Each `*_optimize` mod blocks specific other mods, keyed by shortname — a
+ * confirmed pairing, not a blanket family-wide rule (e.g. engine_optimize blocks
+ * engine_bulwark/engine_overclock but not max_speed, despite sharing a family).
  */
 export const OPTIMIZE_LOCKOUTS: Record<string, string[]> = {
   capacitor_optimize: ['capacitor_bulwark', 'capacitor_overclock'],

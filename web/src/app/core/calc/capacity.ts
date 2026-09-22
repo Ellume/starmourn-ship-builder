@@ -2,9 +2,8 @@ import { ModuleSize, ShipModule } from '../models/module';
 
 /**
  * Points a module of a given size consumes against a hull's hardpoints (weapon
- * modules) or mod_cap (non-weapon modules) budget. Confirmed from the old site's
- * embedded data (every module in the dataset uses exactly one of these three
- * values, no exceptions) — data/modules.json doesn't carry this field itself.
+ * modules) or mod_cap (non-weapon modules) budget. Not in data/modules.json
+ * itself — confirmed from the old site's embedded data.
  */
 export const MODULE_SIZE_POINTS: Record<ModuleSize, number> = {
   small: 5,
