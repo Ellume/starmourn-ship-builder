@@ -71,11 +71,8 @@ export class LoadoutEditor {
 
   /**
    * Non-weapon list rows, with an ordinal assigned to each Damage Boost instance
-   * for its link dropdown. Mapped-then-sorted (rather than sorting build.nonWeaponModules()
-   * directly) so each row still carries its original index into build.modules()/
-   * moduleActive() for the active checkbox — a stable sort preserves relative order
-   * among same-named ties, so the boostIndex ordinal still lines up with fit order
-   * the same way it always has.
+   * for its link dropdown. Mapped-then-sorted (not sorting build.nonWeaponModules()
+   * directly) so each row keeps its original index into build.modules()/moduleActive().
    */
   protected readonly nonWeaponRows = computed<NonWeaponRow[]>(() => {
     let boostIndex = 0;
@@ -99,11 +96,8 @@ export class LoadoutEditor {
   });
 
   /**
-   * Each physical weapon can only take one Damage Boost link, but a weapon *type*
-   * can take as many links as it has fitted instances (e.g. 2 fitted Cannon Is can
-   * each hold their own link) — excludes a weapon type only once every instance of
-   * it is already claimed by *other* boost modules, so it disappears from further
-   * dropdowns once its instances are all spoken for.
+   * A weapon type can take as many Damage Boost links as it has fitted instances —
+   * excluded here only once every instance is already claimed by other boost modules.
    */
   availableLinkTargets(boostIndex: number): ShipModule[] {
     const links = this.build.damageBoostLinks();
@@ -118,14 +112,10 @@ export class LoadoutEditor {
   }
 
   /**
-   * PrimeNG's Select.onOptionSelect only re-fires a selection when the clicked option
-   * differs from its OWN internal `modelValue`. Its `updateModel()` unconditionally
-   * re-stamps `modelValue` to the just-picked value as its *last* synchronous step —
-   * after our (ngModelChange) handler has already run — so resetting synchronously
-   * inside addWeapon/addModule (via the bound signal or even a direct `writeValue`
-   * call) gets clobbered by that same still-in-progress call. The reset has to happen
-   * on a later task, once PrimeNG's own onOptionSelect call stack has fully unwound,
-   * or re-picking the same item twice in a row silently no-ops.
+   * PrimeNG's Select re-stamps its internal `modelValue` back to the picked value as
+   * the last step of `onOptionSelect`, after our (ngModelChange) handler runs — so a
+   * synchronous reset gets clobbered. Must reset on a later task (see
+   * resetSelectAfterPick) or re-picking the same item twice in a row silently no-ops.
    */
   private readonly weaponSelect = viewChild<Select>('weaponSelect');
   private readonly moduleSelect = viewChild<Select>('moduleSelect');
@@ -171,13 +161,7 @@ export class LoadoutEditor {
     return shipClass ? this.data.componentsByType(type).filter((c) => c.class === shipClass) : [];
   }
 
-  /**
-   * Hardpoint/module capacity is a warn-only budget, like Power/Cycles (see
-   * stats-panel's overBudget) — a ship mod can raise or lower it, so blocking the
-   * add outright would leave no way to recover from "fit a capacity mod, add
-   * weapons with the new room, then remove the mod" without going negative first.
-   * The Weapons/Modules headers in the template turn red instead when over.
-   */
+  /** Hardpoint/module capacity is a warn-only budget, like Power/Cycles — a ship mod can raise or lower it, so adding isn't blocked outright; the template headers turn red instead when over. */
   addWeapon(module: ShipModule | null): void {
     if (module) this.build.addModule(module);
     this.resetSelectAfterPick(this.pendingWeapon, this.weaponSelect());

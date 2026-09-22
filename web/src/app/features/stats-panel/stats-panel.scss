@@ -60,9 +60,8 @@ h4 {
   color: var(--p-text-muted-color);
 }
 
-/* Mod-effect breakdowns are informational, not good/bad — one neutral color for
-   every line, regardless of the delta's sign. Red stays reserved for the
-   power/cycles over-budget warning above. */
+/* Mod deltas are informational, not good/bad — one neutral color regardless of
+   sign. Red stays reserved for the over-budget warning above. */
 .mod-breakdown {
   list-style: none;
   margin: 0.25rem 0 0;

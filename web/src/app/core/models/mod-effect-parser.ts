@@ -2,11 +2,10 @@ import { Material, ModEffect, PartCost, ShipModLevel, ShipModLevelRaw } from './
 
 /**
  * Parses the free-text effect/parts fields in ship-mod-levels.json into structured
- * data. The source text has a handful of known irregularities (see KNOWN_TEXT_FIXES
- * and the conjunction-list handling below) confirmed by scanning all 750 rows —
- * see data/ship-mods-notes.md and the Phase 1 data-normalization note in the project
- * plan. Any row that doesn't fit these patterns is reported by validateParsing()
- * rather than silently mis-parsed.
+ * data. The source text has a handful of known irregularities, handled by
+ * KNOWN_TEXT_FIXES and the conjunction-list logic below (confirmed by scanning
+ * all 750 rows — see data/ship-mods-notes.md). Any row that doesn't fit these
+ * patterns is reported by validateParsing() rather than silently mis-parsed.
  */
 
 const MATERIAL_CANONICAL: Record<string, Material> = {

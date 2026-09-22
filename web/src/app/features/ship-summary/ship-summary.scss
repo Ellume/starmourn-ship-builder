@@ -114,8 +114,7 @@ section {
   }
 }
 
-/* Same neutral, informational styling as the Stats panel's mod breakdowns — a
-   mod's delta isn't inherently good or bad, so no red/green here either. */
+/* A mod's delta isn't inherently good or bad — no red/green here. */
 .mod-breakdown {
   list-style: none;
   margin: 0.25rem 0 0;

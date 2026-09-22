@@ -14,12 +14,10 @@ export class BuildStore {
   readonly sensor = signal<ShipComponent | null>(null);
   readonly modules = signal<ShipModule[]>([]);
   /**
-   * Parallel to `modules` (same index, kept in sync by addModule/removeModule) —
-   * whether each fitted instance is powered on. A disabled weapon/module still
-   * occupies its hardpoint/module-capacity slot and still costs its shipsim
-   * cycles (the hull always has to simulate what's fitted), but draws no power
-   * and, for weapons, contributes no damage/kear — lets the user test out a
-   * build with something switched off without having to unfit it.
+   * Parallel to `modules` (kept in sync by addModule/removeModule) — whether each
+   * fitted instance is powered on. A disabled weapon/module still occupies its
+   * slot and costs shipsim cycles, but draws no power and (for weapons) deals no
+   * damage — lets the user test a build with something switched off without unfitting it.
    */
   readonly moduleActive = signal<boolean[]>([]);
   /** Crafted ship mods (data/ship-mods.json) — a separate 6-slot/60-level-budget system from `modules`. Not hull-specific, so not cleared on hull change. */
@@ -27,23 +25,18 @@ export class BuildStore {
 
   /**
    * One entry per fitted Damage Boost module, in fit order — value is the linked
-   * weapon's module `id`, or null if unlinked. Fitted Damage Boost modules are
-   * otherwise indistinguishable from each other (duplicate fits are literally the
-   * same `ShipModule` object reference, same as every other module), so a link is
-   * tracked by ordinal position among Damage Boost fits rather than by instance
-   * identity. `addModule`/`removeModule` keep this array's length in sync with the
-   * fitted count; `removeModule` always drops index 0, matching its own "removes
-   * the first instance found" semantics below.
+   * weapon's module `id`, or null if unlinked. Duplicate Damage Boost fits are the
+   * same `ShipModule` reference, so a link is tracked by ordinal position among
+   * fits rather than by instance identity; `removeModule` always drops index 0,
+   * matching its own "removes the first instance found" semantics below.
    */
   readonly damageBoostLinks = signal<(number | null)[]>([]);
 
   /**
    * Linked-boost count per weapon module id, ignoring links whose target weapon is
-   * no longer fitted, or whose own Damage Boost module has been switched off. Feeds
-   * computeModdedStats. `damageBoostLinks` is ordinal among fitted Damage Boost
-   * instances in fit order (see its own doc comment) — `boostModuleIndices` maps
-   * that ordinal back to the instance's position in `modules`/`moduleActive` so we
-   * can look up whether *that particular* Damage Boost module is active.
+   * no longer fitted or whose own Damage Boost module is switched off. Feeds
+   * computeModdedStats. `boostModuleIndices` maps each link's ordinal back to its
+   * position in `modules`/`moduleActive` to check whether it's active.
    */
   readonly damageBoostCounts = computed(() => {
     const modules = this.modules();

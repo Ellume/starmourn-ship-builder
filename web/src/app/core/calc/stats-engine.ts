@@ -3,34 +3,18 @@ import { ShipModule } from '../models/module';
 import { ShipModel } from '../models/ship-model';
 
 /**
- * Baseline (no ship-mods applied yet — that's Phase 4) build stat calculations.
- *
- * Formulas here are not guessed: they're reverse-engineered by driving the old
- * site (https://seurimas.github.io/starmourn-ship-builder/) with a known build
- * (hull id 20 Akari Yards Corsair + capacitor 3 + engine 23 + shield 1 + shipsim 3
- * + sensor 1, with and without a Cannon I module) and matching its displayed
- * output against the input stats. See stats-engine.spec.ts for the calibration
- * build and the exact confirmed numbers. Notably:
- * - Health = hull.strength_dam + shield.shield_strength_dam only. The old site
- *   has no per-component "hp" concept at all, so the `hp` field our current data
- *   snapshot carries on capacitor/engine/sensor/shipsim components (absent from
- *   the old site's data) is NOT folded into ship Health here — it's newer/extra
- *   information (likely per-component durability for a different mechanic) with
- *   no confirmed role in the aggregate Health stat.
- * - DPS = weapon_damage / firing_speed_s, not factoring in reload_speed_s.
- * - Turn speed is the hull's base turn_time_s, unmodified (mods are layered on
- *   top separately — see core/calc/mod-effects.ts).
- * - Max speed is a flat 3000 for every hull — confirmed by the user (an active
- *   player), not present anywhere in ship-models.json. Thrust/Mass is the
- *   acceleration proxy that determines how quickly a ship reaches that shared
- *   cap, but a raw `maxSpeed / thrustOverMass` overshoots real in-game timings
- *   by ~1000x (e.g. 4618s instead of ~4.6s for a fast Interceptor build) —
- *   confirmed against a live GMCP speed/time log the user captured for an
- *   Ixodon Maw Superhauler (thrustOverMass 0.0547) reaching 2020/3000 u/s in
- *   ~20s, which only lines up once the accel term is scaled by ACCEL_SCALE.
- *   Real acceleration isn't even constant — it decays as speed approaches the
- *   cap — so this is still an approximation (hence the UI's leading "~"), just
- *   a correctly-scaled one. See ACCEL_SCALE below.
+ * Baseline (pre-mod) build stat calculations. Formulas are reverse-engineered
+ * from the old site's (seurimas.github.io/starmourn-ship-builder) live output
+ * for a known calibration build — see stats-engine.spec.ts for the build and
+ * confirmed numbers. Notably:
+ * - Health = hull.strength_dam + shield.shield_strength_dam only; the `hp`
+ *   field on capacitor/engine/sensor/shipsim components has no confirmed role
+ *   here and isn't folded in.
+ * - DPS = weapon_damage / firing_speed_s (reload_speed_s isn't factored in).
+ * - Max speed is a flat 3000 for every hull (confirmed by the user, not in the
+ *   data). ACCEL_SCALE corrects thrustOverMass to match real in-game
+ *   acceleration timings (calibrated against a live GMCP speed log) — still an
+ *   approximation since real acceleration isn't constant, hence the UI's "~".
  */
 
 export interface BuildInput {
@@ -40,15 +24,11 @@ export interface BuildInput {
   shield?: ShipComponent;
   shipsim?: ShipComponent;
   sensor?: ShipComponent;
-  /** Fitted modules, weapon and non-weapon alike. */
   modules: ShipModule[];
   /**
-   * Parallel to `modules` (same index) — whether each fitted instance is powered
-   * on. Defaults to all-active when omitted, so every caller that doesn't care
-   * about this (tests, older call sites) keeps behaving as if every module were
-   * active. An inactive module draws no power and, if a weapon, deals no damage —
-   * but still costs its shipsim cycles (a hull always has to simulate what's
-   * fitted, active or not) and still occupies its hardpoint/module-capacity slot.
+   * Parallel to `modules` — whether each fitted instance is powered on. Defaults
+   * to all-active when omitted. An inactive module draws no power and, if a
+   * weapon, deals no damage — but still costs shipsim cycles and occupies its slot.
    */
   moduleActive?: boolean[];
 }
@@ -69,11 +49,7 @@ export interface BudgetStat {
 /** Same across every hull — see this file's header comment. */
 export const BASE_MAX_SPEED = 3000;
 
-/**
- * Empirical correction factor between `thrustOverMass` (thrust_halons / mass_tons)
- * and the ship's actual in-game acceleration in u/s². See this file's header
- * comment for the calibration data this was derived from.
- */
+/** Empirical acceleration correction factor — see this file's header comment. */
 export const ACCEL_SCALE = 1000;
 
 export interface ResistanceStats {
@@ -91,7 +67,7 @@ export interface BuildStats {
   health: { hull: number; shield: number; total: number };
   alphaStrike: number;
   dps: number;
-  /** Per-weapon contribution — old site only shows a ship-wide total, this is a v1 improvement. */
+  /** Per-weapon contribution — the old site only shows a ship-wide total. */
   weaponBreakdown: WeaponContribution[];
   /** Total capacitor drain across all fitted weapons, one shot each. */
   totalCapDrainKear: number;

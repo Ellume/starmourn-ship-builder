@@ -42,13 +42,7 @@ export class App implements OnInit {
   protected readonly copiedSection = signal<{ section: 'hull' | 'mods'; ok: boolean } | null>(null);
   protected readonly shareLinkStatus = signal<'copied' | 'failed' | null>(null);
 
-  /**
-   * In-game command sequence to reproduce the current build's hull and components.
-   * Confirmed live against the old site: "SF MODEL <id>", "SF INSTALL <TYPE> <id>"
-   * for the 5 fitted components, and — resolving a gap noted in
-   * data/ship-purchases-notes.md ("module install command wasn't captured") —
-   * "SF INSTALL MODULE <id>" for both weapon and non-weapon modules alike.
-   */
+  /** In-game command sequence to reproduce the current build's hull and components — confirmed live against the old site. */
   protected readonly hullCommands = computed<string[]>(() => {
     const hull = this.build.hull();
     if (!hull) return [];
@@ -65,12 +59,7 @@ export class App implements OnInit {
     return lines;
   });
 
-  /**
-   * In-game command sequence for fitted ship mods, kept separate from hullCommands
-   * since mods are crafted/installed independently of the hull (see
-   * data/ship-mods-notes.md). Syntax confirmed live against the old site:
-   * "MOD INSTALL <shortname> INTO SHIP AT LEVEL <level>", one line per fitted mod.
-   */
+  /** Separate from hullCommands since mods are crafted/installed independently of the hull. */
   protected readonly modCommands = computed<string[]>(() =>
     this.build.mods().map((mod) => `MOD INSTALL ${mod.shortname} INTO SHIP AT LEVEL ${mod.level}`),
   );
@@ -97,10 +86,7 @@ export class App implements OnInit {
     return defaultLabel;
   }
 
-  /** Writes to the clipboard and reports success/failure via `onResult` — a rejected
-   * write (e.g. Safari's clipboard restrictions, an insecure/http origin, a permission-
-   * denied iframe) should still surface *something* to the user rather than a click
-   * that silently does nothing. */
+  /** Reports success/failure via `onResult` so a rejected write (Safari restrictions, insecure origin, etc.) still surfaces something instead of silently no-oping. */
   private writeToClipboard(text: string, onResult: (ok: boolean) => void): void {
     navigator.clipboard.writeText(text).then(
       () => onResult(true),

@@ -6,9 +6,7 @@ import { ModContribution, ModEffectSource, ModdedBuildStats, StatBreakdown, comp
 import { DataService } from '../../core/data/data.service';
 import { BuildStore } from '../../core/state/build.store';
 
-/** A displayable stat row — `breakdown` is null when either the stat isn't
- * applicable (e.g. Capacitance with no capacitor fitted) or no fitted mod
- * touches it, so the row renders as a plain value with no extra lines. */
+/** A displayable stat row — `breakdown` is null when the stat isn't applicable or no fitted mod touches it, so the row renders as a plain value. */
 interface StatRow {
   label: string;
   value: number | null;

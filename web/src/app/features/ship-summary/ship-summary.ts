@@ -23,10 +23,8 @@ interface PowerLine {
 
 /**
  * Read-only "everything about this ship" view, modeled on the game's `SF DETAILS`
- * printout: full per-component stat blocks, hardpoint/module size breakdown, and a
- * power/cycles breakdown per fitted item — not just the compact Stats card. Cargo/
- * tonnage tracking from the in-game printout is intentionally omitted: this app has
- * no concept of loaded cargo, only the hull's static `capacity_tons` figure.
+ * printout. Cargo/tonnage tracking from that printout is intentionally omitted:
+ * this app has no concept of loaded cargo, only the hull's static `capacity_tons`.
  */
 @Component({
   selector: 'app-ship-summary',
