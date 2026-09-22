@@ -6,11 +6,10 @@ calculated stats update live — all client-side, no server, no account.
 
 **Live app:** https://ellume.github.io/starmourn-ship-builder/
 
-This is an unofficial project, not affiliated with or endorsed by the Starmourn
-developers. It's a modern rebuild of an
+It's a modern rebuild of an
 [earlier community tool](https://seurimas.github.io/starmourn-ship-builder/) by
 Seurimas, reworked with a current Angular/PrimeNG stack and a freshly re-captured
-game-data snapshot (the original's data had gone stale).
+game-data snapshot.
 
 ## Features
 
